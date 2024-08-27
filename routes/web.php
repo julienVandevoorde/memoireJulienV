@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home.index'); // Page d'accueil (par défaut)
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -29,3 +29,21 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+//Navbar
+Route::get('/tattoos', function () {
+    return view('tattoos.index'); // Page des tatouages
+})->name('tattoos');
+
+Route::get('/find-my-tattoo-artist', function () {
+    return view('artists.index'); // Page pour trouver un tatoueur
+})->name('find-my-tattoo-artist');
+
+Route::get('/shop', function () {
+    return view('shop.index'); // Page du magasin
+})->name('shop');
+
+Route::get('/about-us', function () {
+    return view('about.index'); // Page "À propos de nous"
+})->name('about-us');
+
