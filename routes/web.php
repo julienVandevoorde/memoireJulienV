@@ -18,9 +18,12 @@ Route::get('/', function () {
     return view('home.index'); // Page d'accueil (par défaut)
 })->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//vérifier que ce soit un admin qui accède au dashboard (via Middleware/CheckRole)
+Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
