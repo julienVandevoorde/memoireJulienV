@@ -29,6 +29,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        // Vérifie si l'utilisateur est un administrateur        
+        if (Auth::user()->isAdmin()) { //erreur détectée par inteliphense mais ça fonctionne
+            return redirect()->intended('/dashboard');
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
