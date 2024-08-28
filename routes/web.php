@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -8,21 +9,21 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| Here is where you can register web routes for your application.
+| These routes are loaded by the RouteServiceProvider and all of them will be
+| assigned to the "web" middleware group. Make something great!
 |
 */
 
 Route::get('/', function () {
     return view('home.index'); // Page d'accueil (par défaut)
-})->name('home');
+})->name('home.index');
 
 //vérifier que ce soit un admin qui accède au dashboard (via Middleware/CheckRole)
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+        return view('dashboard.index'); // Assure-toi d'avoir 'dashboard.index' comme vue
+    })->name('dashboard.index');
 });
 
 Route::middleware('auth')->group(function () {
@@ -33,20 +34,23 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-//Navbar
+// Navbar
 Route::get('/tattoos', function () {
     return view('tattoos.index'); // Page des tatouages
-})->name('tattoos');
+})->name('tattoos.index');
 
 Route::get('/find-my-tattoo-artist', function () {
     return view('artists.index'); // Page pour trouver un tatoueur
-})->name('find-my-tattoo-artist');
+})->name('artists.index');
 
 Route::get('/shop', function () {
     return view('shop.index'); // Page du magasin
-})->name('shop');
+})->name('shop.index');
 
 Route::get('/about-us', function () {
     return view('about.index'); // Page "À propos de nous"
-})->name('about-us');
+})->name('about.index');
 
+// Paiement
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout', [CheckoutController::class, 'store']);

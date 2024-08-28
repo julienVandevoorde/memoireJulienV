@@ -14,24 +14,24 @@
     <div class="min-h-screen bg-gray-100">
         <!-- Navbar personnalisée -->
         <nav class="navbar">
-            <a href="{{ url('/') }}" class="navbar-brand">Tattoo Platform</a>
+            <a href="{{ route('home.index') }}" class="navbar-brand">Tattoo Platform</a>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="{{ url('/tattoos') }}" class="nav-link">Tattoos</a>
+                    <a href="{{ route('tattoos.index') }}" class="nav-link">Tattoos</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/find-my-tattoo-artist') }}" class="nav-link">Artists</a>
+                    <a href="{{ route('artists.index') }}" class="nav-link">Artists</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/shop') }}" class="nav-link">Shop</a>
+                    <a href="{{ route('shop.index') }}" class="nav-link">Shop</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/about-us') }}" class="nav-link">About Us</a>
+                    <a href="{{ route('about.index') }}" class="nav-link">About Us</a>
                 </li>
                 @if(Auth::check())
                     @if(Auth::user()->role === 'admin')
                         <li class="nav-item">
-                            <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
+                            <a href="{{ route('dashboard.index') }}" class="nav-link">Dashboard</a>
                         </li>
                     @endif
                 @endif
@@ -39,7 +39,7 @@
             <ul class="navbar-auth">
                 @if(Auth::check())
                     <li class="nav-item">
-                        <a href="{{ url('/profile') }}" class="nav-link">{{ Auth::user()->name }}</a>
+                        <a href="{{ route('profile.edit') }}" class="nav-link">{{ Auth::user()->name }}</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('logout') }}" class="nav-link" 
