@@ -8,17 +8,29 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Ajouter ton propre fichier CSS -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}"> <!-- Ton CSS Laravel personnalisé, si nécessaire -->
 </head>
 <body>
-    <div class="min-h-screen bg-gray-100">
-        <!-- Inclure la navbar depuis le fichier layouts -->
-        @include('layouts.navbar')
+    <!-- Utiliser le design du header de ton template -->
+    @include('layouts.navbar') <!-- Inclure la barre de navigation -->
 
-        <!-- Page Content -->
-        <main>
-            @yield('content')
-        </main>
-    </div>
+    <!-- Page Content -->
+    <main>
+        @yield('content')
+    </main>
+
+    <!-- Script du template pour rendre le header sticky au scroll -->
+    <script>
+        window.addEventListener('scroll', function() {
+            var header = document.querySelector('header');
+            var scrollTop = window.scrollY;
+
+            if (scrollTop > 50) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+        });
+    </script>
 </body>
 </html>

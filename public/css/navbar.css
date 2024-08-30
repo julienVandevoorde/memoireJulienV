@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 75%, rgba(0, 0, 0, 0.7) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100%;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: top 0.3s, background-color 0.3s; /* Ajout d'une transition pour le changement de background */
+    background-color: transparent; /* Arrière-plan transparent par défaut */
+    height: 80px; /* Hauteur définie */
+    z-index: 1000; /* Assure que la barre de navigation soit au-dessus des autres contenus */
+}
+
+header.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: white; /* Arrière-plan blanc lorsque l'utilisateur défile */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ajout d'une ombre légère pour l'effet */
+}
+
+header .logo {
+    color: #fff; /* Couleur par défaut pour le logo sur fond transparent */
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 2em;
+    letter-spacing: 2px;
+    transition: color 0.3s; /* Transition pour le changement de couleur */
+}
+
+header.sticky .logo {
+    color: #404040; /* Couleur de texte pour le logo quand le header est blanc */
+}
+
+header ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header ul li {
+    list-style: none;
+    margin-left: 20px;
+}
+
+header ul li a {
+    font-weight: 600; /* Augmentation de la graisse de la police */
+    font-size: 1em; /* Augmentation de la taille de la police */
+    text-decoration: none;
+    padding: 6px 15px;
+    color: #fff; /* Couleur des liens par défaut (sur fond transparent) */
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s; /* Transition pour le changement de couleur et de fond */
+}
+
+/* Effet hover pour les liens lorsque le header est transparent (avant le scroll) */
+header ul li a:hover {
+    background: #fff; /* Arrière-plan blanc au survol */
+    color: #404040; /* Couleur de texte gris foncé */
+}
+
+/* Style des liens lorsque le header devient sticky (après le scroll) */
+header.sticky ul li a {
+    color: #404040; /* Couleur des liens lorsque le background est blanc */
+}
+
+/* Effet hover pour les liens lorsque le header est sticky (après le scroll) */
+header.sticky ul li a:hover {
+    background: #e0e0e0; /* Arrière-plan gris clair au survol */
+    color: #404040; /* Couleur de texte gris foncé */
+}
+
+/* Contenu principal */
+main {
+    padding-top: 80px; /* Ajuste cet espace en fonction de la hauteur du header */
+}
