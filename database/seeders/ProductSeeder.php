@@ -15,28 +15,28 @@ class ProductSeeder extends Seeder
     {
         $products = [
             [
-                'name' => 'Intenze GEN-Z Gangster Grey Tattoo Ink Set 6x30ml',
+                'name' => 'Intenze GEN-Z 6X30ml',
                 'description' => 'A set of premium tattoo inks.',
                 'price' => 107.99,
                 'stock_quantity' => 50,
                 'image_path' => 'images/products/inkSet.jpg',
             ],
             [
-                'name' => 'Machine JCONLY EPOCH R3 Wireless - 2 Batteries',
+                'name' => 'Machine JCONLYs',
                 'description' => 'A professional tattoo machine for experts.',
                 'price' => 649.50,
                 'stock_quantity' => 10,
                 'image_path' => 'images/products/tattooMachinePro.jpg',
             ],
             [
-                'name' => 'Aiguilles KWADRON Round Liner 0,25mm Long Taper - Par 50',
+                'name' => 'Aiguilles KWADRON 0,25mm',
                 'description' => 'A pack of high-quality tattoo needles.',
                 'price' => 29.99,
                 'stock_quantity' => 200,
                 'image_path' => 'images/products/needlesPack.jpg',
             ],
             [
-                'name' => 'Box Duo Kit de soin Tatouage Easytattoo 100ml + Stick <Solaire></Solaire>',
+                'name' => 'Box Duo Kit de soin Tatouage',
                 'description' => 'Specially formulated cream for tattoo aftercare.',
                 'price' => 25,
                 'stock_quantity' => 150,

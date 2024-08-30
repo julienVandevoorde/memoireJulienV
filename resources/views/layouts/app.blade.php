@@ -7,6 +7,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Ajouter ton propre fichier CSS -->
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}"> <!-- Ton CSS Laravel personnalisé, si nécessaire -->
 </head>

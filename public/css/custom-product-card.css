@@ -1,0 +1,246 @@
+/* Conteneur de la boutique */
+.shop-container {
+  display: flex;  /* Utilise Flexbox pour la mise en page */
+  flex-wrap: wrap;  /* Permet aux éléments de passer à la ligne suivante */
+  justify-content: space-between;  /* Espacement égal entre les éléments */
+  gap: 20px;  /* Espacement entre les cartes */
+  margin: 0 auto;  /* Centre le conteneur */
+  max-width: 1200px;  /* Largeur maximale du conteneur */
+  padding: 20px;  /* Padding pour ajouter de l'espace autour */
+}
+
+/* Conserve les styles de .wrapper */
+.wrapper {
+  width: 260px;  /* Réduit la largeur */
+  height: 450px; /* Réduit la hauteur */
+  background: white;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0;
+  transform: scale(0.95);
+  transition: box-shadow 0.5s, transform 0.5s;
+}
+
+.wrapper:hover {
+  transform: scale(1);
+  box-shadow: 5px 20px 30px rgba(0,0,0,0.2);
+}
+
+/* Aucun changement nécessaire pour les styles existants des cartes */
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.top {
+  height: 80%;
+  width: 100%;
+  background-size: cover;
+}
+
+.bottom {
+  width: 200%;
+  height: 20%;
+  transition: transform 0.5s;
+}
+
+.bottom.clicked {
+  transform: translateX(-50%);
+}
+
+h1, p {
+  margin: 0;
+  padding: 0;
+}
+
+.product-name {
+  font-size: 1em;  /* Taille réduite */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-price {
+  font-size: 0.9em;  /* Assurer la visibilité */
+  margin-top: 5px;
+  display: flex;  /* Utilise flexbox pour aligner le prix et le bouton */
+  align-items: center;  /* Centre verticalement le prix et le bouton */
+}
+
+.btn-increment {
+  background-color: #3ac65b;  /* Couleur de fond du bouton */
+  color: white;  /* Couleur du texte */
+  border: none;  /* Pas de bordure */
+  border-radius: 5px;  /* Bords arrondis */
+  padding: 3px 8px;  /* Espacement interne */
+  margin-left: 10px;  /* Espace à gauche du prix */
+  cursor: pointer;  /* Curseur pointeur */
+  font-size: 0.8em;  /* Taille de la police */
+  transition: background-color 0.3s;  /* Transition douce */
+}
+
+.btn-increment:hover {
+  background-color: #238529;  /* Couleur de fond au survol */
+}
+
+.btn-decrement {
+  background-color: #BC3B59;  /* Couleur de fond du bouton */
+  color: white;  /* Couleur du texte */
+  border: none;  /* Pas de bordure */
+  border-radius: 5px;  /* Bords arrondis */
+  padding: 3px 8px;  /* Espacement interne */
+  margin-left: 10px;  /* Espace à gauche du prix */
+  cursor: pointer;  /* Curseur pointeur */
+  font-size: 0.8em;  /* Taille de la police */
+  transition: background-color 0.3s;  /* Transition douce */
+}
+
+.btn-decrement:hover {
+  background-color: #9B2847;  /* Couleur de fond au survol */
+}
+
+
+.left {
+  height: 100%;
+  width: 50%;
+  background: #f4f4f4;
+  position: relative;
+  float: left;
+}
+
+.details {
+  padding: 15px;  /* Réduit le padding pour correspondre à la nouvelle taille */
+  float: left;
+  width: calc(70% - 30px);
+}
+
+.buy {
+  float: right;
+  width: calc(30% - 2px);
+  height: 100%;
+  background: #f1f1f1;
+  transition: background 0.5s;
+  border-left: solid thin rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.buy i {
+  font-size: 30px;
+  padding: 30px;
+  color: #164523;
+  transition: transform 0.5s;
+}
+
+.buy:hover {
+  background: #81db8a;
+}
+
+.buy:hover i {
+  transform: translateY(5px);
+  color: white;
+}
+
+.right {
+  width: 50%;
+  background: #81db8a;
+  color: white;
+  float: right;
+  height: 200%; /* Assure que la hauteur soit suffisante pour contenir les éléments */
+  overflow: hidden;
+  position: relative; /* Ajoute 'relative' pour le positionnement des éléments enfants */
+}
+
+.done, .remove {
+  width: calc(30% - 1px);
+  height: 50%;
+  float: left;
+  transition: transform 0.5s, background 0.5s;
+  border-right: solid thin rgba(255,255,255,0.3);
+  display: flex; /* Utilise flexbox pour centrer le contenu */
+  align-items: center; /* Centre verticalement le contenu */
+  justify-content: center; /* Centre horizontalement le contenu */
+  box-sizing: border-box; /* Assure que le padding est pris en compte */
+}
+
+.done i, .remove i {
+  font-size: 30px;
+  padding: 30px;
+  color: white;
+}
+
+.remove {
+  background: #BC3B59;
+}
+
+.remove:hover {
+  background: #9B2847;
+}
+
+.remove:hover i {
+  transform: translateY(5px);
+}
+
+.right:hover .remove, .right:hover .done {
+  transform: translateY(-113%);
+}
+
+.inside {
+  z-index: 9;
+  background: #7f7f7f;
+  width: 140px;
+  height: 140px;
+  position: absolute;
+  top: -70px;
+  right: -70px;
+  border-radius: 0px 0px 200px 200px;
+  transition: all 0.5s, border-radius 2s, top 1s;
+  overflow: hidden;
+}
+
+.icon {
+  position: absolute;
+  right: 85px;
+  top: 85px;
+  color: white;
+  opacity: 1;
+}
+
+.inside:hover {
+  width: 100%;
+  right: 0;
+  top: 0;
+  border-radius: 0;
+  height: 80%;
+}
+
+.inside:hover .icon {
+  opacity: 0;
+  right: 15px;
+  top: 15px;
+}
+
+.inside .contents {
+  padding: 5%;
+  opacity: 0;
+  transform: scale(0.5);
+  transform: translateY(-200%);
+  transition: opacity 0.2s, transform 0.8s;
+}
+
+.inside:hover .contents {
+  opacity: 1;
+  transform: scale(1);
+  transform: translateY(0);
+}
+
+.contents h1, .contents p {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.contents p {
+  font-size: 13px;
+}

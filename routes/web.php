@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ShopController; // Import du ShopController
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,7 @@ Route::get('/', function () {
     return view('home.index'); // Page d'accueil (par défaut)
 })->name('home.index');
 
-//vérifier que ce soit un admin qui accède au dashboard (via Middleware/CheckRole)
+// Vérifier que ce soit un admin qui accède au dashboard (via Middleware/CheckRole)
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard.index'); // Assure-toi d'avoir 'dashboard.index' comme vue
@@ -43,9 +44,8 @@ Route::get('/find-my-tattoo-artist', function () {
     return view('artists.index'); // Page pour trouver un tatoueur
 })->name('artists.index');
 
-Route::get('/shop', function () {
-    return view('shop.index'); // Page du magasin
-})->name('shop.index');
+// Utilisation de ShopController pour récupérer les produits dynamiques
+Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 
 Route::get('/about-us', function () {
     return view('about.index'); // Page "À propos de nous"
