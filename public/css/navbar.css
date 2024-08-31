@@ -78,7 +78,8 @@ header ul li a {
 }
 
 /* Effet hover pour les liens lorsque le header est transparent (avant le scroll) */
-header ul li a:hover {
+header ul li a:hover,
+header ul li a.active {
     background: #fff; /* Arrière-plan blanc au survol */
     color: #404040; /* Couleur de texte gris foncé */
 }
@@ -97,4 +98,41 @@ header.sticky ul li a:hover {
 /* Contenu principal */
 main {
     padding-top: 80px; /* Ajuste cet espace en fonction de la hauteur du header */
+}
+
+/* Styles pour l'icône de panier */
+.relative {
+    position: relative;
+    display: inline-block; /* Pour aligner correctement le compteur */
+    margin-left: 20px; /* Espace par rapport aux autres éléments de la navbar */
+}
+
+.relative svg {
+    vertical-align: middle; /* Aligne l'icône verticalement */
+    cursor: pointer; /* Curseur en forme de main sur l'icône */
+    transition: color 0.3s; /* Transition de couleur */
+}
+
+.relative:hover svg {
+    color: #ef4444; /* Change la couleur au survol */
+}
+
+.text-center {
+    text-align: center;
+}
+
+#cart-count {
+    background-color: #ef4444;
+    font-size: 0.75rem;
+    color: #fff;
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -22,21 +22,14 @@
                                     $<span id="price-{{ $product->id }}" data-base-price="{{ $product->price }}">{{ number_format($product->price, 2) }}</span>
                                     <button class="btn-increment" data-product-id="{{ $product->id }}" data-increment="1">+1</button>
                                     <!-- Bouton -1 -->
-                                    <button class="btn-decrement" data-product-id="{{ $product->id }}" data-increment="1" style="display: none;">-1</button>
+                                    <button class="btn-decrement" data-product-id="{{ $product->id }}" data-increment="1" style="display: none;">-</button>
                                 </p>
                             </div>
-                            <div class="buy" data-product-id="{{ $product->id }}" onclick="addToCart({{ $product->id }})">
+                            <div class="buy" data-product-id="{{ $product->id }}" onclick="addToCart('{{ $product->id }}')">
                                 <i class="material-icons">add_shopping_cart</i>
                             </div>
                         </div>
-                        <div class="right">
-                            <div class="done"><i class="material-icons">done</i></div>
-                            <div class="details">
-                                <h1 class="product-name">{{ $product->name }}</h1>
-                                <p id="added-message-{{ $product->id }}">Added to your cart</p>
-                            </div>
-                            <div class="remove"><i class="material-icons">clear</i></div>
-                        </div>
+                        <!-- Partie droite et animations supprimées -->
                     </div>
                 </div>
                 <div class="inside">
