@@ -73,4 +73,7 @@ Route::get('/cart/count', [CartController::class, 'count'])->name('cart.count');
 
 // Routes pour le processus de paiement
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index'); // Afficher la page de paiement
-Route::post('/checkout', [CheckoutController::class, 'store']); // Effectuer le paiement
+Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store'); // Effectuer le paiement
+Route::post('/checkout/session', [CheckoutController::class, 'createSession'])->name('checkout.createSession'); // Créer une session de paiement
+Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success'); // Page de succès
+Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel'); // Page d'annulation
