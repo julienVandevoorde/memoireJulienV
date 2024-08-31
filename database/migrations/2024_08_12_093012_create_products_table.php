@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('price', 8, 2);
             $table->integer('stock_quantity');
             $table->string('image_path')->nullable();
+            $table->string('category', 100);
             $table->timestamps();
         });
     }

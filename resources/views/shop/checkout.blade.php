@@ -6,9 +6,14 @@
 
     <!-- Stripe Checkout Form -->
     <form action="{{ url('/checkout') }}" method="post" id="payment-form">
-        @csrf
-        <button type="submit" class="btn btn-success">Pay Now</button>
-    </form>
+    @csrf
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="{{ env('STRIPE_KEY') }}"
+            data-description="Paiement pour les articles"
+            data-amount="{{ $total * 100 }}" 
+            data-locale="auto"></script>
+</form>
+
 </div>
 
 <script src="https://js.stripe.com/v3/"></script>
