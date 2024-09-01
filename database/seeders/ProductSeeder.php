@@ -54,6 +54,23 @@ class ProductSeeder extends Seeder
                 'image_path' => 'images/products/inkColor.webp',
                 'category' => 'Ink',
             ],
+            [
+                'name' => 'FK Irons Flux Max avec 2x PowerBolt II',
+                'description' => 'La Flux Max est une machine à tatouer sans fil qui est le fruit de tout ce que FK Irons a créé au fil des années.',
+                'price' => 1391.99,
+                'stock_quantity' => 4,
+                'image_path' => 'images/products/machinetattooSeeder.jpg',
+                'category' => 'Machine',
+            ],
+            [
+                'name' => 'Cartouches Bloody V2 Round Liner - Long Taper',
+                'description' => 'Bloody Cartridges V2/ Round Liner - Long Taper, 0.25mm/0.30mm/0.35mm',
+                'price' => 29.99,
+                'stock_quantity' => 200,
+                'image_path' => 'images/products/needlesPack2.jpg',
+                'category' => 'Needles',
+            ],
+            
         ];
 
         DB::table('products')->insert($products);

@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <div class="container">
+        <h1>Shop page</h1>
+        <br>
+        <h1>To do :</h1>
+        <h2>- Ajouter un système de filtre et recherche des produits</h2>
+    </div>
+
 <div class="container my-4">
     <!-- Inclure les fichiers CSS de la navbar et les styles de produit -->
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
@@ -35,7 +43,7 @@
                 <div class="inside">
                     <div class="icon"><i class="material-icons">info_outline</i></div>
                     <div class="contents">
-                        <h1>{{ $product->name }}</h1>
+                        <h2 style="color: white;">{{ $product->name }}</h2>
                         <p>{{ $product->description }}</p>
                     </div>
                 </div>

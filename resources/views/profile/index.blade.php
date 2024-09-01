@@ -3,6 +3,15 @@
 
 @section('content')
 <div class="container">
+
+
+
+    <h1>Profil Page</h1>
+    <br>
+    <h1>To do :</h1>
+    <h2>- Pleins de chose voir cahier de note + schéma de la page</h2>
+    <br><br>
+
     <h1>{{ __('My Profile') }}</h1>
     <p>Welcome, {{ $user->name }}!</p>
 
