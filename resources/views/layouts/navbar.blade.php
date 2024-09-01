@@ -27,7 +27,7 @@
         @if(Auth::check())
             <!-- Afficher l'icône du panier -->
             <li>
-                <a href="{{ route('profile.edit') }}">Profile</a>
+                <a href="{{ route('profile.index') }}">Profile</a>
             </li>
             <li>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>

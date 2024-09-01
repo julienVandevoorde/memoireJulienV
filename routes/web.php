@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 | assigned to the "web" middleware group. Make something great!
 |
 */
+// Authentification (routes par défaut de Laravel Breeze ou Jetstream)
+require __DIR__.'/auth.php';
 
 Route::get('/', function () {
     return view('home.index'); // Page d'accueil (par défaut)
@@ -30,13 +32,11 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 
 // Routes pour la gestion du profil utilisateur (nécessite authentification)
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit'); // Page de modification du profil
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index'); // Modifié pour utiliser 'index' au lieu de 'edit'
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit'); // Ajouté pour conserver l'édition
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update'); // Mettre à jour le profil
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); // Supprimer le profil
 });
-
-// Authentification (routes par défaut de Laravel Breeze ou Jetstream)
-require __DIR__.'/auth.php';
 
 // Routes pour les pages de la navbar
 Route::get('/tattoos', function () {
