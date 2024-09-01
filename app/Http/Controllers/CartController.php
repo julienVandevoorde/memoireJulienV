@@ -11,7 +11,7 @@ class CartController extends Controller
     // Afficher le panier
     public function index()
     {
-        $cart = Session::get('cart', []); // Récupère le panier de la session
+        $cart = $this->getCart();
         $products = Product::whereIn('id', array_keys($cart))->get();
 
         return view('shop.cart', compact('products', 'cart'));
@@ -23,8 +23,7 @@ class CartController extends Controller
         $productId = $request->input('product_id');
         $quantity = $request->input('quantity', 1); // Par défaut, ajouter une quantité de 1
 
-        // Récupérer le panier de la session ou initialiser un panier vide
-        $cart = Session::get('cart', []);
+        $cart = $this->getCart();
 
         // Si le produit existe déjà dans le panier, augmenter la quantité
         if (isset($cart[$productId])) {
@@ -33,49 +32,75 @@ class CartController extends Controller
             $cart[$productId] = $quantity;
         }
 
-        // Mettre à jour le panier dans la session
-        Session::put('cart', $cart);
+        $this->updateCart($cart);
 
         // Calculer le nombre total de produits dans le panier
-        $cartCount = array_sum($cart);
+        $cartCount = $this->calculateCartCount($cart);
 
-        // Retourner une réponse JSON avec le nouveau total
+        return response()->json(['success' => true, 'cartCount' => $cartCount]);
+    }
+
+    // Mettre à jour la quantité d'un produit dans le panier
+    public function updateQuantity(Request $request)
+    {
+        $productId = $request->input('product_id');
+        $quantity = $request->input('quantity', 1); // Quantité à mettre à jour
+
+        $cart = $this->getCart();
+
+        if (isset($cart[$productId])) {
+            $cart[$productId] = $quantity;
+        }
+
+        $this->updateCart($cart);
+
+        $cartCount = $this->calculateCartCount($cart);
+
         return response()->json(['success' => true, 'cartCount' => $cartCount]);
     }
 
     // Supprimer un produit du panier
-    public function removeFromCart(Request $request)
+    public function removeProduct(Request $request)
     {
         $productId = $request->input('product_id');
-        $quantity = $request->input('quantity', 1); // Quantité à retirer
 
-        // Récupérer le panier de la session ou initialiser un panier vide
-        $cart = Session::get('cart', []);
+        $cart = $this->getCart();
 
-        // Si le produit existe déjà dans le panier, diminuer la quantité ou le retirer
         if (isset($cart[$productId])) {
-            $cart[$productId] -= $quantity;
-            if ($cart[$productId] <= 0) {
-                unset($cart[$productId]); // Retirer complètement le produit si la quantité est 0 ou moins
-            }
+            unset($cart[$productId]);
         }
 
-        // Mettre à jour le panier dans la session
-        Session::put('cart', $cart);
+        $this->updateCart($cart);
 
-        // Calculer le nombre total de produits dans le panier
-        $cartCount = array_sum($cart);
+        $cartCount = $this->calculateCartCount($cart);
 
-        // Retourner une réponse JSON avec le nouveau total
         return response()->json(['success' => true, 'cartCount' => $cartCount]);
     }
 
     // Compter les articles dans le panier
     public function count()
     {
-        $cart = Session::get('cart', []);
-        $cartCount = array_sum($cart);
+        $cart = $this->getCart();
+        $cartCount = $this->calculateCartCount($cart);
 
         return response()->json(['cartCount' => $cartCount]);
+    }
+
+    // Méthode privée pour récupérer le panier de la session
+    private function getCart()
+    {
+        return Session::get('cart', []);
+    }
+
+    // Méthode privée pour mettre à jour le panier dans la session
+    private function updateCart($cart)
+    {
+        Session::put('cart', $cart);
+    }
+
+    // Méthode privée pour calculer le nombre total d'articles dans le panier
+    private function calculateCartCount($cart)
+    {
+        return array_sum($cart);
     }
 }

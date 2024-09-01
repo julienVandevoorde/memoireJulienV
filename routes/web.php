@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here est where you can register web routes for your application.
-| These routes sont loaded by the RouteServiceProvider and all of them will be
+| These routes sont loaded par le RouteServiceProvider and all of them will be
 | assigned to the "web" middleware group. Make something great!
 |
 */
@@ -63,17 +63,17 @@ Route::get('/cart', [CartController::class, 'index'])->middleware('auth')->name(
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
 
 // Mettre à jour la quantité d'un produit dans le panier (disponible pour tous)
-Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+Route::post('/cart/update', [CartController::class, 'updateQuantity'])->name('cart.update');
 
 // Supprimer un produit du panier (disponible pour tous)
-Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart/remove', [CartController::class, 'removeProduct'])->name('cart.remove');
 
 // Nouvelle route pour récupérer le nombre d'articles dans le panier (AJAX)
 Route::get('/cart/count', [CartController::class, 'count'])->name('cart.count');
 
-// Routes pour le processus de paiement
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index'); // Afficher la page de paiement
-Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store'); // Effectuer le paiement
-Route::post('/checkout/session', [CheckoutController::class, 'createSession'])->name('checkout.createSession'); // Créer une session de paiement
+// Routes pour le processus de paiement (avec middleware pour vérifier que le panier n'est pas vide)
+Route::get('/checkout', [CheckoutController::class, 'index'])->middleware(['auth', 'check.cart.not.empty'])->name('checkout.index'); // Afficher la page de paiement
+Route::post('/checkout', [CheckoutController::class, 'store'])->middleware(['auth', 'check.cart.not.empty'])->name('checkout.store'); // Effectuer le paiement
+Route::post('/checkout/session', [CheckoutController::class, 'createSession'])->middleware(['auth', 'check.cart.not.empty'])->name('checkout.createSession'); // Créer une session de paiement
 Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success'); // Page de succès
 Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel'); // Page d'annulation

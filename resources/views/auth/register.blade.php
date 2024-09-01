@@ -7,16 +7,20 @@
         @csrf
         <!-- First Name -->
         <div>
-            <x-input-label for="first_name" :value="__('First Name')" />
-            <x-text-input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required autofocus />
-            <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
+            <label for="first_name">{{ __('First Name') }}</label>
+            <input id="first_name" class="block mt-1 w-full" type="text" name="first_name" value="{{ old('first_name') }}" required autofocus />
+            @error('first_name')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
         </div>
 
         <!-- Last Name -->
         <div class="mt-4">
-            <x-input-label for="last_name" :value="__('Last Name')" />
-            <x-text-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required />
-            <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
+            <label for="last_name">{{ __('Last Name') }}</label>
+            <input id="last_name" class="block mt-1 w-full" type="text" name="last_name" value="{{ old('last_name') }}" required />
+            @error('last_name')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
         </div>
 
         <!-- Hidden Name Field -->
@@ -24,46 +28,56 @@
 
         <!-- Login -->
         <div class="mt-4">
-            <x-input-label for="login" :value="__('Login')" />
-            <x-text-input id="login" class="block mt-1 w-full" type="text" name="login" :value="old('login')" required />
-            <x-input-error :messages="$errors->get('login')" class="mt-2" />
+            <label for="login">{{ __('Login') }}</label>
+            <input id="login" class="block mt-1 w-full" type="text" name="login" value="{{ old('login') }}" required />
+            @error('login')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
         </div>
 
         <!-- Email -->
         <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <label for="email">{{ __('Email') }}</label>
+            <input id="email" class="block mt-1 w-full" type="email" name="email" value="{{ old('email') }}" required />
+            @error('email')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
         </div>
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <label for="password">{{ __('Password') }}</label>
+            <input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+            @error('password')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
         </div>
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-            <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required />
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            <label for="password_confirmation">{{ __('Confirm Password') }}</label>
+            <input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required />
+            @error('password_confirmation')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
         </div>
 
         <!-- Role Selection -->
         <div class="mt-4">
-            <x-input-label for="role" :value="__('Role')" />
+            <label for="role">{{ __('Role') }}</label>
             <select id="role" name="role" class="block mt-1 w-full" required>
                 <option value="">{{ __('Select Role') }}</option>
                 <option value="client">{{ __('Client') }}</option>
                 <option value="tattoo artist">{{ __('Tattoo Artist') }}</option>
             </select>
-            <x-input-error :messages="$errors->get('role')" class="mt-2" />
+            @error('role')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
         </div>
 
         <!-- Gender -->
         <div class="mt-4">
-            <x-input-label for="gender" :value="__('Gender')" />
+            <label for="gender">{{ __('Gender') }}</label>
             <select id="gender" name="gender" class="block mt-1 w-full">
                 <option value="">{{ __('Select Gender') }}</option>
                 <option value="male">{{ __('Male') }}</option>
@@ -71,23 +85,27 @@
                 <option value="non_binary">{{ __('Non-binary') }}</option>
                 <option value="other">{{ __('Other') }}</option>
             </select>
-            <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+            @error('gender')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
         </div>
 
         <!-- Location (Tattoo Artist Only) -->
         <div id="location-fields" class="mt-4" style="display: none;">
-            <x-input-label for="location" :value="__('Location')" />
+            <label for="location">{{ __('Location') }}</label>
             <select id="location" name="location" class="block mt-1 w-full">
                 <option value="">{{ __('Select Location') }}</option>
                 <!-- Les options seront ajoutées ici via AJAX -->
             </select>
-            <x-input-error :messages="$errors->get('location')" class="mt-2" />
+            @error('location')
+                <span class="text-red-500">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <x-primary-button class="ml-4">
+            <button type="submit" class="ml-4 btn btn-primary">
                 {{ __('Register') }}
-            </x-primary-button>
+            </button>
         </div>
     </form>
 </div>
