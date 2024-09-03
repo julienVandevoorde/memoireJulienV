@@ -3,6 +3,7 @@
 @extends('layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <div class="container">
         <h1>Homepage</h1>
         <br>

@@ -1,0 +1,96 @@
+.profile-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+.profile-photo {
+    grid-column: 1 / 2;
+    text-align: center;
+}
+
+/* Styles pour la photo de profil */
+.profile-pic {
+    color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: all .3s ease;
+}
+
+.profile-pic input {
+    display: none;
+}
+
+.profile-pic img {
+    position: absolute;
+    object-fit: cover;
+    width: 165px; /* taille du cercle */
+    height: 165px; /* taille du cercle */
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, .35);
+    border-radius: 100%;
+    z-index: 0;
+}
+
+.profile-pic .-label {
+    cursor: pointer;
+    height: 165px; /* taille du cercle */
+    width: 165px; /* taille du cercle */
+}
+
+.profile-pic:hover .-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .8);
+    z-index: 10000;
+    color: rgb(250, 250, 250);
+    transition: background-color .2s ease-in-out;
+    border-radius: 100%;
+}
+
+.profile-pic span {
+    display: inline-flex;
+    padding: .2em;
+    height: 2em;
+}
+
+/* Styles pour les autres sections du profil */
+.profile-info, .profile-description, .profile-likes, .profile-navigation, .profile-portfolio {
+    grid-column: 2 / 3;
+    background-color: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.info-item {
+    margin-bottom: 10px;
+}
+
+.profile-navigation {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-nav {
+    background-color: #38c172;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.profile-portfolio {
+    grid-column: 1 / 3; /* Portfolio occupe toute la largeur */
+    background-color: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

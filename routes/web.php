@@ -36,6 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit'); // Ajouté pour conserver l'édition
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update'); // Mettre à jour le profil
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); // Supprimer le profil
+    Route::post('/profile/upload-photo', [ProfileController::class, 'uploadPhoto'])->name('profile.uploadPhoto');
+
 });
 
 // Routes pour les pages de la navbar

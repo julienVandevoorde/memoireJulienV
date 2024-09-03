@@ -14,6 +14,20 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::create([
+            'name' => 'Admin',
+            'login' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('epfcepfc'),
+            'role' => 'admin',
+            'gender' => null,
+            'profile_photo_path' => null,
+            'location' => null,
+            'bio' => null,
+            'instagram_link' => null,
+            'experience_years' => null,
+        ]);
+        
+        User::create([
             'name' => 'Zephyr Jonnaert',
             'login' => 'zeph',
             'email' => 'zeph@gmail.com',
@@ -41,18 +55,6 @@ class UserSeeder extends Seeder
             'experience_years' => null,
         ]);
 
-        User::create([
-            'name' => 'Admin',
-            'login' => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('epfcepfc'),
-            'role' => 'admin',
-            'gender' => null,
-            'profile_photo_path' => null,
-            'location' => null,
-            'bio' => null,
-            'instagram_link' => null,
-            'experience_years' => null,
-        ]);
+
     }
 }

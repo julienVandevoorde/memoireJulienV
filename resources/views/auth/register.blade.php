@@ -1,114 +1,394 @@
+{{-- resources/views/auth/register.blade.php --}}
+
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Register</h1>
-    <form method="POST" action="{{ route('register') }}" id="registration-form">
-        @csrf
-        <!-- First Name -->
-        <div>
-            <label for="first_name">{{ __('First Name') }}</label>
-            <input id="first_name" class="block mt-1 w-full" type="text" name="first_name" value="{{ old('first_name') }}" required autofocus />
-            @error('first_name')
-                <span class="text-red-500">{{ $message }}</span>
-            @enderror
-        </div>
+<main class="login">
+<link href="{{ asset('css/login-register.css') }}" rel="stylesheet">
+<body class="login">
+<section class="login">
+<span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <div class="signin">
+        <div class="content">
+            <h2>Register</h2>
+            <form method="POST" action="{{ route('register') }}" class="form" id="registration-form">
+                @csrf
 
-        <!-- Last Name -->
-        <div class="mt-4">
-            <label for="last_name">{{ __('Last Name') }}</label>
-            <input id="last_name" class="block mt-1 w-full" type="text" name="last_name" value="{{ old('last_name') }}" required />
-            @error('last_name')
-                <span class="text-red-500">{{ $message }}</span>
-            @enderror
-        </div>
+                <!-- First Name and Last Name Grouped -->
+                <div class="input-group">
+                    <!-- First Name -->
+                    <div class="inputBox">
+                        <input id="first_name" type="text" name="first_name" value="{{ old('first_name') }}" required autofocus>
+                        <i>First Name</i>
+                        @error('first_name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-        <!-- Hidden Name Field -->
-        <input type="hidden" name="name" id="name">
+                    <!-- Last Name -->
+                    <div class="inputBox">
+                        <input id="last_name" type="text" name="last_name" value="{{ old('last_name') }}" required>
+                        <i>Last Name</i>
+                        @error('last_name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
 
-        <!-- Login -->
-        <div class="mt-4">
-            <label for="login">{{ __('Login') }}</label>
-            <input id="login" class="block mt-1 w-full" type="text" name="login" value="{{ old('login') }}" required />
-            @error('login')
-                <span class="text-red-500">{{ $message }}</span>
-            @enderror
-        </div>
+                <!-- Hidden Name Field -->
+                <input type="hidden" name="name" id="name">
 
-        <!-- Email -->
-        <div class="mt-4">
-            <label for="email">{{ __('Email') }}</label>
-            <input id="email" class="block mt-1 w-full" type="email" name="email" value="{{ old('email') }}" required />
-            @error('email')
-                <span class="text-red-500">{{ $message }}</span>
-            @enderror
-        </div>
+                <!-- Login -->
+                <div class="inputBox">
+                    <input id="login" type="text" name="login" value="{{ old('login') }}" required>
+                    <i>Login</i>
+                    @error('login')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <label for="password">{{ __('Password') }}</label>
-            <input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            @error('password')
-                <span class="text-red-500">{{ $message }}</span>
-            @enderror
-        </div>
+                <!-- Email -->
+                <div class="inputBox">
+                    <input id="email" type="email" name="email" value="{{ old('email') }}" required>
+                    <i>Email</i>
+                    @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <label for="password_confirmation">{{ __('Confirm Password') }}</label>
-            <input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required />
-            @error('password_confirmation')
-                <span class="text-red-500">{{ $message }}</span>
-            @enderror
-        </div>
+                <!-- Password and Confirm Password Grouped -->
+                <div class="input-group">
+                    <!-- Password -->
+                    <div class="inputBox">
+                        <input id="password" type="password" name="password" required autocomplete="new-password">
+                        <i>Password</i>
+                        @error('password')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-        <!-- Role Selection -->
-        <div class="mt-4">
-            <label for="role">{{ __('Role') }}</label>
-            <select id="role" name="role" class="block mt-1 w-full" required>
-                <option value="">{{ __('Select Role') }}</option>
-                <option value="client">{{ __('Client') }}</option>
-                <option value="tattoo artist">{{ __('Tattoo Artist') }}</option>
-            </select>
-            @error('role')
-                <span class="text-red-500">{{ $message }}</span>
-            @enderror
-        </div>
+                    <!-- Confirm Password -->
+                    <div class="inputBox">
+                        <input id="password_confirmation" type="password" name="password_confirmation" required>
+                        <i>Confirm Password</i>
+                        @error('password_confirmation')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
 
-        <!-- Gender -->
-        <div class="mt-4">
-            <label for="gender">{{ __('Gender') }}</label>
-            <select id="gender" name="gender" class="block mt-1 w-full">
-                <option value="">{{ __('Select Gender') }}</option>
-                <option value="male">{{ __('Male') }}</option>
-                <option value="female">{{ __('Female') }}</option>
-                <option value="non_binary">{{ __('Non-binary') }}</option>
-                <option value="other">{{ __('Other') }}</option>
-            </select>
-            @error('gender')
-                <span class="text-red-500">{{ $message }}</span>
-            @enderror
-        </div>
+                <!-- Role and Gender Grouped -->
+                <div class="input-group">
+                    <!-- Role Selection -->
+                    <div class="inputBox">
+                        <select id="role" name="role" required>
+                            <option value="">{{ __('Select Role') }}</option>
+                            <option value="client">{{ __('Client') }}</option>
+                            <option value="tattoo artist">{{ __('Tattoo Artist') }}</option>
+                        </select>
+                        <i>Role</i>
+                        @error('role')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-        <!-- Location (Tattoo Artist Only) -->
-        <div id="location-fields" class="mt-4" style="display: none;">
-            <label for="location">{{ __('Location') }}</label>
-            <select id="location" name="location" class="block mt-1 w-full">
-                <option value="">{{ __('Select Location') }}</option>
-                <!-- Les options seront ajoutées ici via AJAX -->
-            </select>
-            @error('location')
-                <span class="text-red-500">{{ $message }}</span>
-            @enderror
-        </div>
+                    <!-- Gender -->
+                    <div class="inputBox">
+                        <select id="gender" name="gender">
+                            <option value="">{{ __('Select Gender') }}</option>
+                            <option value="male">{{ __('Male') }}</option>
+                            <option value="female">{{ __('Female') }}</option>
+                            <option value="non_binary">{{ __('Non-binary') }}</option>
+                            <option value="other">{{ __('Other') }}</option>
+                        </select>
+                        <i>Gender</i>
+                        @error('gender')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <button type="submit" class="ml-4 btn btn-primary">
-                {{ __('Register') }}
-            </button>
+                <!-- Location (Tattoo Artist Only) -->
+                <div id="location-fields" class="inputBox" style="display: none;">
+                    <select id="location" name="location">
+                        <option value="">{{ __('Select Location') }}</option>
+                        <!-- Les options seront ajoutées ici via AJAX -->
+                    </select>
+                    <i>Location</i>
+                    @error('location')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <!-- Submit Button -->
+                <div class="inputBox">
+                    <input type="submit" value="Register">
+                </div>
+            </form>
         </div>
-    </form>
-</div>
+    </div>
+</section>
+</body>
+</main>
 
 <script>
     document.getElementById('role').addEventListener('change', function () {

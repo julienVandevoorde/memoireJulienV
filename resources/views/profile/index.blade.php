@@ -1,28 +1,86 @@
-{{-- resources/views/profile/index.blade.php --}}
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+<div class="container profile-container">
+    <!-- Photo de Profil -->
+    <div class="profile-photo">
+    <div class="profile-pic">
+    <label class="-label" for="file">
+        <span class="glyphicon glyphicon-camera"></span>
+        <span>Changer l'image</span>
+    </label>
+    <form id="upload-photo-form" action="{{ route('profile.uploadPhoto') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input id="file" type="file" name="profile_photo" onchange="submitForm()" />
+    </form>
+    <img src="{{ $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : asset('images/default-avatar.png') }}" id="output" width="200" />
+</div>
 
-
-
-    <h1>Profil Page</h1>
-    <br>
-    <h1>To do :</h1>
-    <h2>- Pleins de chose voir cahier de note + schéma de la page</h2>
-    <br><br>
-
-    <h1>{{ __('My Profile') }}</h1>
-    <p>Welcome, {{ $user->name }}!</p>
-
-    <!-- Ajoute les détails du profil ici -->
-    <div>
-        <p><strong>Name:</strong> {{ $user->name }}</p>
-        <p><strong>Email:</strong> {{ $user->email }}</p>
-        <!-- Ajoute d'autres informations nécessaires ici -->
     </div>
 
-    <!-- Lien pour modifier le profil -->
-    <a href="{{ route('profile.edit') }}" class="btn btn-primary">Edit Profile</a>
+    <!-- Informations Personnelles -->
+    <div class="profile-info">
+        <h2>Informations du Tatoueur</h2>
+        <div class="info-item">
+            <strong>Login :</strong> {{ $user->login }}
+        </div>
+        <div class="info-item">
+            <strong>Nom Complet :</strong> {{ $user->name }}
+        </div>
+        <div class="info-item">
+            <strong>Instagram :</strong> <a href="{{ $user->instagram_link }}" target="_blank">{{ $user->instagram_link }}</a>
+        </div>
+        <div class="info-item">
+            <strong>Style :</strong> {{ implode(', ', $user->styles->pluck('name')->toArray()) }}
+        </div>
+        <div class="info-item">
+            <strong>Commune :</strong> {{ $user->location }}
+        </div>
+    </div>
+
+    <!-- Description -->
+    <div class="profile-description">
+        <h2>Description</h2>
+        <p>{{ $user->bio }}</p>
+    </div>
+
+    <!-- Likes -->
+    <div class="profile-likes">
+        <h2>Mes Likes</h2>
+        <!-- Ici tu pourras afficher la liste des posts ou tattoos likés par l'utilisateur -->
+        <!-- Par exemple : -->
+        <ul>
+            @foreach($user->likes as $like)
+                <li>{{ $like->likeable->title ?? 'Tatouage' }}</li>
+            @endforeach
+        </ul>
+    </div>
+
+    <!-- Navigation pour Messagerie et Rendez-vous -->
+    <div class="profile-navigation">
+        <a href="#" class="btn-nav">Messages</a>
+        <a href="#" class="btn-nav">Rendez-vous</a>
+        <a href="{{ route('profile.edit') }}" class="btn-nav">Éditer le profil</a>
+    </div>
+
+    <!-- Portfolio -->
+    <div class="profile-portfolio">
+        <h2>Mon Portfolio</h2>
+        <!-- Ici tu pourras afficher le portfolio de l'utilisateur -->
+        <!-- Par exemple : -->
+        <div class="portfolio-gallery">
+            @foreach($user->portfolios as $portfolio)
+                <div class="portfolio-item">
+                    <img src="{{ asset('storage/' . $portfolio->image_path) }}" alt="{{ $portfolio->title }}" />
+                    <p>{{ $portfolio->title }}</p>
+                </div>
+            @endforeach
+        </div>
+    </div>
 </div>
+
+<!-- JavaScript pour charger l'image de profil en direct -->
+<script src="{{ asset('js/profile.js') }}"></script>
+
 @endsection
