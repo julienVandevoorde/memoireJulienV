@@ -66,7 +66,7 @@
     /* Sign-in form styles */
     .signin {
       position: absolute;
-      width: 600px;
+      width: 500px;
       background: #222;
       z-index: 1000;
       display: flex;

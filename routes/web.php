@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ShopController; // Import du ShopController pour gérer la boutique
 use App\Http\Controllers\CartController; // Import du CartController pour gérer le panier
+use App\Http\Controllers\PortfolioController; //import du portfolio controller
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -79,3 +80,7 @@ Route::post('/checkout', [CheckoutController::class, 'store'])->middleware(['aut
 Route::post('/checkout/session', [CheckoutController::class, 'createSession'])->middleware(['auth', 'check.cart.not.empty'])->name('checkout.createSession'); // Créer une session de paiement
 Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success'); // Page de succès
 Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel'); // Page d'annulation
+
+// Routes pour le portfolio
+Route::post('/portfolio', [PortfolioController::class, 'store'])->name('portfolio.store')->middleware('auth');
+Route::delete('/portfolio/{portfolio}', [PortfolioController::class, 'destroy'])->name('portfolio.delete')->middleware('auth');
