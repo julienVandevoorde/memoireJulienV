@@ -21,7 +21,7 @@
         @foreach($products as $product)
             <div class="wrapper">
                 <div class="container">
-                    <div class="top" style="background: url('{{ asset($product->image_path) }}') no-repeat center center; background-size: cover;"></div>
+                <div class="top" style="background: url('/storage/{{ $product->image_path }}') no-repeat center center; background-size: cover;"></div>
                     <div class="bottom">
                         <div class="left">
                             <div class="details">
