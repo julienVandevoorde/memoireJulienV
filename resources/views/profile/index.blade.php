@@ -18,7 +18,6 @@
                         <span>Changer l'image</span>
                     </label>
                     <img src="{{ $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : asset('images/default-avatar.png') }}" id="output" width="165" />
-
                 </form>
             </div>
 
@@ -32,16 +31,43 @@
 
         <!-- Colonne Droite : Informations du Profil -->
         <div class="profile-info">
-        <div><h1>STATUS : {{ $user->role }}</h1></div>
-            <div><h3>Login : @ {{ $user->login }}</h3></div>
-            <div><h3>Name : {{ $user->name }}</h3></div>
-            <div><h3>Instagram Link : {{ $user->instagram_link }}</h3></div>
-            <div><h3>Style :</h3>{{ $user->styles->pluck('name')->join(', ') ?? 'Non spécifié' }}</div>
-            <div><h3>Location : {{ $user->location }}</h3></div>
-            <!-- Bloc de description -->
-            <div class="profile-description">
+            <div>
+                <h1>STATUS : {{ $user->role }}</h1>
+            </div>
+            <div>
+                <h3>Login : @<span class="field-value">{{ $user->login }}</span></h3>
+            </div>
+            <div class="editable-field" data-field="name">
+                <h3>Name : <span class="field-value">{{ $user->name }}</span></h3>
+                <input type="text" class="field-input" value="{{ $user->name }}" style="display: none;" />
+                <button class="edit-button">Edit</button>
+                <button class="save-button" style="display: none;">Save</button>
+            </div>
+            <div class="editable-field" data-field="instagram_link">
+                <h3>Instagram Link : <span class="field-value">{{ $user->instagram_link }}</span></h3>
+                <input type="text" class="field-input" value="{{ $user->instagram_link }}" style="display: none;" />
+                <button class="edit-button">Edit</button>
+                <button class="save-button" style="display: none;">Save</button>
+            </div>
+            <div class="editable-field" data-field="location">
+                <h3>Location : <span class="field-value">{{ $user->location }}</span></h3>
+                <!-- Liste déroulante pour sélectionner une commune -->
+                <select class="field-input" style="display: none;">
+                    @foreach ($communes as $commune)
+                        <option value="{{ $commune }}" {{ $user->location == $commune ? 'selected' : '' }}>{{ $commune }}</option>
+                    @endforeach
+                </select>
+                <button class="edit-button">Edit</button>
+                <button class="save-button" style="display: none;">Save</button>
+            </div>
+            
+            <!-- Bloc de description (Bio) dans le même conteneur -->
+            <div class="profile-description editable-field" data-field="bio">
                 <h3>Bio</h3>
-                <p>{{ $user->bio ?? 'Aucune description fournie.' }}</p>
+                <p class="field-value">{{ $user->bio ?? 'Aucune description fournie.' }}</p>
+                <textarea class="field-input" style="display: none;">{{ $user->bio }}</textarea>
+                <button class="edit-button">Edit</button>
+                <button class="save-button" style="display: none;">Save</button>
             </div>
         </div>
     </div>
@@ -73,5 +99,5 @@
     </div>
 </div>
 
-<script src="{{ asset('js/profile.js') }}"></script>
+<script src="{{ asset('js/profile.js') }}"></script> <!-- Inclure le fichier JS -->
 @endsection

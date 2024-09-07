@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // Fonction pour soumettre le formulaire de téléchargement de photo de profil
     function submitForm() {
         var form = document.getElementById('upload-photo-form');
         var formData = new FormData(form);
@@ -23,4 +24,47 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.submitForm = submitForm; // Rendre la fonction disponible globalement
+
+    // Logique pour les champs éditables
+    document.querySelectorAll('.edit-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const container = this.parentElement;
+            container.querySelector('.field-value').style.display = 'none';
+            container.querySelector('.field-input').style.display = 'inline';
+            this.style.display = 'none';
+            container.querySelector('.save-button').style.display = 'inline';
+        });
+    });
+
+    document.querySelectorAll('.save-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const container = this.parentElement;
+            const field = container.getAttribute('data-field');
+            const inputElement = container.querySelector('.field-input');
+            const newValue = inputElement.tagName.toLowerCase() === 'textarea' ? inputElement.value : inputElement.value;
+
+            // Requête AJAX pour mettre à jour le champ
+            fetch('/profile/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                },
+                body: JSON.stringify({ field, value: newValue })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    container.querySelector('.field-value').textContent = newValue;
+                    container.querySelector('.field-value').style.display = 'inline';
+                    inputElement.style.display = 'none';
+                    container.querySelector('.edit-button').style.display = 'inline';
+                    this.style.display = 'none';
+                } else {
+                    console.error('Erreur:', data.message);
+                }
+            })
+            .catch(error => console.error('Erreur:', error));
+        });
+    });
 });

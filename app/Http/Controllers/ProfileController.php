@@ -15,9 +15,13 @@ class ProfileController extends Controller
 
     public function index(Request $request): View
     {
-        // Passe les informations utilisateur à la vue si nécessaire
+        // Charger les communes à partir du fichier JSON
+        $communes = json_decode(file_get_contents(public_path('data/communes.json')), true);
+
+        // Passe les informations utilisateur et les communes à la vue si nécessaire
         return view('profile.index', [
             'user' => $request->user(),
+            'communes' => $communes,
         ]);
     }
     
@@ -91,6 +95,24 @@ class ProfileController extends Controller
     
         return response()->json(['success' => true, 'path' => $path]);
     }
-    
 
+    public function updateField(Request $request)
+    {
+        $request->validate([
+            'field' => 'required|string',
+            'value' => 'nullable|string',
+        ]);
+
+        $user = Auth::user();
+        $field = $request->input('field');
+        $value = $request->input('value');
+
+        if (in_array($field, ['login', 'name', 'instagram_link', 'location', 'bio'])) {
+            $user->$field = $value;
+            $user->save();
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false], 400);
+    }
 }
