@@ -100,12 +100,13 @@
 /* Bloc d'informations du profil */
 .profile-info {
     grid-column: 2 / 3; /* Deuxième colonne */
-    background-color: #333;
+    background-color: #c4c4c4;
     padding: 20px;
     border-radius: 8px;
     display: flex;
     flex-direction: column; /* Aligner les éléments les uns sous les autres */
     gap: 15px;
+    border: 1px solid #000; /* Bord noir de 1 pixel */
 }
 
 /* Bloc de description */
@@ -114,7 +115,7 @@
     background-color: #e7e7e7;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #000; /* Bord noir de 1 pixel */
     color: #333;
 }
 
@@ -135,10 +136,10 @@
 
 .portfolio-section {
     margin-top: 40px;
-    background-color: #333;
+    background-color: #c4c4c4;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #000; /* Bord noir de 1 pixel */
     color: white;
 }
 

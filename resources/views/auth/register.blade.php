@@ -1,5 +1,3 @@
-{{-- resources/views/auth/register.blade.php --}}
-
 @extends('layouts.app')
 
 @section('content')
@@ -267,154 +265,118 @@
     <span></span>
     <span></span>
     <span></span>
-    <div class="signin">
-        <div class="content">
-            <h2>Register</h2>
-            <form method="POST" action="{{ route('register') }}" class="form" id="registration-form">
-                @csrf
+<div class="signin">
+    <div class="content">
+        <h2>Register</h2>
+        <form method="POST" action="{{ route('register') }}" class="form" id="registration-form">
+            @csrf
 
-                <!-- First Name and Last Name Grouped -->
-                <div class="input-group">
-                    <!-- First Name -->
-                    <div class="inputBox">
-                        <input id="first_name" type="text" name="first_name" value="{{ old('first_name') }}" required autofocus>
-                        <i>First Name</i>
-                        @error('first_name')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <!-- Last Name -->
-                    <div class="inputBox">
-                        <input id="last_name" type="text" name="last_name" value="{{ old('last_name') }}" required>
-                        <i>Last Name</i>
-                        @error('last_name')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-
-                <!-- Hidden Name Field -->
-                <input type="hidden" name="name" id="name">
-
-                <!-- Login -->
+            <!-- First Name and Last Name Grouped -->
+            <div class="input-group">
+                <!-- First Name -->
                 <div class="inputBox">
-                    <input id="login" type="text" name="login" value="{{ old('login') }}" required>
-                    <i>Login</i>
-                    @error('login')
+                    <input id="first_name" type="text" name="first_name" value="{{ old('first_name') }}" required autofocus>
+                    <i>First Name</i>
+                    @error('first_name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <!-- Email -->
+                <!-- Last Name -->
                 <div class="inputBox">
-                    <input id="email" type="email" name="email" value="{{ old('email') }}" required>
-                    <i>Email</i>
-                    @error('email')
+                    <input id="last_name" type="text" name="last_name" value="{{ old('last_name') }}" required>
+                    <i>Last Name</i>
+                    @error('last_name')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- Hidden Name Field -->
+            <input type="hidden" name="name" id="name">
+
+            <!-- Login -->
+            <div class="inputBox">
+                <input id="login" type="text" name="login" value="{{ old('login') }}" required>
+                <i>Login</i>
+                @error('login')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <!-- Email -->
+            <div class="inputBox">
+                <input id="email" type="email" name="email" value="{{ old('email') }}" required>
+                <i>Email</i>
+                @error('email')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <!-- Password and Confirm Password Grouped -->
+            <div class="input-group">
+                <!-- Password -->
+                <div class="inputBox">
+                    <input id="password" type="password" name="password" required autocomplete="new-password">
+                    <i>Password</i>
+                    @error('password')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <!-- Password and Confirm Password Grouped -->
-                <div class="input-group">
-                    <!-- Password -->
-                    <div class="inputBox">
-                        <input id="password" type="password" name="password" required autocomplete="new-password">
-                        <i>Password</i>
-                        @error('password')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <!-- Confirm Password -->
-                    <div class="inputBox">
-                        <input id="password_confirmation" type="password" name="password_confirmation" required>
-                        <i>Confirm Password</i>
-                        @error('password_confirmation')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
+                <!-- Confirm Password -->
+                <div class="inputBox">
+                    <input id="password_confirmation" type="password" name="password_confirmation" required>
+                    <i>Confirm Password</i>
+                    @error('password_confirmation')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
+            </div>
 
-                <!-- Role and Gender Grouped -->
-                <div class="input-group">
-                    <!-- Role Selection -->
-                    <div class="inputBox">
-                        <select id="role" name="role" required>
-                            <option value="">{{ __('Select Role') }}</option>
-                            <option value="client">{{ __('Client') }}</option>
-                            <option value="tattoo artist">{{ __('Tattoo Artist') }}</option>
-                        </select>
-                        <i>Role</i>
-                        @error('role')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <!-- Gender -->
-                    <div class="inputBox">
-                        <select id="gender" name="gender">
-                            <option value="">{{ __('Select Gender') }}</option>
-                            <option value="male">{{ __('Male') }}</option>
-                            <option value="female">{{ __('Female') }}</option>
-                            <option value="non_binary">{{ __('Non-binary') }}</option>
-                            <option value="other">{{ __('Other') }}</option>
-                        </select>
-                        <i>Gender</i>
-                        @error('gender')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-
-                <!-- Location (Tattoo Artist Only) -->
-                <div id="location-fields" class="inputBox" style="display: none;">
-                    <select id="location" name="location">
-                        <option value="">{{ __('Select Location') }}</option>
-                        <!-- Les options seront ajoutées ici via AJAX -->
+            <!-- Role and Gender Grouped -->
+            <div class="input-group">
+                <!-- Role Selection -->
+                <div class="inputBox">
+                    <select id="role" name="role" required>
+                        <option value="">{{ __('Select Role') }}</option>
+                        <option value="client">{{ __('Client') }}</option>
+                        <option value="tattoo artist">{{ __('Tattoo Artist') }}</option>
                     </select>
-                    <i>Location</i>
-                    @error('location')
+                    <i>Role</i>
+                    @error('role')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <!-- Submit Button -->
+                <!-- Gender -->
                 <div class="inputBox">
-                    <input type="submit" value="Register">
+                    <select id="gender" name="gender">
+                        <option value="">{{ __('Select Gender') }}</option>
+                        <option value="male">{{ __('Male') }}</option>
+                        <option value="female">{{ __('Female') }}</option>
+                        <option value="non_binary">{{ __('Non-binary') }}</option>
+                        <option value="other">{{ __('Other') }}</option>
+                    </select>
+                    <i>Gender</i>
+                    @error('gender')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="inputBox">
+                <input type="submit" value="Register">
+            </div>
+        </form>
     </div>
+</div>
 </section>
 </body>
 </main>
 
 <script>
-    document.getElementById('role').addEventListener('change', function () {
-        const locationFields = document.getElementById('location-fields');
-        if (this.value === 'tattoo artist') {
-            locationFields.style.display = 'block';
-
-            // Charger les communes de Bruxelles
-            fetch('/data/communes.json')
-                .then(response => response.json())
-                .then(data => {
-                    const locationSelect = document.getElementById('location');
-                    locationSelect.innerHTML = '<option value="">{{ __("Select Location") }}</option>'; // Clear options
-
-                    data.forEach(commune => {
-                        const option = document.createElement('option');
-                        option.value = commune;
-                        option.textContent = commune;
-                        locationSelect.appendChild(option);
-                    });
-                });
-        } else {
-            locationFields.style.display = 'none';
-        }
-    });
-
     // Combine first name and last name into a full name before form submission
     document.getElementById('registration-form').addEventListener('submit', function(event) {
         const firstName = document.getElementById('first_name').value;

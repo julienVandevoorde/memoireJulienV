@@ -18,6 +18,7 @@
                         <span>Changer l'image</span>
                     </label>
                     <img src="{{ $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : asset('images/default-avatar.png') }}" id="output" width="165" />
+
                 </form>
             </div>
 
@@ -31,16 +32,12 @@
 
         <!-- Colonne Droite : Informations du Profil -->
         <div class="profile-info">
-            <div><h2>@ {{ $user->login }}</h2></div>
-            <div><h3>{{ $user->name }}</h3></div>
-            <div>
-                <a href="{{ $user->instagram_link }}" class="insta" target="_blank">
-                    <svg viewBox="0 0 16 16" class="bi bi-instagram" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg">...</svg>
-                    <span>Instagram</span>
-                </a>
-            </div>
+        <div><h1>STATUS : {{ $user->role }}</h1></div>
+            <div><h3>Login : @ {{ $user->login }}</h3></div>
+            <div><h3>Name : {{ $user->name }}</h3></div>
+            <div><h3>Instagram Link : {{ $user->instagram_link }}</h3></div>
             <div><h3>Style :</h3>{{ $user->styles->pluck('name')->join(', ') ?? 'Non spécifié' }}</div>
-            <div><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">...</svg> {{ $user->location ?? 'Non spécifiée' }}</div>
+            <div><h3>Location : {{ $user->location }}</h3></div>
             <!-- Bloc de description -->
             <div class="profile-description">
                 <h3>Bio</h3>
