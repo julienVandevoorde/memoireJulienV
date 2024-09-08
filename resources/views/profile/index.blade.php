@@ -60,6 +60,18 @@
                 <button class="edit-button">Edit</button>
                 <button class="save-button" style="display: none;">Save</button>
             </div>
+
+            <!-- Liste des styles de tatouage -->
+            <div class="editable-field" data-field="styles">
+                <h3>Styles de Tatouage : <span class="field-value">{{ implode(', ', $user->styles->pluck('name')->toArray()) }}</span></h3>
+                <select multiple class="field-input" style="display: none;">
+                    @foreach ($styles as $style)
+                        <option value="{{ $style->id }}" {{ in_array($style->id, $userStyles) ? 'selected' : '' }}>{{ $style->name }}</option>
+                    @endforeach
+                </select>
+                <button class="edit-button">Edit</button>
+                <button class="save-button" style="display: none;">Save</button>
+            </div>
             
             <!-- Bloc de description (Bio) dans le même conteneur -->
             <div class="profile-description editable-field" data-field="bio">

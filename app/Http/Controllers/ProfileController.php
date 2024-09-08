@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use App\Models\Style;  // Ajoutez cette ligne pour importer le modèle Style
 
 class ProfileController extends Controller
 {
@@ -18,10 +19,16 @@ class ProfileController extends Controller
         // Charger les communes à partir du fichier JSON
         $communes = json_decode(file_get_contents(public_path('data/communes.json')), true);
 
-        // Passe les informations utilisateur et les communes à la vue si nécessaire
+        // Charger les styles depuis la base de données
+        $styles = Style::all(); // Récupère tous les styles de la table 'styles'
+        $userStyles = $request->user()->styles->pluck('id')->toArray(); // Récupère les IDs des styles de l'utilisateur
+
+        // Passe les informations utilisateur, les communes et les styles à la vue
         return view('profile.index', [
             'user' => $request->user(),
             'communes' => $communes,
+            'styles' => $styles,
+            'userStyles' => $userStyles,
         ]);
     }
     
@@ -100,19 +107,23 @@ class ProfileController extends Controller
     {
         $request->validate([
             'field' => 'required|string',
-            'value' => 'nullable|string',
+            'value' => 'nullable',
         ]);
-
+    
         $user = Auth::user();
         $field = $request->input('field');
         $value = $request->input('value');
-
-        if (in_array($field, ['login', 'name', 'instagram_link', 'location', 'bio'])) {
+    
+        if ($field === 'styles') {
+            $styleIds = $request->input('value', []);
+            $user->styles()->sync($styleIds); // Mise à jour des styles pour le user
+            return response()->json(['success' => true]);
+        } elseif (in_array($field, ['login', 'name', 'instagram_link', 'location', 'bio'])) {
             $user->$field = $value;
             $user->save();
             return response()->json(['success' => true]);
         }
-
+    
         return response()->json(['success' => false], 400);
     }
 }

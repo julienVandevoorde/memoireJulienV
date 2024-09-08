@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -17,6 +18,43 @@ return new class extends Migration
             $table->string('name', 30)->unique();
             $table->timestamps();
         });
+
+        // Insérer les styles directement dans la table 'styles'
+        $styles = [
+            "Abstract",
+            "Anime",
+            "Black & Grey",
+            "Blackwork",
+            "Chicano",
+            "Dotwork",
+            "Etching (Engraving)",
+            "Floral",
+            "Fineline",
+            "Geometric",
+            "Hand-Poked",
+            "Micro Realism",
+            "Dark Art",
+            "Japanese (Irezumi)",
+            "Bold lettering",
+            "Small lettering",
+            "Neo Traditional",
+            "Neotribal",
+            "New School",
+            "Ornamental",
+            "Realism",
+            "Illustrative",
+            "Old School (Traditional)",
+            "Trash Polka Style",
+            "Tribal",
+            "Watercolor",
+            "Surrealism",
+            "Cosmetic",
+            "Ignorant"
+        ];
+
+        foreach ($styles as $style) {
+            DB::table('styles')->insert(['name' => $style, 'created_at' => now(), 'updated_at' => now()]);
+        }
 
         // Table pivot entre styles et utilisateurs (tatoueurs)
         Schema::create('style_user', function (Blueprint $table) {

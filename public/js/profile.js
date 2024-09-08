@@ -41,9 +41,14 @@ document.addEventListener("DOMContentLoaded", function () {
             const container = this.parentElement;
             const field = container.getAttribute('data-field');
             const inputElement = container.querySelector('.field-input');
-            const newValue = inputElement.tagName.toLowerCase() === 'textarea' ? inputElement.value : inputElement.value;
+            let newValue;
 
-            // Requête AJAX pour mettre à jour le champ
+            if (field === 'styles') {
+                newValue = Array.from(inputElement.selectedOptions).map(option => option.value);
+            } else {
+                newValue = inputElement.tagName.toLowerCase() === 'textarea' ? inputElement.value : inputElement.value;
+            }
+
             fetch('/profile/update', {
                 method: 'POST',
                 headers: {
@@ -52,10 +57,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 body: JSON.stringify({ field, value: newValue })
             })
-            .then(response => response.json())
+            .then(response => response.json().catch(() => {
+                return response.text().then(text => {
+                    console.error('Erreur complète de la réponse AJAX:', text);
+                    throw new Error('Invalid JSON: ' + text);
+                });
+            }))
             .then(data => {
                 if (data.success) {
-                    container.querySelector('.field-value').textContent = newValue;
+                    if (field === 'styles') {
+                        container.querySelector('.field-value').textContent = Array.from(inputElement.selectedOptions).map(option => option.text).join(', ');
+                    } else {
+                        container.querySelector('.field-value').textContent = newValue;
+                    }
                     container.querySelector('.field-value').style.display = 'inline';
                     inputElement.style.display = 'none';
                     container.querySelector('.edit-button').style.display = 'inline';
