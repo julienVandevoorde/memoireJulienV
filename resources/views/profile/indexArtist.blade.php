@@ -17,7 +17,7 @@
                         <span class="glyphicon glyphicon-camera"></span>
                         <span>Changer l'image</span>
                     </label>
-                    <img src="{{ $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : asset('images/default-avatar.png') }}" id="output" width="165" />
+                    <img src="{{ $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : asset('images/defaultProfile.jpg') }}" id="output" width="165" />
                 </form>
             </div>
 
