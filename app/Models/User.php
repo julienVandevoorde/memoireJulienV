@@ -162,22 +162,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Les chats en tant que tatoueur.
-     */
-    public function tattooerChats()
-    {
-        return $this->hasMany(Chat::class, 'tattooer_id');
-    }
-
-    /**
-     * Les chats en tant que client.
-     */
-    public function clientChats()
-    {
-        return $this->hasMany(Chat::class, 'client_id');
-    }
-
-    /**
      * Les avis reçus en tant que tatoueur.
      */
     public function reviewsAsTattooer()
