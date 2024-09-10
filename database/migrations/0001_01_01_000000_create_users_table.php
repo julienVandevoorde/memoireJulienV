@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('location')->nullable(); // Localisation du tatoueur
             $table->text('bio')->nullable(); // Bio du tatoueur
             $table->string('instagram_link')->nullable(); // Lien vers Instagram
-            $table->integer('experience_years')->nullable(); // Années d'expérience
+            $table->string('experience_years')->nullable(); // Années d'expérience
 
             $table->rememberToken();
             $table->timestamps();

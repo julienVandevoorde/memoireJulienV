@@ -1,3 +1,6 @@
+@extends('layouts.app')
+@section('content')
+
 @include('Chatify::layouts.headLinks')
 <div class="messenger">
     {{-- ----------------------Users/Groups lists side---------------------- --}}
@@ -110,3 +113,5 @@
 
 @include('Chatify::layouts.modals')
 @include('Chatify::layouts.footerLinks')
+
+@endsection

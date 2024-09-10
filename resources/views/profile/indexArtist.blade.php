@@ -23,7 +23,7 @@
 
             <!-- Navigation de Profil -->
             <div class="profile-navigation">
-                <a href="#">Messages</a>
+                <a href="{{ url('/chatify') }}">Messages</a>
                 <a href="#">Rendez-vous</a>
                 <a href="{{ route('profile.edit') }}">Éditer le profil</a>
             </div>
@@ -72,6 +72,20 @@
                 <button class="edit-button">Edit</button>
                 <button class="save-button" style="display: none;">Save</button>
             </div>
+
+            <!-- Nombre d'années d'expérience -->
+            <div class="editable-field" data-field="experience_years">
+                <h3>Années d'expérience : <span class="field-value">{{ $user->experience_years ?? '0' }}</span></h3>
+                <select class="field-input" style="display: none;">
+                    @for ($i = 1; $i <= 9; $i++)
+                        <option value="{{ $i }}" {{ $user->experience_years == $i ? 'selected' : '' }}>{{ $i }}</option>
+                    @endfor
+                    <option value="10+" {{ $user->experience_years == '10+' ? 'selected' : '' }}>10+</option>
+                </select>
+                <button class="edit-button">Edit</button>
+                <button class="save-button" style="display: none;">Save</button>
+            </div>
+
             
             <!-- Bloc de description (Bio) dans le même conteneur -->
             <div class="profile-description editable-field" data-field="bio">

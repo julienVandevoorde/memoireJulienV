@@ -109,7 +109,7 @@ class ProfileController extends Controller
             $styleIds = $request->input('value', []);
             $user->styles()->sync($styleIds); // Mise à jour des styles pour le tatoueur
             return response()->json(['success' => true]);
-        } elseif (in_array($field, ['login', 'name', 'instagram_link', 'location', 'bio'])) {
+        } elseif (in_array($field, ['login', 'name', 'instagram_link', 'location', 'bio', 'experience_years'])) {
             $user->$field = $value;
             $user->save();
             return response()->json(['success' => true]);
