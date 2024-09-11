@@ -9,6 +9,12 @@
     <!-- Section de filtres -->
     <div class="filter-section">
         <form action="{{ route('artists.index') }}" method="GET">
+            <!-- Filtre par nom ou login -->
+            <div class="filter-group">
+                <label for="search">Nom ou Login</label>
+                <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="Rechercher par nom ou login">
+            </div>
+
             <!-- Filtre par localisation -->
             <div class="filter-group">
                 <label for="location">Localisation</label>
@@ -41,6 +47,18 @@
                 </select>
             </div>
 
+            <!-- Filtre par genre -->
+            <div class="filter-group">
+                <label for="gender">Genre</label>
+                <select name="gender" id="gender">
+                    <option value="">Tous les genres</option>
+                    <option value="male" {{ request('gender') == 'male' ? 'selected' : '' }}>Homme</option>
+                    <option value="female" {{ request('gender') == 'female' ? 'selected' : '' }}>Femme</option>
+                    <option value="non-binary" {{ request('gender') == 'non-binary' ? 'selected' : '' }}>Non-Binaire</option>
+                    <option value="other" {{ request('gender') == 'other' ? 'selected' : '' }}>Autre</option>
+                </select>
+            </div>
+
             <!-- Bouton de soumission -->
             <button type="submit" class="btn-filter">Rechercher</button>
         </form>
@@ -55,6 +73,7 @@
                 <p>Localisation: {{ $artist->location }}</p>
                 <p>Styles: {{ implode(', ', $artist->styles->pluck('name')->toArray()) }}</p>
                 <p>Années d'expérience: {{ $artist->experience_years }}</p>
+                <p>Genre: {{ ucfirst($artist->gender) }}</p>
                 <a href="{{ route('profile.showProfile', $artist->login) }}" class="btn-view-profile">Voir le profil</a>
             </div>
         @empty
