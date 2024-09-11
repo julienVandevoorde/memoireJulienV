@@ -40,9 +40,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); // Supprimer le profil
     Route::post('/profile/upload-photo', [ProfileController::class, 'uploadPhoto'])->name('profile.uploadPhoto');
     Route::post('/profile/update', [ProfileController::class, 'updateField'])->name('profile.updateField')->middleware('auth');
-
-
 });
+
+// Route unique pour afficher le profil d'un utilisateur (tatoueur ou client)
+Route::get('/profile/{login}', [ProfileController::class, 'showProfile'])->name('profile.showProfile');
+
+
+
 
 // Routes pour les pages de la navbar
 Route::get('/tattoos', function () {

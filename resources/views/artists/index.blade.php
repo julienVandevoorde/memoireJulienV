@@ -35,10 +35,9 @@
                 <label for="experience_years">Années d'expérience</label>
                 <select name="experience_years" id="experience_years">
                     <option value="">Toutes les années</option>
-                    @for ($i = 1; $i <= 10; $i++)
-                        <option value="{{ $i }}" {{ request('experience_years') == $i ? 'selected' : '' }}>{{ $i }} ans</option>
-                    @endfor
-                    <option value="10+" {{ request('experience_years') == '10+' ? 'selected' : '' }}>10+ ans</option>
+                    <option value="Less than 5 years" {{ request('experience_years') == 'Less than 5 years' ? 'selected' : '' }}>Less than 5 years</option>
+                    <option value="5 to 10 years" {{ request('experience_years') == '5 to 10 years' ? 'selected' : '' }}>5 to 10 years</option>
+                    <option value="More than 10 years" {{ request('experience_years') == 'More than 10 years' ? 'selected' : '' }}>More than 10 years</option>
                 </select>
             </div>
 
@@ -56,7 +55,7 @@
                 <p>Localisation: {{ $artist->location }}</p>
                 <p>Styles: {{ implode(', ', $artist->styles->pluck('name')->toArray()) }}</p>
                 <p>Années d'expérience: {{ $artist->experience_years }}</p>
-                <a href="{{ route('profile.index', $artist->id) }}" class="btn-view-profile">Voir le profil</a>
+                <a href="{{ route('profile.showProfile', $artist->login) }}" class="btn-view-profile">Voir le profil</a>
             </div>
         @empty
             <p>Aucun artiste trouvé pour les critères de recherche sélectionnés.</p>

@@ -23,7 +23,7 @@
 
             <!-- Navigation de Profil -->
             <div class="profile-navigation">
-                <a href="{{ url('/chatify') }}">Messages</a>
+                <a href="{{ url('/chatify') }}">My messages</a>
                 <a href="#">Rendez-vous</a>
                 <a href="{{ route('profile.edit') }}">Éditer le profil</a>
             </div>

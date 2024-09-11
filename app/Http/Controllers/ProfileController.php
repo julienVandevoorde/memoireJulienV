@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use App\Models\Style; // Importer le modèle Style
+use App\Models\User; // Importer le modèle User
 
 class ProfileController extends Controller
 {
@@ -117,4 +118,31 @@ class ProfileController extends Controller
 
         return response()->json(['success' => false], 400);
     }
+
+    public function showProfile($login)
+    {
+        // Recherche de l'utilisateur par login
+        $user = User::where('login', $login)->first();
+
+        // Si l'utilisateur n'est pas trouvé, renvoyer une erreur 404
+        if (!$user) {
+            abort(404, 'User not found');
+        }
+
+        // Déterminer le type d'utilisateur et retourner la vue appropriée
+        if ($user->role === 'tattoo artist') {
+            // Récupérer les styles de l'utilisateur tatoueur
+            $styles = $user->styles;
+
+            return view('artists.showArtist', compact('user', 'styles'));
+        } elseif ($user->role === 'client') {
+            return view('artists.showClient', compact('user'));
+        } else {
+            // Gérer d'autres types d'utilisateurs si nécessaire
+            abort(404, 'Invalid user role');
+        }
+    }
+
+
+
 }

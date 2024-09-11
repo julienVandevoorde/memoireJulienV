@@ -28,11 +28,7 @@ class ArtistController extends Controller
         }
     
         if ($request->filled('experience_years')) {
-            if ($request->input('experience_years') === '10+') {
-                $query->where('experience_years', '>=', 10);
-            } else {
-                $query->where('experience_years', $request->input('experience_years'));
-            }
+            $query->where('experience_years', $request->input('experience_years'));
         }
     
         $artists = $query->with('styles')->get(); // Utilisez with() pour charger les relations nécessaires
@@ -41,5 +37,4 @@ class ArtistController extends Controller
     
         return view('artists.index', compact('artists', 'styles', 'communes'));
     }
-    
 }
