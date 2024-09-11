@@ -1,0 +1,53 @@
+.artists-container {
+    padding: 20px;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-group {
+    margin-bottom: 15px;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.btn-filter {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-filter:hover {
+    background-color: #45a049;
+}
+
+.artists-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.artist-card {
+    width: 200px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.artist-card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}

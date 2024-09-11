@@ -6,6 +6,7 @@ use App\Http\Controllers\ShopController; // Import du ShopController pour gérer
 use App\Http\Controllers\CartController; // Import du CartController pour gérer le panier
 use App\Http\Controllers\PortfolioController; //import du portfolio controller
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArtistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,10 +49,6 @@ Route::get('/tattoos', function () {
     return view('tattoos.index'); // Page des tatouages
 })->name('tattoos.index');
 
-Route::get('/find-my-tattoo-artist', function () {
-    return view('artists.index'); // Page pour trouver un tatoueur
-})->name('artists.index');
-
 // Utilisation de ShopController pour afficher les produits dynamiques
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 
@@ -86,3 +83,6 @@ Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('che
 // Routes pour le portfolio
 Route::post('/portfolio', [PortfolioController::class, 'store'])->name('portfolio.store')->middleware('auth');
 Route::delete('/portfolio/{portfolio}', [PortfolioController::class, 'destroy'])->name('portfolio.delete')->middleware('auth');
+
+// route pour artists
+Route::get('/artists', [ArtistController::class, 'index'])->name('artists.index');
