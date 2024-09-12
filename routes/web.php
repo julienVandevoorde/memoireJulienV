@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController; // Import du CartController pour gérer
 use App\Http\Controllers\PortfolioController; //import du portfolio controller
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\TattooController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,3 +91,6 @@ Route::delete('/portfolio/{portfolio}', [PortfolioController::class, 'destroy'])
 
 // route pour artists
 Route::get('/artists', [ArtistController::class, 'index'])->name('artists.index');
+
+// Route pour afficher la page des tatouages
+Route::get('/tattoos', [TattooController::class, 'index'])->name('tattoos.index');

@@ -1,12 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1>Tattoos page</h1>
-        <br>
-        <h1>To do :</h1>
-        <h2>- Fil d'actualité (tattoos postés par les tatoueurs de manière aléatioire -> Pinterest style)</h2>
-        <h2>- Permettre aux user de cliquer su un tatouage, de liker et de voir le profil du tatoueur via le tatouage</h2>
+<link rel="stylesheet" href="{{ asset('css/tattoos.css') }}">
 
+<div class="tattoos-container">
+    <h1>Découvrir des Tatouages</h1>
+
+    <!-- Fil d'actualité de tatouages -->
+    <div class="tattoo-feed">
+        @foreach ($tattooImages as $tattoo)
+            <div class="tattoo-item">
+                <img src="{{ asset('storage/' . $tattoo->image_path) }}" alt="Tattoo by {{ $tattoo->user->name }}">
+                <div class="tattoo-info">
+                    <p>&#64;{{ $tattoo->user->login }}</p>
+                </div>
+            </div>
+        @endforeach
     </div>
+</div>
+
 @endsection

@@ -1,0 +1,40 @@
+.tattoos-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Disposer les éléments en colonne */
+    align-items: center; /* Centrer les éléments horizontalement */
+}
+
+.tattoos-container h1 {
+    margin-bottom: 20px; /* Ajouter un espacement en bas du titre */
+    text-align: center; /* Centrer le titre */
+    width: 100%; /* S'assurer que le titre prend toute la largeur disponible */
+}
+
+.tattoo-feed {
+    display: grid;
+    grid-template-columns: repeat(4, 250px); /* 4 colonnes de largeur fixe */
+    gap: 20px;
+    justify-content: center; /* Centre la grille */
+}
+
+.tattoo-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tattoo-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.tattoo-info {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
