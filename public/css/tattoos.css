@@ -11,6 +11,38 @@
     width: 100%; /* S'assurer que le titre prend toute la largeur disponible */
 }
 
+.search-bar {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.search-bar form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-bar input[type="text"] {
+    padding: 8px;
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.search-bar button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #45a049;
+}
+
 .tattoo-feed {
     display: grid;
     grid-template-columns: repeat(4, 250px); /* 4 colonnes de largeur fixe */
