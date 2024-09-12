@@ -8,22 +8,23 @@
 
     <!-- Section de filtres -->
     <div class="filter-section">
-        <form action="{{ route('artists.index') }}" method="GET">
-            <!-- Filtre par nom ou login -->
-            <div class="filter-group">
-                <label for="search">Nom ou Login</label>
-                <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="Rechercher par nom ou login">
-            </div>
+        <form action="{{ route('artists.index') }}" method="GET" class="filter-form">
+            <!-- Ligne avec Nom ou Login et Localisation -->
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="search">Nom ou Login</label>
+                    <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="Rechercher par nom ou login">
+                </div>
 
-            <!-- Filtre par localisation -->
-            <div class="filter-group">
-                <label for="location">Localisation</label>
-                <select name="location" id="location">
-                    <option value="">Toutes les localisations</option>
-                    @foreach ($communes as $commune)
-                        <option value="{{ $commune }}" {{ request('location') == $commune ? 'selected' : '' }}>{{ $commune }}</option>
-                    @endforeach
-                </select>
+                <div class="filter-group">
+                    <label for="location">Localisation</label>
+                    <select name="location" id="location">
+                        <option value="">Toutes les localisations</option>
+                        @foreach ($communes as $commune)
+                            <option value="{{ $commune }}" {{ request('location') == $commune ? 'selected' : '' }}>{{ $commune }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
 
             <!-- Filtre par style -->
@@ -36,31 +37,34 @@
                 </select>
             </div>
 
-            <!-- Filtre par années d'expérience -->
-            <div class="filter-group">
-                <label for="experience_years">Années d'expérience</label>
-                <select name="experience_years" id="experience_years">
-                    <option value="">Toutes les années</option>
-                    <option value="Less than 5 years" {{ request('experience_years') == 'Less than 5 years' ? 'selected' : '' }}>Less than 5 years</option>
-                    <option value="5 to 10 years" {{ request('experience_years') == '5 to 10 years' ? 'selected' : '' }}>5 to 10 years</option>
-                    <option value="More than 10 years" {{ request('experience_years') == 'More than 10 years' ? 'selected' : '' }}>More than 10 years</option>
-                </select>
-            </div>
+            <!-- Ligne avec Années d'expérience et Genre -->
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="experience_years">Années d'expérience</label>
+                    <select name="experience_years" id="experience_years">
+                        <option value="">Toutes les années</option>
+                        <option value="Less than 5 years" {{ request('experience_years') == 'Less than 5 years' ? 'selected' : '' }}>Less than 5 years</option>
+                        <option value="5 to 10 years" {{ request('experience_years') == '5 to 10 years' ? 'selected' : '' }}>5 to 10 years</option>
+                        <option value="More than 10 years" {{ request('experience_years') == 'More than 10 years' ? 'selected' : '' }}>More than 10 years</option>
+                    </select>
+                </div>
 
-            <!-- Filtre par genre -->
-            <div class="filter-group">
-                <label for="gender">Genre</label>
-                <select name="gender" id="gender">
-                    <option value="">Tous les genres</option>
-                    <option value="male" {{ request('gender') == 'male' ? 'selected' : '' }}>Homme</option>
-                    <option value="female" {{ request('gender') == 'female' ? 'selected' : '' }}>Femme</option>
-                    <option value="non-binary" {{ request('gender') == 'non-binary' ? 'selected' : '' }}>Non-Binaire</option>
-                    <option value="other" {{ request('gender') == 'other' ? 'selected' : '' }}>Autre</option>
-                </select>
+                <div class="filter-group">
+                    <label for="gender">Genre</label>
+                    <select name="gender" id="gender">
+                        <option value="">Tous les genres</option>
+                        <option value="male" {{ request('gender') == 'male' ? 'selected' : '' }}>Homme</option>
+                        <option value="female" {{ request('gender') == 'female' ? 'selected' : '' }}>Femme</option>
+                        <option value="non-binary" {{ request('gender') == 'non-binary' ? 'selected' : '' }}>Non-Binaire</option>
+                        <option value="other" {{ request('gender') == 'other' ? 'selected' : '' }}>Autre</option>
+                    </select>
+                </div>
             </div>
 
             <!-- Bouton de soumission -->
-            <button type="submit" class="btn-filter">Rechercher</button>
+            <div class="filter-group">
+                <button type="submit" class="btn-filter">Rechercher</button>
+            </div>
         </form>
     </div>
 

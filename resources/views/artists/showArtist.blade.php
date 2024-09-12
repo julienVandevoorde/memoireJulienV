@@ -53,7 +53,7 @@
 
     <!-- Section de Portfolio -->
     <div class="portfolio-section">
-        <h3>Mon Portfolio</h3>
+        <h3>@<span class="field-value">{{ $user->login}}'s portfolio</h3>
 
         <!-- Afficher les images du portfolio sans options de suppression -->
         <div class="portfolio-gallery">
