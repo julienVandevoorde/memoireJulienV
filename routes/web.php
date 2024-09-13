@@ -79,11 +79,12 @@ Route::post('/cart/remove', [CartController::class, 'removeProduct'])->name('car
 Route::get('/cart/count', [CartController::class, 'count'])->name('cart.count');
 
 // Routes pour le processus de paiement (avec middleware pour vérifier que le panier n'est pas vide)
-Route::get('/checkout', [CheckoutController::class, 'index'])->middleware(['auth', 'check.cart.not.empty'])->name('checkout.index'); // Afficher la page de paiement
-Route::post('/checkout', [CheckoutController::class, 'store'])->middleware(['auth', 'check.cart.not.empty'])->name('checkout.store'); // Effectuer le paiement
-Route::post('/checkout/session', [CheckoutController::class, 'createSession'])->middleware(['auth', 'check.cart.not.empty'])->name('checkout.createSession'); // Créer une session de paiement
-Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success'); // Page de succès
-Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel'); // Page d'annulation
+Route::middleware('auth')->group(function () {
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout/create-session', [CheckoutController::class, 'createSession'])->name('checkout.createSession');
+    Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+    Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
+});
 
 // Routes pour le portfolio
 Route::post('/portfolio', [PortfolioController::class, 'store'])->name('portfolio.store')->middleware('auth');

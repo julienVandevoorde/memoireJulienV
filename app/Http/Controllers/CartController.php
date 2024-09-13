@@ -44,20 +44,23 @@ class CartController extends Controller
     public function updateQuantity(Request $request)
     {
         $productId = $request->input('product_id');
-        $quantity = $request->input('quantity', 1); // Quantité à mettre à jour
-
+        $action = $request->input('action');
         $cart = $this->getCart();
-
+    
         if (isset($cart[$productId])) {
-            $cart[$productId] = $quantity;
+            if ($action === 'increment') {
+                $cart[$productId]++;
+            } elseif ($action === 'decrement' && $cart[$productId] > 1) {
+                $cart[$productId]--;
+            }
         }
-
+    
         $this->updateCart($cart);
-
         $cartCount = $this->calculateCartCount($cart);
-
+    
         return response()->json(['success' => true, 'cartCount' => $cartCount]);
     }
+    
 
     // Supprimer un produit du panier
     public function removeProduct(Request $request)

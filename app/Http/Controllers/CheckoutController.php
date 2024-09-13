@@ -10,39 +10,33 @@ use App\Models\Product;
 
 class CheckoutController extends Controller
 {
-
-
     public function index()
     {
         // Récupère le panier de la session
-        $cart = Session::get('checkout', []);
-    
-        // Vérifie si le panier n'est pas vide
+        $cart = Session::get('cart', []);
+
+        // Si le panier est vide, on redirige vers la page du panier
         if (empty($cart)) {
-            $total = 0; // Panier vide, total est zéro
-        } else {
-            $products = Product::whereIn('id', array_keys($cart))->get();
-    
-            // Initialiser le montant total du panier à 0
-            $total = 0;
-    
-            // Calculer le montant total du panier
-            foreach ($products as $product) {
-                $total += $product->price * $cart[$product->id];
-            }
+            return redirect()->route('cart.index')->with('error', 'Votre panier est vide.');
         }
-    
-        // Transmettez la variable $total à la vue
-        return view('shop.checkout', compact('total'));
+
+        $products = Product::whereIn('id', array_keys($cart))->get();
+
+        // Calculer le montant total du panier
+        $total = 0;
+        foreach ($products as $product) {
+            $total += $product->price * $cart[$product->id];
+        }
+
+        return view('shop.checkout', compact('total', 'products', 'cart'));
     }
-    
 
     public function createSession(Request $request)
     {
         Stripe::setApiKey(env('STRIPE_SECRET'));  // Utilisez votre clé secrète Stripe
 
         // Récupère le panier de la session
-        $cart = Session::get('checkout', []);
+        $cart = Session::get('cart', []);
 
         // Vérifie si le panier n'est pas vide
         if (empty($cart)) {
@@ -51,30 +45,25 @@ class CheckoutController extends Controller
 
         $products = Product::whereIn('id', array_keys($cart))->get();
 
-        // Initialiser le montant total du panier à 0
-        $total = 0;
-
-        // Calculer le montant total du panier
+        // Créer des lignes de produits pour Stripe Checkout
+        $lineItems = [];
         foreach ($products as $product) {
-            $total += $product->price * $cart[$product->id];
-        }
-
-        // Convertir le total en cents (pour Stripe)
-        $amountInCents = $total * 100;
-
-        // Créer une session de paiement Stripe avec le montant dynamique
-        $session = \Stripe\Checkout\Session::create([
-            'payment_method_types' => ['card'],
-            'line_items' => [[
+            $lineItems[] = [
                 'price_data' => [
                     'currency' => 'usd',
                     'product_data' => [
-                        'name' => 'Total Cart',
+                        'name' => $product->name,
                     ],
-                    'unit_amount' => $amountInCents, // Utiliser le montant calculé
+                    'unit_amount' => $product->price * 100, // Convertir le montant en cents
                 ],
-                'quantity' => 1,
-            ]],
+                'quantity' => $cart[$product->id],
+            ];
+        }
+
+        // Créer une session de paiement Stripe Checkout
+        $session = StripeSession::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [$lineItems],
             'mode' => 'payment',
             'success_url' => route('checkout.success'),
             'cancel_url' => route('checkout.cancel'),
@@ -85,11 +74,11 @@ class CheckoutController extends Controller
 
     public function success()
     {
-        return view('shop.success'); // Assurez-vous d'avoir une vue de succès
+        return view('shop.success'); // Vue de succès après le paiement
     }
 
     public function cancel()
     {
-        return view('shop.cancel'); // Assurez-vous d'avoir une vue d'annulation
+        return view('shop.cancel'); // Vue d'annulation du paiement
     }
 }
