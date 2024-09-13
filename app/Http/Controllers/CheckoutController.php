@@ -31,21 +31,14 @@ class CheckoutController extends Controller
         return view('shop.checkout', compact('total', 'products', 'cart'));
     }
 
-    public function createSession(Request $request)
+    public function createSession()
     {
-        Stripe::setApiKey(env('STRIPE_SECRET'));  // Utilisez votre clé secrète Stripe
+        Stripe::setApiKey(env('STRIPE_SECRET'));
 
-        // Récupère le panier de la session
         $cart = Session::get('cart', []);
-
-        // Vérifie si le panier n'est pas vide
-        if (empty($cart)) {
-            return response()->json(['error' => 'Panier vide.'], 400);
-        }
-
         $products = Product::whereIn('id', array_keys($cart))->get();
 
-        // Créer des lignes de produits pour Stripe Checkout
+        // Créez la liste des articles pour Stripe Checkout
         $lineItems = [];
         foreach ($products as $product) {
             $lineItems[] = [
@@ -54,31 +47,33 @@ class CheckoutController extends Controller
                     'product_data' => [
                         'name' => $product->name,
                     ],
-                    'unit_amount' => $product->price * 100, // Convertir le montant en cents
+                    'unit_amount' => $product->price * 100, // Convertir en cents
                 ],
                 'quantity' => $cart[$product->id],
             ];
         }
 
-        // Créer une session de paiement Stripe Checkout
+        // Créer la session de paiement Stripe
         $session = StripeSession::create([
             'payment_method_types' => ['card'],
-            'line_items' => [$lineItems],
+            'line_items' => $lineItems,
             'mode' => 'payment',
             'success_url' => route('checkout.success'),
             'cancel_url' => route('checkout.cancel'),
         ]);
 
-        return response()->json(['id' => $session->id]);
+        return redirect($session->url);
     }
 
     public function success()
     {
-        return view('shop.success'); // Vue de succès après le paiement
+        // Réinitialiser le panier après le paiement réussi
+        Session::forget('cart');
+        return redirect()->route('shop.index')->with('success', 'Paiement réussi !');
     }
 
     public function cancel()
     {
-        return view('shop.cancel'); // Vue d'annulation du paiement
+        return redirect()->route('cart.index')->with('error', 'Paiement annulé.');
     }
 }
