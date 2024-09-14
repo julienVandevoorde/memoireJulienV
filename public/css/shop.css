@@ -1,3 +1,4 @@
+/* Conteneur principal */
 .container {
     padding: 20px;
     display: flex;
@@ -5,13 +6,81 @@
     align-items: center;
 }
 
+/* Style pour le formulaire de recherche de produit */
+.search-form {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column; /* Mise en colonne pour centrer */
+    align-items: center; /* Centrer le contenu horizontalement */
+    margin-bottom: 30px;
+    gap: 15px; /* Espacement entre les champs et les groupes */
+}
+
+.search-form h3 {
+    font-size: 1.5em;
+    width: 100%;
+    margin-bottom: 15px;
+    color: #555;
+    text-align: center; /* Centrer le titre */
+}
+
+/* Champs de formulaire */
+.form-group-inline {
+    display: flex;
+    width: 100%;
+    justify-content: center; /* Centre les groupes de champs */
+    gap: 20px; /* Espacement entre les champs */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-form input,
+.search-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.95em;
+    margin-bottom: 10px; /* Ajouter un espace entre les champs */
+}
+
+/* Bouton de recherche */
+.search-form .button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centrer le bouton */
+}
+
+.search-form .small-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.search-form .small-button:hover {
+    background-color: #0056b3;
+}
+
+/* Grid des produits */
 .shop-feed {
     display: grid;
     grid-template-columns: repeat(4, 250px); /* 4 colonnes */
     gap: 20px;
-    justify-content: center; /* Centrer la grille */
+    justify-content: center;
 }
 
+/* Style de la carte produit */
 .product-card {
     border: 1px solid #ddd;
     padding: 10px;
@@ -38,6 +107,7 @@
     margin-bottom: 10px;
 }
 
+/* Bouton d'ajout au panier */
 .btn-add-to-cart {
     padding: 10px 20px;
     background-color: #4CAF50;
