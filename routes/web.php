@@ -8,6 +8,9 @@ use App\Http\Controllers\PortfolioController; //import du portfolio controller
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\TattooController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,10 +31,9 @@ Route::get('/', function () {
 
 // Routes pour les utilisateurs administrateurs avec Middleware de vérification de rôle
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard.index'); // Page d'administration
-    })->name('dashboard.index');
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 });
+
 
 // Routes pour la gestion du profil utilisateur (nécessite authentification)
 Route::middleware('auth')->group(function () {
@@ -95,3 +97,22 @@ Route::get('/artists', [ArtistController::class, 'index'])->name('artists.index'
 
 // Route pour afficher la page des tatouages
 Route::get('/tattoos', [TattooController::class, 'index'])->name('tattoos.index');
+
+// Routes pour la gestion des utilisateurs par l'admin
+Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
+    Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
+    Route::put('/admin/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+    // Route pour afficher le formulaire d'édition d'un utilisateur
+    Route::get('/admin/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+
+
+    // Routes pour la gestion des produits par l'admin
+    Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products.index');
+    Route::get('/admin/products/create', [ProductController::class, 'create'])->name('admin.products.create');
+    Route::post('/admin/products', [ProductController::class, 'store'])->name('admin.products.store');
+    Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+    Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('admin.products.update');
+    Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+});

@@ -18,8 +18,4 @@ class Product extends Model
         'category',
     ];
 
-    public function orderItems()
-    {
-        return $this->hasMany(OrderItem::class);
-    }
 }

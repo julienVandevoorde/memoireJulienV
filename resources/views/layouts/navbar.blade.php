@@ -7,7 +7,7 @@
         <li><a href="{{ route('shop.index') }}">Shop</a></li>
         <li><a href="{{ route('about.index') }}">About Us</a></li>
         @if(Auth::check() && Auth::user()->role === 'admin')
-            <li><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
+            <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
         @endif
     </ul>
     <ul class="navbar-auth">
