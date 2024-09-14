@@ -15,89 +15,229 @@ class PortfolioSeeder extends Seeder
      */
     public function run(): void
     {
-        // Rechercher l'utilisateur "Zeph" par son email ou son login
-        $zeph = User::where('login', 'zeph')->first();
-
-        if (!$zeph) {
-            $this->command->info('Zeph user not found. Please make sure the user exists.');
-            return;
-        }
-
         // Créer le répertoire de destination s'il n'existe pas
         if (!Storage::exists('public/portfolio')) {
             Storage::makeDirectory('public/portfolio');
         }
 
-        // Créer des données de portfolio factices pour Zeph
-        $portfolios = [
-            [
-                'user_id' => $zeph->id,
-                'title' => 'Démon japonais',
-                'description' => 'Démon japonais que j\'ai tatoué sur le bras d\'un client. Ce tattoo est un de mes préférés et a été réalisé en 5 heures.',
-                'image_path' => 'portfolio/zeppettoTat1.jpg',
+        // Liste des tatoueurs par login pour lesquels on va créer des portfolios
+        $tattooArtistsLogins = [
+            'zeppettoTattoo' => [
+                [
+                    'title' => 'Démon japonais',
+                    'description' => '',
+                    'image_path' => 'portfolio/zeppettoTat1.jpg',
+                ],
+                [
+                    'title' => 'Bonhommes qui dansent',
+                    'description' => '',
+                    'image_path' => 'portfolio/zeppettoTat2.jpg',
+                ],
+                [
+                    'title' => 'Papillon réaliste',
+                    'description' => '',
+                    'image_path' => 'portfolio/zeppettoTat3.jpg',
+                ],
+                [
+                    'title' => 'Flash',
+                    'description' => '',
+                    'image_path' => 'portfolio/zeppettoTat4.jpg',
+                ],
+                [
+                    'title' => 'Flash',
+                    'description' => '',
+                    'image_path' => 'portfolio/zeppettoTat5.jpg',
+                ],
+                [
+                    'title' => 'Zeppetto Flowers',
+                    'description' => '',
+                    'image_path' => 'portfolio/zeppettoTat6.jpg',
+                ],
+                [
+                    'title' => 'Zeppetto Flowers',
+                    'description' => '',
+                    'image_path' => 'portfolio/zeppettoTat7.jpg',
+                ],
+                [
+                    'title' => 'Poisson chat japonais',
+                    'description' => '',
+                    'image_path' => 'portfolio/zeppettoTat8.jpg',
+                ],
+                [
+                    'title' => 'Petite fraise sauvage',
+                    'description' => '',
+                    'image_path' => 'portfolio/zeppettoTat9.jpg',
+                ],
             ],
-            [
-                'user_id' => $zeph->id,
-                'title' => 'Bonhommes qui dansent',
-                'description' => 'Tatouage de bonhommes qui dansent sur le bras d\'un client. Ce tattoo a été réalisé en 3 heures.',
-                'image_path' => 'portfolio/zeppettoTat2.jpg',
+            'art.jooo' => [
+                [
+                    'title' => 'Oeil mélancolique étoilé',
+                    'description' => '',
+                    'image_path' => 'portfolio/josephineTat1.jpg',
+                ],
+                [
+                    'title' => 'Femme à franche (dot style)',
+                    'description' => '',
+                    'image_path' => 'portfolio/josephineTat2.jpg',
+                ],
+                [
+                    'title' => 'Cachet japonais - fleurs',
+                    'description' => '',
+                    'image_path' => 'portfolio/josephineTat3.jpg',
+                ],
+                [
+                    'title' => 'Volcan en éruption de joie',
+                    'description' => '',
+                    'image_path' => 'portfolio/josephineTat4.jpg',
+                ],
+                [
+                    'title' => 'Démon japonais',
+                    'description' => '',
+                    'image_path' => 'portfolio/josephineTat5.jpg',
+                ],
+                [
+                    'title' => 'peinture à l\'ancienne',
+                    'description' => '',
+                    'image_path' => 'portfolio/josephineTat6.jpg',
+                ],
+                [
+                    'title' => 'Flash',
+                    'description' => '',
+                    'image_path' => 'portfolio/josephineTat7.jpg',
+                ],
+                [
+                    'title' => 'Carpe Koi épaule',
+                    'description' => '',
+                    'image_path' => 'portfolio/josephineTat8.jpg',
+                ],
             ],
-            [
-                'user_id' => $zeph->id,
-                'title' => 'Papillon réaliste',
-                'description' => 'Tatouage d\'un papillon réaliste sur la jambe d\'un fidèle client. Ce tattoo a été réalisé en 4 heures.',
-                'image_path' => 'portfolio/zeppettoTat3.jpg',
+            'hadrigonzalezzz' => [
+                [
+                    'title' => 'Flowers behind the ear',
+                    'description' => '',
+                    'image_path' => 'portfolio/hadriTat1.jpg',
+                ],
+                [
+                    'title' => 'Lucky duck',
+                    'description' => '',
+                    'image_path' => 'portfolio/hadriTat2.jpg',
+                ],
+                [
+                    'title' => 'Devil\'s ass',
+                    'description' => '',
+                    'image_path' => 'portfolio/hadriTat3.jpg',
+                ],
+                [
+                    'title' => 'Earth',
+                    'description' => '',
+                    'image_path' => 'portfolio/hadriTat4.jpg',
+                ],
             ],
-            [
-                'user_id' => $zeph->id,
-                'title' => 'Flash',
-                'description' => 'Flash avec de nouveaux tatouages. Ils sont tous disponibles à la réservation.',
-                'image_path' => 'portfolio/zeppettoTat4.jpg',
+            'harisha.ttt' => [
+                [
+                    'title' => 'Katana et dragon',
+                    'description' => '',
+                    'image_path' => 'portfolio/HarishaTat1.jpg',
+                ],
+                [
+                    'title' => 'Flash 73',
+                    'description' => '',
+                    'image_path' => 'portfolio/HarishaTat2.jpg',
+                ],
+                [
+                    'title' => 'Guts',
+                    'description' => '',
+                    'image_path' => 'portfolio/HarishaTat3.jpg',
+                ],
+                [
+                    'title' => 'Dragon japonais',
+                    'description' => '',
+                    'image_path' => 'portfolio/HarishaTat4.jpg',
+                ],
+                [
+                    'title' => 'Nature morte',
+                    'description' => '',
+                    'image_path' => 'portfolio/HarishaTat5.jpg',
+                ],
+                [
+                    'title' => 'Entité maléfique',
+                    'description' => '',
+                    'image_path' => 'portfolio/HarishaTat6.jpg',
+                ],
+                [
+                    'title' => 'Flash 74',
+                    'description' => '',
+                    'image_path' => 'portfolio/HarishaTat7.jpg',
+                ],
+                [
+                    'title' => 'Femme de Yakuza',
+                    'description' => '',
+                    'image_path' => 'portfolio/HarishaTat8.jpg',
+                ],
             ],
-            [
-                'user_id' => $zeph->id,
-                'title' => 'Flash',
-                'description' => 'Flash avec de nouveaux tatouages. Ils sont tous disponibles à la réservation.',
-                'image_path' => 'portfolio/zeppettoTat5.jpg',
-            ],
-            [
-                'user_id' => $zeph->id,
-                'title' => 'Zeppetto Flowers',
-                'description' => 'Fleurs qui me caractérisent tatouées sur le bras d\'une cliente. Ce tattoo a été réalisé en 1 heure.',
-                'image_path' => 'portfolio/zeppettoTat6.jpg',
-            ],
-            [
-                'user_id' => $zeph->id,
-                'title' => 'Zeppetto Flowers',
-                'description' => 'Fleurs qui me caractérisent tatouées sur le bras d\'une cliente. Ce tattoo a été réalisé en 1 heure.',
-                'image_path' => 'portfolio/zeppettoTat7.jpg',
-            ],
-            [
-                'user_id' => $zeph->id,
-                'title' => 'Poisson chat japonais',
-                'description' => 'Poisson chat japonais tatoué sur le mollet d\'un client. Ce tattoo a été réalisé en 2 heures.',
-                'image_path' => 'portfolio/zeppettoTat8.jpg',
-            ],
-            [
-                'user_id' => $zeph->id,
-                'title' => 'Petite fraise sauvage',
-                'description' => 'Petite fraise sauvage tatouée sur la jambe d\'une cliente. Ce tattoo a été réalisé en 1 heure.',
-                'image_path' => 'portfolio/zeppettoTat9.jpg',
-            ],
+            'danny.bautista_' => [
+                [
+                    'title' => 'Piranha',
+                    'description' => '',
+                    'image_path' => 'portfolio/dannyTat1.jpg',
+                ],
+                [
+                    'title' => 'Flash Hello Kitty gore',
+                    'description' => '',
+                    'image_path' => 'portfolio/dannyTat2.jpg',
+                ],
+                [
+                    'title' => 'Skull and sword',
+                    'description' => '',
+                    'image_path' => 'portfolio/dannyTat3.jpg',
+                ],
+                [
+                    'title' => 'Papillon de nuit',
+                    'description' => '',
+                    'image_path' => 'portfolio/dannyTat4.jpg',
+                ],
+                [
+                    'title' => 'Scorpio',
+                    'description' => '',
+                    'image_path' => 'portfolio/dannyTat5.jpg',
+                ],
+                [
+                    'title' => 'Mermaid',
+                    'description' => '',
+                    'image_path' => 'portfolio/dannyTat6.jpg',
+                ],
+            ]
         ];
 
-        // Insérer les données de portfolio et copier les images
-        foreach ($portfolios as $portfolioData) {
-            Portfolio::create($portfolioData);
+        // Créer les portfolios pour chaque tatoueur
+        foreach ($tattooArtistsLogins as $login => $portfolios) {
+            $artist = User::where('login', $login)->first();
 
-            // Définir le chemin source et destination
-            $sourcePath = database_path('seeders/images/portfolio/' . basename($portfolioData['image_path']));
-            $destinationPath = 'public/' . $portfolioData['image_path'];
+            if (!$artist) {
+                $this->command->info("User with login '{$login}' not found. Please make sure the user exists.");
+                continue;
+            }
 
-            // Vérifiez si le fichier n'existe pas déjà dans le stockage, puis copiez-le
-            if (!Storage::disk('public')->exists($portfolioData['image_path'])) {
-                if (File::exists($sourcePath)) {
-                    Storage::disk('public')->put($portfolioData['image_path'], file_get_contents($sourcePath));
+            // Insérer les portfolios pour l'utilisateur spécifique
+            foreach ($portfolios as $portfolioData) {
+                Portfolio::create([
+                    'user_id' => $artist->id,
+                    'title' => $portfolioData['title'],
+                    'description' => $portfolioData['description'],
+                    'image_path' => $portfolioData['image_path'],
+                ]);
+
+                // Définir le chemin source et destination
+                $sourcePath = database_path('seeders/images/portfolio/' . basename($portfolioData['image_path'])); // Correction du chemin source
+                $destinationPath = 'public/' . $portfolioData['image_path'];
+
+                // Vérifiez si le fichier n'existe pas déjà dans le stockage, puis copiez-le
+                if (!Storage::disk('public')->exists($portfolioData['image_path'])) {
+                    if (File::exists($sourcePath)) {
+                        Storage::disk('public')->put($portfolioData['image_path'], file_get_contents($sourcePath));
+                    } else {
+                        $this->command->info("Image not found: " . $sourcePath);
+                    }
                 }
             }
         }
