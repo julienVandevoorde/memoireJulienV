@@ -1,13 +1,15 @@
 <!-- resources/views/layouts/navbar.blade.php -->
 <header>
-    <a href="{{ route('home.index') }}" class="logo">NeedleInkNow</a>
+    <a href="{{ route('home.index') }}" class="logo">
+        <img src="{{ asset('images/logoNeedleInkNow.png') }}" alt="NeedleInkNow Logo" class="logo-image">
+    </a>
     <ul>
-        <li><a href="{{ route('tattoos.index') }}">Tattoos</a></li>
-        <li><a href="{{ route('artists.index') }}">Artists</a></li>
-        <li><a href="{{ route('shop.index') }}">Shop</a></li>
-        <li><a href="{{ route('about.index') }}">About Us</a></li>
+        <li><a href="{{ route('tattoos.index') }}">TATTOOS</a></li>
+        <li><a href="{{ route('artists.index') }}">ARTISTS</a></li>
+        <li><a href="{{ route('shop.index') }}">SHOP</a></li>
+        <li><a href="{{ route('about.index') }}">ABOUT US</a></li>
         @if(Auth::check() && Auth::user()->role === 'admin')
-            <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ route('admin.dashboard') }}">DASHBOARD</a></li>
         @endif
     </ul>
     <ul class="navbar-auth">
@@ -27,17 +29,17 @@
         @if(Auth::check())
             <!-- Afficher l'icône du panier -->
             <li>
-                <a href="{{ route('profile.index') }}">Profile</a>
+                <a href="{{ route('profile.index') }}">PROFILE</a>
             </li>
             <li>
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">LOG OUT</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
             </li>
         @else
-            <li><a href="{{ route('login') }}">Log in</a></li>
-            <li><a href="{{ route('register') }}">Register</a></li>
+            <li><a href="{{ route('login') }}">LOG IN</a></li>
+            <li><a href="{{ route('register') }}">REGISTER</a></li>
         @endif
     </ul>
 </header>

@@ -136,3 +136,20 @@ main {
     align-items: center;
     justify-content: center;
 }
+
+/* Styles pour le logo */
+.logo-image {
+    height: 110px; /* Ajustez la taille du logo selon vos besoins */
+    width: auto;  /* Garde le ratio de l'image */
+    transition: transform 0.4s ease; /* Ajoute une transition pour un effet au hover */
+    margin-top: 15px; /* Ajuste la marge pour abaisser le logo */
+}
+
+.logo-image:hover {
+    transform: scale(1.30); /* Agrandit légèrement le logo au survol */
+}
+
+/* Modifier la couleur de fond du header lorsque le logo est cliqué */
+header.sticky .logo-image {
+    height: 110px; /* Ajuster la taille du logo quand le header est sticky */
+}

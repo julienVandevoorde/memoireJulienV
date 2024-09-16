@@ -1,0 +1,54 @@
+/* resources/css/home.css */
+
+/* Conteneur principal de la section héroïque */
+.hero-section {
+    display: flex; /* Utilisation de Flexbox pour centrer le contenu */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    min-height: 80%; /* Assure que le conteneur occupe au moins 80% de la hauteur disponible */
+    color: #fff; /* Couleur du texte */
+    text-align: center; /* Centre le texte */
+    padding: 0 20px; /* Ajoute un peu de padding pour éviter que le texte touche les bords */
+    margin: 0; /* Supprime les marges */
+}
+
+/* Contenu de la section héroïque */
+.hero-content {
+    max-width: 800px; /* Limite la largeur du contenu */
+    margin: 0 auto; /* Centre le contenu horizontalement */
+    transform: translateY(60%); /* Décale manuellement le contenu de 20% vers le bas */
+}
+
+/* Titre principal */
+.main-title {
+    font-size: 5rem; /* Taille de police ajustable */
+    font-weight: bold;
+    margin: 0; /* Supprime les marges */
+    
+}
+
+/* Sous-titre */
+.subtitle {
+    font-size: 1.2rem; /* Taille de police ajustable */
+    margin-top: 1rem; /* Espacement au-dessus */
+    margin-bottom: 2rem; /* Espacement en dessous */
+    color: rgba(255, 255, 255, 0.7); /* Texte blanc avec opacité */
+}
+
+/* Bouton */
+.btn-primary {
+    padding: 10px 20px;
+    background-color: #222;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 2rem; /* Taille de police ajustable */
+    transition: background-color 0.3s;
+    display: inline-block; /* Affiche le bouton en bloc inline */
+}
+
+.btn-primary:hover {
+    background-color: #5f5f5f; /* Couleur au survol */
+}

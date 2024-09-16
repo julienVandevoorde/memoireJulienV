@@ -10,18 +10,18 @@
 
     <!-- Formulaire de recherche de produit -->
     <form action="{{ route('shop.index') }}" method="GET" class="search-form">
-        <h3>Recherche de produits</h3>
+        <h3>Search for a product</h3>
 
         <!-- Champs alignés sur une seule ligne -->
         <div class="form-group-inline">
             <div class="form-group">
-                <label for="searchName">Nom du produit</label>
+                <label for="searchName">By name</label>
                 <input type="text" id="searchName" name="name" value="{{ request('name') }}">
             </div>
             <div class="form-group">
-                <label for="searchCategory">Catégorie</label>
+                <label for="searchCategory">By category</label>
                 <select id="searchCategory" name="category">
-                    <option value="">Toutes les catégories</option>
+                    <option value="">All categories</option>
                     <option value="Ink" {{ request('category') == 'Ink' ? 'selected' : '' }}>Ink</option>
                     <option value="Machine" {{ request('category') == 'Machine' ? 'selected' : '' }}>Machine</option>
                     <option value="Needles" {{ request('category') == 'Needles' ? 'selected' : '' }}>Needles</option>
@@ -33,18 +33,18 @@
         <!-- Champs de prix alignés sur une seule ligne -->
         <div class="form-group-inline">
             <div class="form-group">
-                <label for="minPrice">Prix minimum</label>
+                <label for="minPrice">Minimum rice</label>
                 <input type="number" step="0.01" id="minPrice" name="min_price" value="{{ request('min_price') }}">
             </div>
             <div class="form-group">
-                <label for="maxPrice">Prix maximum</label>
+                <label for="maxPrice">Maximum price</label>
                 <input type="number" step="0.01" id="maxPrice" name="max_price" value="{{ request('max_price') }}">
             </div>
         </div>
 
         <!-- Bouton de recherche centré -->
         <div class="button-container">
-            <button type="submit" class="small-button">Rechercher</button>
+            <button type="submit" class="small-button">Search</button>
         </div>
     </form>
 

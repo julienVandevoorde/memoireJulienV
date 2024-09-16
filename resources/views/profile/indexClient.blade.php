@@ -15,7 +15,7 @@
                     <input id="file" type="file" name="profile_photo" onchange="submitForm()" />
                     <label class="-label" for="file">
                         <span class="glyphicon glyphicon-camera"></span>
-                        <span>Changer l'image</span>
+                        <span>Change picture</span>
                     </label>
                     <img src="{{ $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : asset('images/defaultProfile.jpg') }}" id="output" width="165" />
                 </form>
@@ -24,8 +24,8 @@
             <!-- Navigation de Profil -->
             <div class="profile-navigation">
                 <a href="{{ url('/chatify') }}">My messages</a>
-                <a href="#">Rendez-vous</a>
-                <a href="{{ route('profile.edit') }}">Éditer le profil</a>
+                <a href="#">Appointment</a>
+                <a href="{{ route('profile.edit') }}">Reset password</a>
             </div>
         </div>
 
@@ -47,7 +47,7 @@
             <!-- Bloc de description (Bio) -->
             <div class="profile-description editable-field" data-field="bio">
                 <h3>Bio</h3>
-                <p class="field-value">{{ $user->bio ?? 'Aucune description fournie.' }}</p>
+                <p class="field-value">{{ $user->bio ?? 'The bio is empty.' }}</p>
                 <textarea class="field-input" style="display: none;">{{ $user->bio }}</textarea>
                 <button class="edit-button">Edit</button>
                 <button class="save-button" style="display: none;">Save</button>

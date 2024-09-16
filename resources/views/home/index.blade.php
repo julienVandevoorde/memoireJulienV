@@ -4,12 +4,15 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-    <div class="container">
-        <h1>Homepage</h1>
-        <br>
-        <h1>To do :</h1>
-        <h2>- Page design sans fonctionnalitée.</h2>
-        <h2>- Bouton 'find my tattoo artist au milieu de la page qui renvoie vers 'artists'</h2>
 
+<div class="hero-section">
+    <div class="hero-content">
+        <div class="text-center">
+            <h1 class="main-title">NeedleInkNow</h1>
+            <h2 class="subtitle">a platform made by tattoo lovers, for tattoo lovers</h2>
+            <a class="btn btn-primary" href="{{ route('artists.index') }}">find my tattoo artist</a>
+        </div>
     </div>
+</div>
+
 @endsection

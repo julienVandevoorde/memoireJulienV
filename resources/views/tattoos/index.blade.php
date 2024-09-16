@@ -4,13 +4,13 @@
 <link rel="stylesheet" href="{{ asset('css/tattoos.css') }}">
 
 <div class="tattoos-container">
-    <h1>Découvrir des Tatouages</h1>
+    <h1>Discover Tattoos</h1>
 
     <!-- Champ de recherche -->
     <div class="search-bar">
         <form action="{{ route('tattoos.index') }}" method="GET">
-            <input type="text" name="search" placeholder="Rechercher par titre de tatouage..." value="{{ request('search') }}">
-            <button type="submit">Rechercher</button>
+            <input type="text" name="search" placeholder="Search by key words..." value="{{ request('search') }}">
+            <button type="submit">Search</button>
         </form>
     </div>
 

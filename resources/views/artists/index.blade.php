@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ asset('css/artists.css') }}">
 
 <div class="artists-container">
-    <h1>Rechercher un Tatoueur</h1>
+    <h1>Find your tattoo artist</h1>
 
     <!-- Section de filtres -->
     <div class="filter-section">
@@ -12,14 +12,14 @@
             <!-- Ligne avec Nom ou Login et Localisation -->
             <div class="filter-row">
                 <div class="filter-group">
-                    <label for="search">Nom ou Login</label>
-                    <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="Rechercher par nom ou login">
+                    <label for="search">Name or Login</label>
+                    <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="Search by name or login">
                 </div>
 
                 <div class="filter-group">
-                    <label for="location">Localisation</label>
+                    <label for="location">Locations</label>
                     <select name="location" id="location">
-                        <option value="">Toutes les localisations</option>
+                        <option value="">All locations</option>
                         @foreach ($communes as $commune)
                             <option value="{{ $commune }}" {{ request('location') == $commune ? 'selected' : '' }}>{{ $commune }}</option>
                         @endforeach
@@ -29,7 +29,7 @@
 
             <!-- Filtre par style -->
             <div class="filter-group">
-                <label for="styles">Styles de Tatouage</label>
+                <label for="styles">Tattoo styles</label>
                 <select name="styles[]" id="styles" multiple>
                     @foreach ($styles as $style)
                         <option value="{{ $style->id }}" {{ in_array($style->id, request('styles', [])) ? 'selected' : '' }}>{{ $style->name }}</option>
@@ -40,7 +40,7 @@
             <!-- Ligne avec Années d'expérience et Genre -->
             <div class="filter-row">
                 <div class="filter-group">
-                    <label for="experience_years">Années d'expérience</label>
+                    <label for="experience_years">Years of experience</label>
                     <select name="experience_years" id="experience_years">
                         <option value="">Toutes les années</option>
                         <option value="Less than 5 years" {{ request('experience_years') == 'Less than 5 years' ? 'selected' : '' }}>Less than 5 years</option>
@@ -50,20 +50,20 @@
                 </div>
 
                 <div class="filter-group">
-                    <label for="gender">Genre</label>
+                    <label for="gender">gender</label>
                     <select name="gender" id="gender">
-                        <option value="">Tous les genres</option>
-                        <option value="male" {{ request('gender') == 'male' ? 'selected' : '' }}>Homme</option>
-                        <option value="female" {{ request('gender') == 'female' ? 'selected' : '' }}>Femme</option>
-                        <option value="non-binary" {{ request('gender') == 'non-binary' ? 'selected' : '' }}>Non-Binaire</option>
-                        <option value="other" {{ request('gender') == 'other' ? 'selected' : '' }}>Autre</option>
+                        <option value="">All genders</option>
+                        <option value="male" {{ request('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                        <option value="female" {{ request('gender') == 'female' ? 'selected' : '' }}>Female</option>
+                        <option value="non-binary" {{ request('gender') == 'non-binary' ? 'selected' : '' }}>Non-Binary</option>
+                        <option value="other" {{ request('gender') == 'other' ? 'selected' : '' }}>Other</option>
                     </select>
                 </div>
             </div>
 
             <!-- Bouton de soumission -->
             <div class="filter-group">
-                <button type="submit" class="btn-filter">Rechercher</button>
+                <button type="submit" class="btn-filter">Search</button>
             </div>
         </form>
     </div>
