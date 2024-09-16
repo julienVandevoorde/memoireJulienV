@@ -11,6 +11,12 @@ class AdminController extends Controller
     /**
      * Affiche le dashboard principal pour l'administrateur.
      */
+
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified', 'role:admin']);
+    }
+
     public function index()
     {
         // Récupération des statistiques de base

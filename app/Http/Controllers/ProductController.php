@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Storage;
 class ProductController extends Controller
 {
     /**
+     * Crée une instance de contrôleur.
+     * Applique les middleware pour protéger l'accès aux méthodes du contrôleur.
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified', 'role:admin']);
+    }
+
+    /**
      * Affiche la liste des produits.
      */
     public function index(Request $request)
@@ -61,7 +70,7 @@ class ProductController extends Controller
             'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validation de l'image
         ]);
 
-        $requestData = $request->all();
+        $requestData = $request->only(['name', 'price', 'stock_quantity', 'description', 'category']);
 
         // Gérer le téléchargement de l'image
         if ($request->hasFile('image_path')) {
@@ -97,10 +106,14 @@ class ProductController extends Controller
             'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validation de l'image
         ]);
 
-        $requestData = $request->all();
+        $requestData = $request->only(['name', 'price', 'stock_quantity', 'description', 'category']);
 
         // Gérer le téléchargement de l'image
         if ($request->hasFile('image_path')) {
+            // Supprimer l'ancienne image
+            if ($product->image_path) {
+                Storage::delete('public/' . $product->image_path);
+            }
             $imageName = time() . '.' . $request->image_path->extension();
             $request->image_path->storeAs('public/products', $imageName); // Enregistre dans storage/app/public/products
             $requestData['image_path'] = 'products/' . $imageName; // Chemin de l'image relatif au stockage public
@@ -116,6 +129,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        // Supprimer l'image du stockage si elle existe
         if ($product->image_path) {
             Storage::delete('public/' . $product->image_path); // Supprimer l'image du stockage
         }

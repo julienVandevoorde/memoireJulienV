@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
+     * Crée une instance de contrôleur.
+     * Applique les middleware pour protéger l'accès aux méthodes du contrôleur.
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified', 'role:admin']);
+    }
+
+    /**
      * Affiche la liste des utilisateurs avec des options de recherche et de filtrage.
      */
     public function index(Request $request)
