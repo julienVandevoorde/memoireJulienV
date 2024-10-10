@@ -16,16 +16,18 @@
 
     <!-- Fil d'actualité de tatouages -->
     <div class="tattoo-feed">
-        @foreach ($tattooImages as $tattoo)
-            <div class="tattoo-item">
-                <img src="{{ asset('storage/' . $tattoo->image_path) }}" alt="Tattoo by {{ $tattoo->user->name }}">
-                <div class="tattoo-info">
-                    <p><strong>{{ $tattoo->title }}</strong></p>
-                    <p><a href="{{ route('profile.showProfile', $tattoo->user->login) }}">&#64;{{ $tattoo->user->login }}</a></p>
-                </div>
+    @foreach ($tattooImages as $tattoo)
+        <div class="tattoo-item">
+            <img src="{{ asset('storage/' . $tattoo->image_path) }}" alt="Tattoo by {{ $tattoo->user->name }}">
+            <div class="tattoo-info">
+                <p><strong>{{ $tattoo->title }}</strong></p>
+                <p><a href="{{ route('profile.showProfile', $tattoo->user->login) }}">&#64;{{ $tattoo->user->login }}</a></p>
+
+                <!-- Ajout de l'icône de signalement -->
+                <a href="{{ route('tattoo.report', $tattoo->id) }}" class="report-icon">Signaler</a>
             </div>
-        @endforeach
-    </div>
+        </div>
+    @endforeach
 </div>
 
 @endsection
