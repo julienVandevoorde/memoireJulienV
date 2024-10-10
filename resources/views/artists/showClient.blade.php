@@ -18,6 +18,8 @@
             <div class="profile-navigation">
                 <!-- Lien pour envoyer un message au client via Chatify -->
                 <a href="{{ url('/chatify', $user->id) }}">Send a message</a>
+                <!-- Lien pour signaler l'utilisateur -->
+                <a href="{{ route('report.user.form', $user->id) }}">Signaler</a>
             </div>
         </div>
 

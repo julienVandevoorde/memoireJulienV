@@ -17,6 +17,7 @@
             <!-- Navigation de Profil -->
             <div class="profile-navigation">
                 <a href="{{ url('/chatify/' . $user->id) }}">Send a message</a>
+                <a href="{{ route('report.user.form', $user->id) }}">Signaler</a> <!-- Lien pour signaler l'utilisateur -->
             </div>
         </div>
 
@@ -53,7 +54,7 @@
 
     <!-- Section de Portfolio -->
     <div class="portfolio-section">
-        <h3>@<span class="field-value">{{ $user->login}}'s portfolio</h3>
+        <h3>@<span class="field-value">{{ $user->login }}'s portfolio</h3>
 
         <!-- Afficher les images du portfolio sans options de suppression -->
         <div class="portfolio-gallery">

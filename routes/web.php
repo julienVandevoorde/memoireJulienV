@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TattooReportController;
+use App\Http\Controllers\UserReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -77,6 +78,12 @@ Route::middleware('auth')->group(function () {
     //report un tatouage
     Route::get('/tattoos/{portfolio}/report', [TattooReportController::class, 'create'])->name('tattoo.report');
     Route::post('/tattoos/{portfolio}/report', [TattooReportController::class, 'store'])->name('tattoo.report.store');
+
+    //report un utilisateur
+    Route::get('/user/{id}/report', [UserReportController::class, 'showReportForm'])->name('report.user.form');
+    Route::post('/user/{id}/report', [UserReportController::class, 'submitReport'])->name('report.user.submit');
+
+
 });
 
 // Routes administratives (avec vérification du rôle admin)
