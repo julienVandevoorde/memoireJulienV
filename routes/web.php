@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TattooReportController;
 use App\Http\Controllers\UserReportController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -82,6 +83,9 @@ Route::middleware('auth')->group(function () {
     //report un utilisateur
     Route::get('/user/{id}/report', [UserReportController::class, 'showReportForm'])->name('report.user.form');
     Route::post('/user/{id}/report', [UserReportController::class, 'submitReport'])->name('report.user.submit');
+
+    Route::post('/tattoos/{portfolio}/like', [LikeController::class, 'like'])->name('tattoo.like');
+    Route::delete('/tattoos/{portfolio}/unlike', [LikeController::class, 'unlike'])->name('tattoo.unlike');
 
 
 });

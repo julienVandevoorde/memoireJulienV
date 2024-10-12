@@ -70,3 +70,77 @@
     font-size: 14px;
     color: #333;
 }
+
+.like input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+
+  .like {
+    display: inline-flex; /* Change le display pour ne prendre que l'espace de l'icône */
+    cursor: pointer;
+    transition: 100ms;
+    font-size: 20px;
+}
+  
+  .checkmark {
+    top: 0;
+    left: 0;
+    height: 1.5em;
+    width: 1.5em;
+    transition: 100ms;
+    animation: dislike_effect 400ms ease;
+    fill: black;
+  }
+
+  /* Icône de like par défaut avec contour noir et remplissage transparent */
+.checkmark path {
+    fill: none; /* Pas de remplissage */
+    stroke: rgb(137, 137, 137); /* Contour noir */
+    stroke-width: 15; /* Épaisseur du contour */
+}
+  
+  .like input:checked ~ .checkmark path {
+    fill: #FF5353;
+    stroke-width: 0;
+  }
+  
+  .like input:checked ~ .checkmark {
+    animation: like_effect 400ms ease;
+  }
+  
+  .container:hover {
+    transform: scale(1.1);
+  }
+  
+  @keyframes like_effect {
+    0% {
+      transform: scale(0);
+    }
+  
+    50% {
+      transform: scale(1.2);
+    }
+  
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes dislike_effect {
+    0% {
+      transform: scale(0);
+    }
+  
+    50% {
+      transform: scale(1.2);
+    }
+  
+    100% {
+      transform: scale(1);
+    }
+  }

@@ -29,14 +29,18 @@ class Portfolio extends Model
      */
     public function likes()
     {
-        return $this->morphMany(Like::class, 'likeable');
+        return $this->hasMany(Like::class);
     }
 
     /**
      * Vérifie si l'utilisateur a liké ce portfolio.
      */
-    public function isLikedBy(User $user)
-    {
-        return $this->likes()->where('user_id', $user->id)->exists();
+public function isLikedBy(?User $user)
+{
+    if (!$user) {
+        return false; // Si l'utilisateur n'est pas connecté
     }
+    return $this->likes()->where('user_id', $user->id)->exists();
+}
+
 }
