@@ -138,30 +138,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Les posts (blog) associés à ce tatoueur.
-     */
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
-
-    /**
-     * Les rendez-vous en tant que tatoueur.
-     */
-    public function tattooerAppointments()
-    {
-        return $this->hasMany(Appointment::class, 'tattooer_id');
-    }
-
-    /**
-     * Les rendez-vous en tant que client.
-     */
-    public function clientAppointments()
-    {
-        return $this->hasMany(Appointment::class, 'client_id');
-    }
-
-    /**
      * Les avis reçus en tant que tatoueur.
      */
     public function reviewsAsTattooer()

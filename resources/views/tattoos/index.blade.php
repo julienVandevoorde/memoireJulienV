@@ -11,6 +11,20 @@
             <input type="text" name="search" placeholder="Rechercher par mots-clés..." value="{{ request('search') }}">
             <button type="submit">Rechercher</button>
         </form>
+
+        <!-- Si l'utilisateur est connecté, il peut voir ses likes, sinon on le redirige vers login -->
+        @if(auth()->check())
+            @if(request('liked') === 'true')
+                <!-- Bouton pour afficher tous les tatouages quand l'utilisateur est sur la page "Mes likes" -->
+                <a href="{{ route('tattoos.index') }}" class="btn-likes">Tous les tatouages</a>
+            @else
+                <!-- Bouton pour afficher les likes quand l'utilisateur est sur la page des tatouages -->
+                <a href="{{ route('tattoos.index', ['liked' => 'true']) }}" class="btn-likes">Mes likes</a>
+            @endif
+        @else
+            <!-- Redirection vers login si non connecté -->
+            <a href="{{ route('login') }}" class="btn-likes">Mes likes</a>
+        @endif
     </div>
 
     <div class="tattoo-feed">

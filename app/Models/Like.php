@@ -11,8 +11,7 @@ class Like extends Model
 
     protected $fillable = [
         'user_id',
-        'likeable_id',
-        'likeable_type',
+        'portfolio_id', // Le like est lié directement à un tatouage (Portfolio)
     ];
 
     /**
@@ -24,10 +23,10 @@ class Like extends Model
     }
 
     /**
-     * Relation avec le contenu liké (post, portfolio, etc.).
+     * Relation avec le portfolio (tatouage) liké.
      */
-    public function likeable()
+    public function portfolio()
     {
-        return $this->morphTo();
+        return $this->belongsTo(Portfolio::class);
     }
 }

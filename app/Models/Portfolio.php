@@ -25,7 +25,7 @@ class Portfolio extends Model
     }
 
     /**
-     * Les likes associés à ce portfolio.
+     * Relation avec les likes.
      */
     public function likes()
     {
@@ -35,12 +35,11 @@ class Portfolio extends Model
     /**
      * Vérifie si l'utilisateur a liké ce portfolio.
      */
-public function isLikedBy(?User $user)
-{
-    if (!$user) {
-        return false; // Si l'utilisateur n'est pas connecté
+    public function isLikedBy(?User $user)
+    {
+        if (!$user) {
+            return false; // Si l'utilisateur n'est pas connecté
+        }
+        return $this->likes()->where('user_id', $user->id)->exists();
     }
-    return $this->likes()->where('user_id', $user->id)->exists();
-}
-
 }
