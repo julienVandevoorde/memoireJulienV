@@ -8,6 +8,19 @@ document.addEventListener("DOMContentLoaded", function () {
             addToCart(productId);
         });
     });
+
+    // Gestion du flash message
+    const flashMessage = document.querySelector('.flash-message');
+    
+    if (flashMessage) {
+        // Affiche le flash message
+        flashMessage.style.display = 'block';
+        
+        // Cache le message après 5 secondes
+        setTimeout(() => {
+            flashMessage.style.display = 'none';
+        }, 10000);
+    }
 });
 
 function addToCart(productId) {

@@ -8,6 +8,13 @@
 <div class="container">
     <h1>Shop</h1>
 
+    <!-- Affichage du message flash de succès -->
+    @if(session('success'))
+        <div class="flash-message">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <!-- Formulaire de recherche de produit -->
     <form action="{{ route('shop.index') }}" method="GET" class="search-form">
         <h3>Search for a product</h3>
@@ -33,7 +40,7 @@
         <!-- Champs de prix alignés sur une seule ligne -->
         <div class="form-group-inline">
             <div class="form-group">
-                <label for="minPrice">Minimum rice</label>
+                <label for="minPrice">Minimum price</label>
                 <input type="number" step="0.01" id="minPrice" name="min_price" value="{{ request('min_price') }}">
             </div>
             <div class="form-group">

@@ -6,6 +6,27 @@
     align-items: center;
 }
 
+/* Flash message style */
+.flash-message {
+    position: fixed;
+    top: 80px; /* Positionné juste en dessous du logo */
+    left: 20px; /* Aligné à gauche */
+    background-color: rgba(76, 175, 80, 0.9); /* Vert légèrement transparent */
+    color: white;
+    padding: 15px 30px; /* Taille ajustée */
+    font-size: 1.2em; /* Taille du texte */
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none; /* On cache le message par défaut */
+    text-align: center;
+    max-width: 300px; /* Limite la largeur pour forcer le retour à la ligne */
+}
+
+.flash-message.error {
+    background-color: rgba(244, 67, 54, 0.9); /* Rouge légèrement transparent pour les erreurs */
+}
+
 /* Style pour le formulaire de recherche de produit */
 .search-form {
     width: 100%;

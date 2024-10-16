@@ -74,7 +74,10 @@ class CheckoutController extends Controller
     {
         // Réinitialiser le panier après le paiement réussi
         Session::forget('cart');
-        return redirect()->route('shop.index')->with('success', 'Paiement réussi !');
+        
+        // Ajouter un message flash de confirmation de commande
+        return redirect()->route('shop.index')->with('success', 'Votre commande a été passée avec succès ! 
+        Consultez la section "Mes commandes" pour plus de détails.');
     }
 
     public function cancel()
