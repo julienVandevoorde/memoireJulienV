@@ -53,13 +53,18 @@ class CheckoutController extends Controller
             ];
         }
 
-        // Créer la session de paiement Stripe
+        // Créer la session de paiement Stripe avec collecte d'adresse de livraison
         $session = StripeSession::create([
             'payment_method_types' => ['card'],
             'line_items' => $lineItems,
             'mode' => 'payment',
             'success_url' => route('checkout.success'),
             'cancel_url' => route('checkout.cancel'),
+
+            // Ajouter la collecte d'adresse de livraison
+            'shipping_address_collection' => [
+                'allowed_countries' => ['BE'], // Pays autorisés pour la livraison
+            ],
         ]);
 
         return redirect($session->url);

@@ -52,9 +52,13 @@
             <h3>Total : ${{ number_format($total, 2) }}</h3>
         </div>
 
-        <!-- Section résumé du panier -->
+        <!-- Section résumé du panier avec paiement direct -->
         <div class="cart-summary">
-            <a href="{{ route('checkout.index') }}" class="btn-checkout">Procéder au paiement</a>
+            <!-- Formulaire pour lancer directement le paiement avec Stripe -->
+            <form action="{{ route('checkout.createSession') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn-checkout">Procéder au paiement</button>
+            </form>
         </div>
     @else
         <p>Votre panier est vide.</p>
