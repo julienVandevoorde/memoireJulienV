@@ -17,11 +17,6 @@
             </nav>
             {{-- Search input --}}
             <input type="text" class="messenger-search" placeholder="Search" />
-            {{-- Tabs --}}
-            {{-- <div class="messenger-listView-tabs">
-                <a href="#" class="active-tab" data-view="users">
-                    <span class="far fa-user"></span> Contacts</a>
-            </div> --}}
         </div>
         {{-- tabs and lists --}}
         <div class="m-body contacts-container">
@@ -40,7 +35,7 @@
                <p class="messenger-title"><span>All Messages</span></p>
                <div class="listOfContacts" style="width: 100%;height: calc(100% - 272px);position: relative;"></div>
            </div>
-             {{-- ---------------- [ Search Tab ] ---------------- --}}
+           {{-- ---------------- [ Search Tab ] ---------------- --}}
            <div class="messenger-tab search-tab app-scroll" data-view="search">
                 {{-- items --}}
                 <p class="messenger-title"><span>Search</span></p>
@@ -53,15 +48,21 @@
 
     {{-- ----------------------Messaging side---------------------- --}}
     <div class="messenger-messagingView">
-        {{-- header title [conversation name] amd buttons --}}
+        {{-- header title [conversation name] and buttons --}}
         <div class="m-header m-header-messaging">
             <nav class="chatify-d-flex chatify-justify-content-between chatify-align-items-center">
                 {{-- header back button, avatar and user name --}}
                 <div class="chatify-d-flex chatify-justify-content-between chatify-align-items-center">
                     <a href="#" class="show-listView"><i class="fas fa-arrow-left"></i></a>
-                    <div class="avatar av-s header-avatar" style="margin: 0px 10px; margin-top: -5px; margin-bottom: -5px;">
-                    </div>
-                    <a href="#" class="user-name">{{ config('chatify.name') }}</a>
+                    <div class="avatar av-s header-avatar" style="margin: 0px 10px; margin-top: -5px; margin-bottom: -5px;"></div>
+
+                    {{-- Lien vers le profil utilisateur --}}
+                    @php
+                        $recipient = \App\Models\User::find($id);
+                    @endphp
+                    <a href="{{ route('profile.showProfile', $recipient->login ?? '') }}" class="user-name">
+                        {{ $recipient->name ?? 'Unknown User' }}
+                    </a>
                 </div>
                 {{-- header buttons --}}
                 <nav class="m-header-right">
