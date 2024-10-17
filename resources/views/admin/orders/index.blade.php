@@ -4,17 +4,17 @@
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
 <div class="dashboard-container">
-    <h1 class="dashboard-title text-center mb-5">Gestion des commandes</h1>
+    <h1 class="dashboard-title text-center mb-5">Order Management</h1>
 
     @if($orders->isEmpty())
-        <p class="text-center">Aucune commande pour le moment.</p>
+        <p class="text-center">No orders at the moment.</p>
     @else
         <div class="table-container">
             <table class="custom-table">
                 <thead>
                     <tr>
-                        <th>User Id</th>
-                        <th>Utilisateur</th>
+                        <th>User ID</th>
+                        <th>User</th>
                         <th>Date</th>
                         <th>Total</th>
                         <th>Actions</th>
@@ -28,7 +28,7 @@
                             <td>{{ $order->created_at->format('d/m/Y') }}</td>
                             <td>{{ number_format($order->total_price, 2) }} €</td>
                             <td>
-                                <a href="{{ route('admin.orders.show', $order->id) }}" class="custom-button">Voir détails</a>
+                                <a href="{{ route('admin.orders.show', $order->id) }}" class="custom-button">View details</a>
                             </td>
                         </tr>
                     @endforeach

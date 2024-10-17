@@ -3,12 +3,12 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 
-<!-- Conteneur principal pour le cadre -->
+<!-- Main container for the profile layout -->
 <div class="profile-wrapper">
     <div class="profile-container">
-        <!-- Colonne Gauche : Photo de Profil et Navigation -->
+        <!-- Left Column: Profile Picture and Navigation -->
         <div class="profile-left">
-            <!-- Photo de Profil -->
+            <!-- Profile Picture -->
             <div class="profile-pic">
                 <form id="upload-photo-form" action="{{ route('profile.uploadPhoto') }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -21,7 +21,7 @@
                 </form>
             </div>
 
-            <!-- Navigation de Profil -->
+            <!-- Profile Navigation -->
             <div class="profile-navigation">
                 <a href="{{ url('/chatify') }}">My messages</a>
                 <a href="{{ route('orders') }}">My orders</a>
@@ -29,29 +29,29 @@
             </div>
         </div>
 
-        <!-- Colonne Droite : Informations du Profil -->
+        <!-- Right Column: Profile Information -->
         <div class="profile-info">
             <div>
-                <h1>STATUS : {{ $user->role }}</h1>
+                <h1>STATUS: {{ $user->role }}</h1>
             </div>
             <div>
-                <h3>Login : @<span class="field-value">{{ $user->login }}</span></h3>
+                <h3>Login: @<span class="field-value">{{ $user->login }}</span></h3>
             </div>
             <div class="editable-field" data-field="name">
-                <h3>Name : <span class="field-value">{{ $user->name }}</span></h3>
+                <h3>Name: <span class="field-value">{{ $user->name }}</span></h3>
                 <input type="text" class="field-input" value="{{ $user->name }}" style="display: none;" />
                 <button class="edit-button">Edit</button>
                 <button class="save-button" style="display: none;">Save</button>
             </div>
             <div class="editable-field" data-field="instagram_link">
-                <h3>Instagram Link : <span class="field-value">{{ $user->instagram_link }}</span></h3>
+                <h3>Instagram Link: <span class="field-value">{{ $user->instagram_link }}</span></h3>
                 <input type="text" class="field-input" value="{{ $user->instagram_link }}" style="display: none;" />
                 <button class="edit-button">Edit</button>
                 <button class="save-button" style="display: none;">Save</button>
             </div>
             <div class="editable-field" data-field="location">
-                <h3>Location : <span class="field-value">{{ $user->location }}</span></h3>
-                <!-- Liste déroulante pour sélectionner une commune -->
+                <h3>Location: <span class="field-value">{{ $user->location }}</span></h3>
+                <!-- Dropdown for selecting a location -->
                 <select class="field-input" style="display: none;">
                     @foreach ($communes as $commune)
                         <option value="{{ $commune }}" {{ $user->location == $commune ? 'selected' : '' }}>{{ $commune }}</option>
@@ -61,9 +61,9 @@
                 <button class="save-button" style="display: none;">Save</button>
             </div>
 
-            <!-- Liste des styles de tatouage -->
+            <!-- Tattoo Styles List -->
             <div class="editable-field" data-field="styles">
-                <h3>Styles de Tatouage : <span class="field-value">{{ implode(', ', $user->styles->pluck('name')->toArray()) }}</span></h3>
+                <h3>Tattoo Styles: <span class="field-value">{{ implode(', ', $user->styles->pluck('name')->toArray()) }}</span></h3>
                 <select multiple class="field-input" style="display: none;">
                     @foreach ($styles as $style)
                         <option value="{{ $style->id }}" {{ in_array($style->id, $userStyles) ? 'selected' : '' }}>{{ $style->name }}</option>
@@ -73,9 +73,9 @@
                 <button class="save-button" style="display: none;">Save</button>
             </div>
 
-            <!-- Nombre d'années d'expérience -->
+            <!-- Years of Experience -->
             <div class="editable-field" data-field="experience_years">
-                <h3>Années d'expérience : <span class="field-value">{{ $user->experience_years ?? '0' }}</span></h3>
+                <h3>Years of experience: <span class="field-value">{{ $user->experience_years ?? '0' }}</span></h3>
                 <select class="field-input" style="display: none;">
                     <option value="Less than 5 years" {{ $user->experience_years == 'Less than 5 years' ? 'selected' : '' }}>Less than 5 years</option>
                     <option value="5 to 10 years" {{ $user->experience_years == '5 to 10 years' ? 'selected' : '' }}>5 to 10 years</option>
@@ -85,9 +85,7 @@
                 <button class="save-button" style="display: none;">Save</button>
             </div>
 
-
-            
-            <!-- Bloc de description (Bio) dans le même conteneur -->
+            <!-- Bio Section -->
             <div class="profile-description editable-field" data-field="bio">
                 <h3>Bio</h3>
                 <p class="field-value">{{ $user->bio ?? 'The bio is empty.' }}</p>
@@ -98,17 +96,17 @@
         </div>
     </div>
 
-    <!-- Section de Portfolio -->
+    <!-- Portfolio Section -->
     <div class="portfolio-section">
-        <h3>Mon Portfolio</h3>
-        <!-- Formulaire pour ajouter une nouvelle image -->
+        <h3>My Portfolio</h3>
+        <!-- Form to add a new image -->
         <form action="{{ route('portfolio.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="file" name="image" required>
-            <button type="submit" class="btn-upload">Ajouter au Portfolio</button>
+            <button type="submit" class="btn-upload">Add to Portfolio</button>
         </form>
 
-        <!-- Afficher les images du portfolio -->
+        <!-- Display portfolio images -->
         <div class="portfolio-gallery">
             @foreach($user->portfolios as $portfolio)
                 <div class="portfolio-item">
@@ -117,7 +115,7 @@
                     <form action="{{ route('portfolio.delete', $portfolio->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn-delete">Supprimer</button>
+                        <button type="submit" class="btn-delete">Delete</button>
                     </form>
                 </div>
             @endforeach
@@ -125,5 +123,5 @@
     </div>
 </div>
 
-<script src="{{ asset('js/profile.js') }}"></script> <!-- Inclure le fichier JS -->
+<script src="{{ asset('js/profile.js') }}"></script> <!-- Include the JS file -->
 @endsection

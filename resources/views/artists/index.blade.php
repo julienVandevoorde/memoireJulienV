@@ -6,10 +6,10 @@
 <div class="artists-container">
     <h1>Find your tattoo artist</h1>
 
-    <!-- Section de filtres -->
+    <!-- Filter Section -->
     <div class="filter-section">
         <form action="{{ route('artists.index') }}" method="GET" class="filter-form">
-            <!-- Ligne avec Nom ou Login et Localisation -->
+            <!-- Row with Name or Login and Location -->
             <div class="filter-row">
                 <div class="filter-group">
                     <label for="search">Name or Login</label>
@@ -27,9 +27,9 @@
                 </div>
             </div>
 
-            <!-- Filtre par style -->
+            <!-- Filter by style -->
             <div class="filter-group">
-                <label for="styles">Tattoo styles</label>
+                <label for="styles">Tattoo Styles</label>
                 <select name="styles[]" id="styles" multiple>
                     @foreach ($styles as $style)
                         <option value="{{ $style->id }}" {{ in_array($style->id, request('styles', [])) ? 'selected' : '' }}>{{ $style->name }}</option>
@@ -37,12 +37,12 @@
                 </select>
             </div>
 
-            <!-- Ligne avec Années d'expérience et Genre -->
+            <!-- Row with Years of Experience and Gender -->
             <div class="filter-row">
                 <div class="filter-group">
-                    <label for="experience_years">Years of experience</label>
+                    <label for="experience_years">Years of Experience</label>
                     <select name="experience_years" id="experience_years">
-                        <option value="">Toutes les années</option>
+                        <option value="">All years</option>
                         <option value="Less than 5 years" {{ request('experience_years') == 'Less than 5 years' ? 'selected' : '' }}>Less than 5 years</option>
                         <option value="5 to 10 years" {{ request('experience_years') == '5 to 10 years' ? 'selected' : '' }}>5 to 10 years</option>
                         <option value="More than 10 years" {{ request('experience_years') == 'More than 10 years' ? 'selected' : '' }}>More than 10 years</option>
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="filter-group">
-                    <label for="gender">gender</label>
+                    <label for="gender">Gender</label>
                     <select name="gender" id="gender">
                         <option value="">All genders</option>
                         <option value="male" {{ request('gender') == 'male' ? 'selected' : '' }}>Male</option>
@@ -61,27 +61,27 @@
                 </div>
             </div>
 
-            <!-- Bouton de soumission -->
+            <!-- Submit button -->
             <div class="filter-group">
                 <button type="submit" class="btn-filter">Search</button>
             </div>
         </form>
     </div>
 
-    <!-- Section d'affichage des artistes -->
+    <!-- Artist Display Section -->
     <div class="artists-list">
         @forelse($artists as $artist)
             <div class="artist-card">
                 <img src="{{ $artist->profile_photo_path ? asset('storage/' . $artist->profile_photo_path) : asset('images/defaultProfile.jpg') }}" alt="{{ $artist->name }}">
                 <h3>{{ $artist->name }}</h3>
-                <p>Localisation: {{ $artist->location }}</p>
+                <p>Location: {{ $artist->location }}</p>
                 <p>Styles: {{ implode(', ', $artist->styles->pluck('name')->toArray()) }}</p>
-                <p>Années d'expérience: {{ $artist->experience_years }}</p>
-                <p>Genre: {{ ucfirst($artist->gender) }}</p>
-                <a href="{{ route('profile.showProfile', $artist->login) }}" class="btn-view-profile">Voir le profil</a>
+                <p>Years of Experience: {{ $artist->experience_years }}</p>
+                <p>Gender: {{ ucfirst($artist->gender) }}</p>
+                <a href="{{ route('profile.showProfile', $artist->login) }}" class="btn-view-profile">View Profile</a>
             </div>
         @empty
-            <p>Aucun artiste trouvé pour les critères de recherche sélectionnés.</p>
+            <p>No artists found for the selected search criteria.</p>
         @endforelse
     </div>
 </div>

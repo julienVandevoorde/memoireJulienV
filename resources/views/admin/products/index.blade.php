@@ -4,17 +4,17 @@
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
 <div class="dashboard-container">
-<h1 class="text-center mb-5">Gestion des produits</h1>
+<h1 class="text-center mb-5">Product Management</h1>
 
-    <!-- Conteneur pour les formulaires d'ajout et de recherche de produits -->
+    <!-- Container for adding and searching products -->
     <div class="form-row">
-        <!-- Formulaire d'ajout de produit -->
+        <!-- Add product form -->
         <div class="small-form">
-            <h3>Ajouter un produit</h3>
+            <h3>Add Product</h3>
             <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="productName">Nom du produit</label>
+                    <label for="productName">Product Name</label>
                     <input type="text" id="productName" name="name" required>
                 </div>
                 <div class="form-group">
@@ -22,65 +22,65 @@
                     <textarea id="productDescription" name="description" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="productPrice">Prix</label>
+                    <label for="productPrice">Price</label>
                     <input type="number" step="0.01" id="productPrice" name="price" required>
                 </div>
                 <div class="form-group">
-                    <label for="productStock">Quantité en stock</label>
+                    <label for="productStock">Stock Quantity</label>
                     <input type="number" id="productStock" name="stock_quantity" required>
                 </div>
                 <div class="form-group">
-                    <label for="productCategory">Catégorie</label>
+                    <label for="productCategory">Category</label>
                     <input type="text" id="productCategory" name="category">
                 </div>
                 <div class="form-group">
-                    <label for="productImage">Image du produit</label>
+                    <label for="productImage">Product Image</label>
                     <input type="file" id="productImage" name="image_path">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="small-button">Enregistrer</button>
+                    <button type="submit" class="small-button">Save</button>
                 </div>
             </form>
         </div>
 
-        <!-- Formulaire de recherche de produit -->
+        <!-- Search product form -->
         <div class="search-form">
-            <h3>Recherche de produits</h3>
+            <h3>Search Products</h3>
             <form action="{{ route('admin.products.index') }}" method="GET">
                 <div class="form-group">
-                    <label for="searchName">Nom du produit</label>
+                    <label for="searchName">Product Name</label>
                     <input type="text" id="searchName" name="name">
                 </div>
                 <div class="form-group">
-                    <label for="searchCategory">Catégorie</label>
+                    <label for="searchCategory">Category</label>
                     <input type="text" id="searchCategory" name="category">
                 </div>
                 <div class="form-group">
-                    <label for="minPrice">Prix minimum</label>
+                    <label for="minPrice">Minimum Price</label>
                     <input type="number" step="0.01" id="minPrice" name="min_price">
                 </div>
                 <div class="form-group">
-                    <label for="maxPrice">Prix maximum</label>
+                    <label for="maxPrice">Maximum Price</label>
                     <input type="number" step="0.01" id="maxPrice" name="max_price">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="small-button">Rechercher</button>
+                    <button type="submit" class="small-button">Search</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Gestion des produits -->
+    <!-- Product management table -->
     <div class="table-container">
-        <h3>Gestion des produits</h3>
+        <h3>Manage Products</h3>
         <table class="custom-table">
             <thead>
                 <tr>
-                    <th>Nom</th>
+                    <th>Name</th>
                     <th>Description</th>
-                    <th>Prix</th>
-                    <th>Quantité en stock</th>
-                    <th>Catégorie</th>
+                    <th>Price</th>
+                    <th>Stock Quantity</th>
+                    <th>Category</th>
                     <th>Image</th>
                     <th>Actions</th>
                 </tr>
@@ -99,11 +99,11 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('admin.products.edit', $product) }}" class="custom-button">Modifier</a>
+                            <a href="{{ route('admin.products.edit', $product) }}" class="custom-button">Edit</a>
                             <form action="{{ route('admin.products.destroy', $product) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button class="custom-button" type="submit">Supprimer</button>
+                                <button class="custom-button" type="submit">Delete</button>
                             </form>
                         </td>
                     </tr>

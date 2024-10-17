@@ -4,23 +4,23 @@
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
 <div class="dashboard-container">
-    <h1 class="dashboard-title text-center mb-5">Détails de la commande #{{ $order->id }}</h1>
+    <h1 class="dashboard-title text-center mb-5">Order Details #{{ $order->id }}</h1>
 
     <div class="order-details-container">
         <div class="order-info">
-            <p><strong>Utilisateur :</strong> {{ $order->user->name }}</p>
-            <p><strong>Date :</strong> {{ $order->created_at->format('d/m/Y') }}</p>
-            <p><strong>Total :</strong> {{ number_format($order->total_price, 2) }} €</p>
+            <p><strong>User:</strong> {{ $order->user->name }}</p>
+            <p><strong>Date:</strong> {{ $order->created_at->format('d/m/Y') }}</p>
+            <p><strong>Total:</strong> {{ number_format($order->total_price, 2) }} €</p>
         </div>
 
-        <h3 class="text-center mt-4">Produits commandés</h3>
+        <h3 class="text-center mt-4">Ordered Products</h3>
         <div class="table-responsive">
             <table class="custom-table">
                 <thead>
                     <tr>
-                        <th>Nom du produit</th>
-                        <th>Quantité</th>
-                        <th>Prix unitaire</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
                         <th>Total</th>
                     </tr>
                 </thead>
@@ -38,7 +38,7 @@
         </div>
 
         <div class="text-center mt-5">
-            <a href="{{ route('admin.orders.index') }}" class="custom-button">Retour aux commandes</a>
+            <a href="{{ route('admin.orders.index') }}" class="custom-button">Back to Orders</a>
         </div>
     </div>
 </div>

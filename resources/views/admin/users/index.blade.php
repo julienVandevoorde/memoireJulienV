@@ -3,17 +3,17 @@
 @section('content')
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 <div class="dashboard-container">
-<h1 class="text-center mb-5">Gestion des utilisateurs</h1>
+<h1 class="text-center mb-5">User Management</h1>
 
-    <!-- Conteneur pour le formulaire d'ajout d'utilisateur et de recherche -->
+    <!-- Container for user addition and search forms -->
     <div class="form-row">
-        <!-- Formulaire d'ajout d'utilisateur -->
+        <!-- User addition form -->
         <div class="form-container small-form">
-            <h3>Ajouter un utilisateur</h3>
+            <h3>Add a User</h3>
             <form action="{{ route('admin.users.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="name">Nom</label>
+                    <label for="name">Name</label>
                     <input type="text" id="name" name="name" required>
                     @if($errors->has('name'))
                         <span class="text-danger">{{ $errors->first('name') }}</span>
@@ -34,22 +34,22 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="password">Mot de passe</label>
+                    <label for="password">Password</label>
                     <input type="password" id="password" name="password" required>
                     @if($errors->has('password'))
                         <span class="text-danger">{{ $errors->first('password') }}</span>
                     @endif
                 </div>
-                <!-- Champ de confirmation du mot de passe -->
+                <!-- Password confirmation field -->
                 <div class="form-group">
-                    <label for="password_confirmation">Confirmer le mot de passe</label>
+                    <label for="password_confirmation">Confirm Password</label>
                     <input type="password" id="password_confirmation" name="password_confirmation" required>
                     @if($errors->has('password_confirmation'))
                         <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="role">Rôle</label>
+                    <label for="role">Role</label>
                     <select id="role" name="role" required>
                         <option value="client">Client</option>
                         <option value="tattoo artist">Tattoo Artist</option>
@@ -59,31 +59,31 @@
                         <span class="text-danger">{{ $errors->first('role') }}</span>
                     @endif
                 </div>
-                <!-- Champ de sélection du genre -->
+                <!-- Gender selection field -->
                 <div class="form-group">
-                    <label for="gender">Genre</label>
+                    <label for="gender">Gender</label>
                     <select id="gender" name="gender" required>
-                        <option value="male">Homme</option>
-                        <option value="female">Femme</option>
-                        <option value="non-binary">Non-binaire</option>
-                        <option value="other">Autre</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="non-binary">Non-binary</option>
+                        <option value="other">Other</option>
                     </select>
                     @if($errors->has('gender'))
                         <span class="text-danger">{{ $errors->first('gender') }}</span>
                     @endif
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="small-button">Ajouter</button>
+                    <button type="submit" class="small-button">Add</button>
                 </div>
             </form>
         </div>
 
-        <!-- Formulaire de recherche et de filtrage -->
+        <!-- User search and filter form -->
         <div class="form-container search-form">
-            <h3>Rechercher des utilisateurs</h3>
+            <h3>Search Users</h3>
             <form action="{{ route('admin.users.index') }}" method="GET">
                 <div class="form-group">
-                    <label for="searchName">Nom</label>
+                    <label for="searchName">Name</label>
                     <input type="text" id="searchName" name="name" value="{{ request('name') }}">
                 </div>
                 <div class="form-group">
@@ -95,40 +95,40 @@
                     <input type="text" id="searchEmail" name="email" value="{{ request('email') }}">
                 </div>
                 <div class="form-group">
-                    <label for="searchRole">Rôle</label>
+                    <label for="searchRole">Role</label>
                     <select id="searchRole" name="role">
-                        <option value="">Tous les rôles</option>
+                        <option value="">All roles</option>
                         <option value="client" {{ request('role') == 'client' ? 'selected' : '' }}>Client</option>
                         <option value="tattoo artist" {{ request('role') == 'tattoo artist' ? 'selected' : '' }}>Tattoo Artist</option>
                         <option value="admin" {{ request('role') == 'admin' ? 'selected' : '' }}>Admin</option>
                     </select>
                 </div>
-                <!-- Champ de sélection du genre pour la recherche -->
+                <!-- Gender selection field for search -->
                 <div class="form-group">
-                    <label for="searchGender">Genre</label>
+                    <label for="searchGender">Gender</label>
                     <select id="searchGender" name="gender">
-                        <option value="">Tous les genres</option>
-                        <option value="male" {{ request('gender') == 'male' ? 'selected' : '' }}>Homme</option>
-                        <option value="female" {{ request('gender') == 'female' ? 'selected' : '' }}>Femme</option>
-                        <option value="non-binary" {{ request('gender') == 'non-binary' ? 'selected' : '' }}>Non-binaire</option>
-                        <option value="other" {{ request('gender') == 'other' ? 'selected' : '' }}>Autre</option>
+                        <option value="">All genders</option>
+                        <option value="male" {{ request('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                        <option value="female" {{ request('gender') == 'female' ? 'selected' : '' }}>Female</option>
+                        <option value="non-binary" {{ request('gender') == 'non-binary' ? 'selected' : '' }}>Non-binary</option>
+                        <option value="other" {{ request('gender') == 'other' ? 'selected' : '' }}>Other</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="small-button">Rechercher</button>
+                    <button type="submit" class="small-button">Search</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Gestion des utilisateurs -->
+    <!-- User management -->
     <div class="table-container">
-        <h3>Gestion des utilisateurs</h3>
+        <h3>User Management</h3>
         <table class="custom-table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nom</th>
+                    <th>Name</th>
                     <th>Email</th>
                     <th>Actions</th>
                 </tr>
@@ -140,11 +140,11 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>
-                            <a href="{{ route('admin.users.edit', $user) }}" class="custom-button">Modifier</a>
+                            <a href="{{ route('admin.users.edit', $user) }}" class="custom-button">Edit</a>
                             <form action="{{ route('admin.users.destroy', $user) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button class="custom-button" type="submit">Supprimer</button>
+                                <button class="custom-button" type="submit">Delete</button>
                             </form>
                         </td>
                     </tr>

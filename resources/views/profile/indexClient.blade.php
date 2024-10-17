@@ -3,12 +3,12 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 
-<!-- Conteneur principal pour le cadre -->
+<!-- Main container for the profile layout -->
 <div class="profile-wrapper">
     <div class="profile-container">
-        <!-- Colonne Gauche : Photo de Profil et Navigation -->
+        <!-- Left Column: Profile Picture and Navigation -->
         <div class="profile-left">
-            <!-- Photo de Profil -->
+            <!-- Profile Picture -->
             <div class="profile-pic">
                 <form id="upload-photo-form" action="{{ route('profile.uploadPhoto') }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -21,7 +21,7 @@
                 </form>
             </div>
 
-            <!-- Navigation de Profil -->
+            <!-- Profile Navigation -->
             <div class="profile-navigation">
                 <a href="{{ url('/chatify') }}">My messages</a>
                 <a href="{{ route('orders') }}">My orders</a>
@@ -29,22 +29,22 @@
             </div>
         </div>
 
-        <!-- Colonne Droite : Informations du Profil -->
+        <!-- Right Column: Profile Information -->
         <div class="profile-info">
             <div>
-                <h1>STATUS : {{ $user->role }}</h1>
+                <h1>STATUS: {{ $user->role }}</h1>
             </div>
             <div>
-                <h3>Login : @<span class="field-value">{{ $user->login }}</span></h3>
+                <h3>Login: @<span class="field-value">{{ $user->login }}</span></h3>
             </div>
             <div class="editable-field" data-field="name">
-                <h3>Name : <span class="field-value">{{ $user->name }}</span></h3>
+                <h3>Name: <span class="field-value">{{ $user->name }}</span></h3>
                 <input type="text" class="field-input" value="{{ $user->name }}" style="display: none;" />
                 <button class="edit-button">Edit</button>
                 <button class="save-button" style="display: none;">Save</button>
             </div>
             
-            <!-- Bloc de description (Bio) -->
+            <!-- Bio Section -->
             <div class="profile-description editable-field" data-field="bio">
                 <h3>Bio</h3>
                 <p class="field-value">{{ $user->bio ?? 'The bio is empty.' }}</p>
@@ -56,5 +56,5 @@
     </div>
 </div>
 
-<script src="{{ asset('js/profile.js') }}"></script> <!-- Inclure le fichier JS -->
+<script src="{{ asset('js/profile.js') }}"></script> <!-- Include the JS file -->
 @endsection

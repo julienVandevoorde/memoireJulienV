@@ -4,70 +4,70 @@
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
 <div class="dashboard-container">
-    <h1 class="dashboard-title text-center mb-5">Tableau de bord de l'admin</h1>
+    <h1 class="dashboard-title text-center mb-5">Admin Dashboard</h1>
 
     <div class="row justify-content-center">
-        <!-- Total utilisateurs -->
+        <!-- Total users -->
         <div class="col-md-3">
             <div class="stat-card">
                 <div class="stat-icon">
                     <i class="fas fa-users"></i>
                 </div>
                 <div class="stat-info">
-                    <h2>Utilisateurs</h2>
-                    <a href="{{ route('admin.users.index') }}" class="custom-button">Voir les utilisateurs</a>
+                    <h2>Users</h2>
+                    <a href="{{ route('admin.users.index') }}" class="custom-button">View Users</a>
                 </div>
             </div>
         </div>
 
-        <!-- Total produits -->
+        <!-- Total products -->
         <div class="col-md-3">
             <div class="stat-card">
                 <div class="stat-icon">
                     <i class="fas fa-box-open"></i>
                 </div>
                 <div class="stat-info">
-                    <h2>Produits</h2>
-                    <a href="{{ route('admin.products.index') }}" class="custom-button">Voir les produits</a>
+                    <h2>Products</h2>
+                    <a href="{{ route('admin.products.index') }}" class="custom-button">View Products</a>
                 </div>
             </div>
         </div>
 
-        <!-- Gestion des commandes -->
+        <!-- Order management -->
         <div class="col-md-3">
             <div class="stat-card">
                 <div class="stat-icon">
                     <i class="fas fa-shopping-cart"></i>
                 </div>
                 <div class="stat-info">
-                    <h2>Commandes</h2>
-                    <a href="{{ route('admin.orders.index') }}" class="custom-button">Gérer les commandes</a>
+                    <h2>Orders</h2>
+                    <a href="{{ route('admin.orders.index') }}" class="custom-button">Manage Orders</a>
                 </div>
             </div>
         </div>
 
-        <!-- Gestion des signalements -->
+        <!-- Report management -->
         <div class="col-md-3">
             <div class="stat-card">
                 <div class="stat-icon">
                     <i class="fas fa-flag"></i>
                 </div>
                 <div class="stat-info">
-                    <h2>Signalements</h2>
-                    <a href="{{ route('admin.reports.index') }}" class="custom-button">Voir les signalements</a>
+                    <h2>Reports</h2>
+                    <a href="{{ route('admin.reports.index') }}" class="custom-button">View Reports</a>
                 </div>
             </div>
         </div>
 
-                <!-- Gestion des tatouages -->
+        <!-- Tattoo management -->
         <div class="col-md-3">
             <div class="stat-card">
                 <div class="stat-icon">
                     <i class="fas fa-flag"></i>
                 </div>
                 <div class="stat-info">
-                    <h2>Tatouages</h2>
-                    <a href="{{ route('admin.portfolios.index') }}" class="custom-button">Voir les signalements</a>
+                    <h2>Tattoos</h2>
+                    <a href="{{ route('admin.portfolios.index') }}" class="custom-button">View Tattoos</a>
                 </div>
             </div>
         </div>

@@ -44,7 +44,7 @@ class CheckoutController extends Controller
         foreach ($products as $product) {
             $lineItems[] = [
                 'price_data' => [
-                    'currency' => 'usd',
+                    'currency' => 'eur',
                     'product_data' => [
                         'name' => $product->name,
                     ],
@@ -59,6 +59,9 @@ class CheckoutController extends Controller
             'payment_method_types' => ['card'],
             'line_items' => $lineItems,
             'mode' => 'payment',
+            'shipping_address_collection' => [
+                'allowed_countries' => ['BE'], // Autoriser les pays spécifiques
+            ],
             'success_url' => route('checkout.success'),
             'cancel_url' => route('checkout.cancel'),
         ]);
@@ -96,12 +99,12 @@ class CheckoutController extends Controller
         Session::forget('cart');
 
         // Rediriger avec un message flash
-        return redirect()->route('shop.index')->with('success', 'Votre commande a été passée avec succès ! Consultez la section "Mes commandes" pour plus de détails.');
+        return redirect()->route('shop.index')->with('success', 'Your order has been successfully placed! Check the "My Orders" section for more details');
     }
 
     public function cancel()
     {
-        return redirect()->route('cart.index')->with('error', 'Paiement annulé.');
+        return redirect()->route('cart.index')->with('error', 'Payment cancelled. Please try again.');
     }
 
     public function myOrders()

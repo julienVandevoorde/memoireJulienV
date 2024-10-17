@@ -4,28 +4,28 @@
 <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 
 <div class="cart-container">
-    <h1>Votre Panier</h1>
+    <h1>Your Cart</h1>
 
     @if(count($cart) > 0)
         <table class="cart-table">
             <thead>
                 <tr>
-                    <th>Produit</th>
-                    <th>Quantité</th>
-                    <th>Prix Unitaire</th>
-                    <th>Sous-total</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Subtotal</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 @php
-                    $total = 0;  // Initialisation du total ici, en dehors de la boucle
+                    $total = 0;  // Initialize total outside the loop
                 @endphp
                 @foreach($products as $product)
-                    @if(isset($cart[$product->id])) <!-- Vérifier si le produit est dans le panier -->
+                    @if(isset($cart[$product->id])) <!-- Check if the product is in the cart -->
                         @php
                             $subtotal = $product->price * $cart[$product->id];
-                            $total += $subtotal;  // Calcul du total
+                            $total += $subtotal;  // Calculate the total
                         @endphp
                         <tr>
                             <td>{{ $product->name }}</td>
@@ -39,7 +39,7 @@
                             <td>${{ number_format($product->price, 2) }}</td>
                             <td>${{ number_format($subtotal, 2) }}</td>
                             <td>
-                                <button class="btn-remove" data-product-id="{{ $product->id }}">Supprimer</button>
+                                <button class="btn-remove" data-product-id="{{ $product->id }}">Remove</button>
                             </td>
                         </tr>
                     @endif
@@ -47,23 +47,23 @@
             </tbody>
         </table>
 
-        <!-- Afficher le total du panier -->
+        <!-- Display the cart total -->
         <div class="cart-total">
-            <h3>Total : ${{ number_format($total, 2) }}</h3>
+            <h3>Total: ${{ number_format($total, 2) }}</h3>
         </div>
 
-        <!-- Section résumé du panier avec paiement direct -->
+        <!-- Cart summary section with direct payment option -->
         <div class="cart-summary">
-            <!-- Formulaire pour lancer directement le paiement avec Stripe -->
+            <!-- Form to directly proceed to payment with Stripe -->
             <form action="{{ route('checkout.createSession') }}" method="POST">
                 @csrf
-                <button type="submit" class="btn-checkout">Procéder au paiement</button>
+                <button type="submit" class="btn-checkout">Proceed to Checkout</button>
             </form>
         </div>
     @else
-        <p>Votre panier est vide.</p>
+        <p>Your cart is empty.</p>
     @endif
 </div>
 
-<script src="{{ asset('js/cart.js') }}"></script> <!-- Ajout du fichier JS pour la gestion de la quantité et suppression -->
+<script src="{{ asset('js/cart.js') }}"></script> <!-- Include JS file for quantity management and removal -->
 @endsection

@@ -3,23 +3,23 @@
 @section('content')
 
 <link rel="stylesheet" href="{{ asset('css/shop.css') }}">
-<script src="{{ asset('js/shop.js') }}"></script> <!-- Inclure le JS personnalisé pour la gestion du panier -->
+<script src="{{ asset('js/shop.js') }}"></script> <!-- Include custom JS for cart management -->
 
 <div class="container">
     <h1>Shop</h1>
 
-    <!-- Affichage du message flash de succès -->
+    <!-- Display success flash message -->
     @if(session('success'))
         <div class="flash-message">
             {{ session('success') }}
         </div>
     @endif
 
-    <!-- Formulaire de recherche de produit -->
+    <!-- Product search form -->
     <form action="{{ route('shop.index') }}" method="GET" class="search-form">
         <h3>Search for a product</h3>
 
-        <!-- Champs alignés sur une seule ligne -->
+        <!-- Fields aligned in a single row -->
         <div class="form-group-inline">
             <div class="form-group">
                 <label for="searchName">By name</label>
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <!-- Champs de prix alignés sur une seule ligne -->
+        <!-- Price fields aligned in a single row -->
         <div class="form-group-inline">
             <div class="form-group">
                 <label for="minPrice">Minimum price</label>
@@ -49,13 +49,13 @@
             </div>
         </div>
 
-        <!-- Bouton de recherche centré -->
+        <!-- Centered search button -->
         <div class="button-container">
             <button type="submit" class="small-button">Search</button>
         </div>
     </form>
 
-    <!-- Liste des produits -->
+    <!-- Product listing -->
     <div class="shop-feed">
         @foreach($products as $product)
             <div class="product-card">

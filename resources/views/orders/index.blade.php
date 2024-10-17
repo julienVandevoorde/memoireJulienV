@@ -3,14 +3,13 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/orders.css') }}">
 
-
 <div class="container">
-    <h1 class="text-center mb-5">Mes Commandes</h1>
+    <h1 class="text-center mb-5">My Orders</h1>
     <br>
     <br>
-    
+
     @if($orders->isEmpty())
-        <p class="text-center">Vous n'avez pas encore passé de commande.</p>
+        <p class="text-center">You haven't placed any orders yet.</p>
     @else
         <div class="row justify-content-center">
             <div class="col-lg-10">
@@ -20,7 +19,7 @@
                             <tr>
                                 <th>Date</th>
                                 <th>Total</th>
-                                <th>Produits commandés</th>
+                                <th>Ordered Products</th>
                                 <th>Status</th>
                             </tr>
                         </thead>

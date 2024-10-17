@@ -4,31 +4,31 @@
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
 <div class="dashboard-container">
-<h1 class="text-center mb-5">Gestion des tatouages</h1>
+    <h1 class="text-center mb-5">Tattoo Management</h1>
 
-    <!-- Formulaire de recherche de tatouages -->
+    <!-- Search form for tattoos -->
     <div class="search-form">
-        <h3>Recherche de tatouages</h3>
+        <h3>Search Tattoos</h3>
         <form action="{{ route('admin.portfolios.index') }}" method="GET">
             <div class="form-group">
-                <label for="searchTitle">Nom du tatouage</label>
+                <label for="searchTitle">Tattoo Name</label>
                 <input type="text" id="searchTitle" name="title" value="{{ request('title') }}">
             </div>
             <div class="form-group">
-                <button type="submit" class="small-button">Rechercher</button>
+                <button type="submit" class="small-button">Search</button>
             </div>
         </form>
     </div>
 
-    <!-- Gestion des tatouages -->
+    <!-- Tattoo management -->
     <div class="table-container">
-        <h3>Gestion des tatouages</h3>
+        <h3>Tattoo Management</h3>
         <table class="custom-table">
             <thead>
                 <tr>
-                    <th>Nom</th>
-                    <th>Artiste</th>
-                    <th>Date de création</th>
+                    <th>Name</th>
+                    <th>Artist</th>
+                    <th>Creation Date</th>
                     <th>Image</th>
                     <th>Actions</th>
                 </tr>
@@ -37,7 +37,7 @@
                 @foreach ($portfolios as $portfolio)
                     <tr>
                         <td>{{ $portfolio->title }}</td>
-                        <td>{{ $portfolio->user->name }}</td> <!-- Lien avec l'utilisateur -->
+                        <td>{{ $portfolio->user->name }}</td> <!-- Linked to the user -->
                         <td>{{ $portfolio->created_at->format('d/m/Y') }}</td>
                         <td>
                             @if($portfolio->image_path)
@@ -48,7 +48,7 @@
                             <form action="{{ route('admin.portfolios.destroy', $portfolio) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button class="custom-button" type="submit">Supprimer</button>
+                                <button class="custom-button" type="submit">Delete</button>
                             </form>
                         </td>
                     </tr>

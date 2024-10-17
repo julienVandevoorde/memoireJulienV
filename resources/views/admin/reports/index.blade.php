@@ -4,19 +4,19 @@
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 <div class="dashboard-container">
     <div class="container">
-        <h1 class="text-center mb-5">Gestion des signalements</h1>
+        <h1 class="text-center mb-5">Report Management</h1>
 
         <div class="table-container">
-            <!-- Signalements de tatouages -->
-            <h3 class="text-center">Signalements de tatouages</h3>
+            <!-- Tattoo Reports -->
+            <h3 class="text-center">Tattoo Reports</h3>
             <table class="custom-table">
                 <thead>
                     <tr>
-                        <th>ID Tatouage</th>
-                        <th>Nom Tatouage</th>
-                        <th>Propriétaire</th>
-                        <th>Utilisateur qui a signalé</th>
-                        <th>Motif</th>
+                        <th>Tattoo ID</th>
+                        <th>Tattoo Name</th>
+                        <th>Owner</th>
+                        <th>Reported by</th>
+                        <th>Reason</th>
                         <th>Date</th>
                     </tr>
                 </thead>
@@ -36,15 +36,15 @@
         </div>
 
         <div class="table-container">
-            <!-- Signalements d'utilisateurs -->
-            <h3 class="text-center">Signalements d'utilisateurs</h3>
+            <!-- User Reports -->
+            <h3 class="text-center">User Reports</h3>
             <table class="custom-table">
                 <thead>
                     <tr>
-                        <th>ID Utilisateur</th>
-                        <th>Nom de l'utilisateur</th>
-                        <th>Signalé par</th>
-                        <th>Motif</th>
+                        <th>User ID</th>
+                        <th>User Name</th>
+                        <th>Reported by</th>
+                        <th>Reason</th>
                         <th>Date</th>
                     </tr>
                 </thead>
@@ -53,7 +53,7 @@
                         <tr>
                             <td>{{ $report->reportedUser->id }}</td>
                             <td>{{ $report->reportedUser->name }}</td>
-                            <td>{{ $report->reportingUser ? $report->reportingUser->name : 'Utilisateur non trouvé' }}</td>
+                            <td>{{ $report->reportingUser ? $report->reportingUser->name : 'User not found' }}</td>
                             <td>{{ $report->reason }}</td>
                             <td>{{ $report->created_at->format('d/m/Y') }}</td>
                         </tr>

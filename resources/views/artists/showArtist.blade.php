@@ -3,60 +3,60 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 
-<!-- Conteneur principal pour le cadre -->
+<!-- Main container for the profile -->
 <div class="profile-wrapper">
     <div class="profile-container">
-        <!-- Colonne Gauche : Photo de Profil et Navigation -->
+        <!-- Left Column: Profile Photo and Navigation -->
         <div class="profile-left">
-            <!-- Photo de Profil -->
+            <!-- Profile Photo -->
             <div class="profile-pic">
-                <!-- Image de profil sans bouton de modification -->
+                <!-- Profile image without edit button -->
                 <img src="{{ $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : asset('images/defaultProfile.jpg') }}" id="output" width="165" />
             </div>
 
-            <!-- Navigation de Profil -->
+            <!-- Profile Navigation -->
             <div class="profile-navigation">
                 <a href="{{ url('/chatify/' . $user->id) }}">Send a message</a>
-                <a href="{{ route('report.user.form', $user->id) }}">Signaler</a> <!-- Lien pour signaler l'utilisateur -->
+                <a href="{{ route('report.user.form', $user->id) }}">Report</a> <!-- Link to report the user -->
             </div>
         </div>
 
-        <!-- Colonne Droite : Informations du Profil -->
+        <!-- Right Column: Profile Information -->
         <div class="profile-info">
             <div>
-                <h1>STATUS : {{ $user->role }}</h1>
+                <h1>STATUS: {{ $user->role }}</h1>
             </div>
             <div>
-                <h3>Login : @<span class="field-value">{{ $user->login }}</span></h3>
+                <h3>Login: @<span class="field-value">{{ $user->login }}</span></h3>
             </div>
             <div>
-                <h3>Name : <span class="field-value">{{ $user->name }}</span></h3>
+                <h3>Name: <span class="field-value">{{ $user->name }}</span></h3>
             </div>
             <div>
-                <h3>Instagram Link : <span class="field-value">{{ $user->instagram_link }}</span></h3>
+                <h3>Instagram Link: <span class="field-value">{{ $user->instagram_link }}</span></h3>
             </div>
             <div>
-                <h3>Location : <span class="field-value">{{ $user->location }}</span></h3>
+                <h3>Location: <span class="field-value">{{ $user->location }}</span></h3>
             </div>
 
-            <!-- Liste des styles de tatouage -->
+            <!-- Tattoo Styles -->
             <div>
-                <h3>Styles de Tatouage : <span class="field-value">{{ implode(', ', $user->styles->pluck('name')->toArray()) }}</span></h3>
+                <h3>Tattoo Styles: <span class="field-value">{{ implode(', ', $user->styles->pluck('name')->toArray()) }}</span></h3>
             </div>
             
-            <!-- Bloc de description (Bio) -->
+            <!-- Bio Section -->
             <div class="profile-description">
                 <h3>Bio</h3>
-                <p class="field-value">{{ $user->bio ?? 'Aucune description fournie.' }}</p>
+                <p class="field-value">{{ $user->bio ?? 'No bio provided.' }}</p>
             </div>
         </div>
     </div>
 
-    <!-- Section de Portfolio -->
+    <!-- Portfolio Section -->
     <div class="portfolio-section">
         <h3>@<span class="field-value">{{ $user->login }}'s portfolio</h3>
 
-        <!-- Afficher les images du portfolio sans options de suppression -->
+        <!-- Display portfolio images without delete options -->
         <div class="portfolio-gallery">
             @foreach($user->portfolios as $portfolio)
                 <div class="portfolio-item">

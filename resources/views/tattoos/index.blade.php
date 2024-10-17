@@ -4,21 +4,21 @@
 <link rel="stylesheet" href="{{ asset('css/tattoos.css') }}">
 
 <div class="tattoos-container">
-    <h1>Découvrir des Tatouages</h1>
+    <h1>Discover Tattoos</h1>
 
     <div class="search-bar">
         <form action="{{ route('tattoos.index') }}" method="GET">
-            <input type="text" name="search" placeholder="Rechercher par mots-clés..." value="{{ request('search') }}">
-            <button type="submit">Rechercher</button>
+            <input type="text" name="search" placeholder="Search by keywords..." value="{{ request('search') }}">
+            <button type="submit">Search</button>
 
-            <!-- Si l'utilisateur est connecté, afficher 'Mes likes' -->
+            <!-- If the user is logged in, show "My Likes" -->
             @if(auth()->check())
                 @if(request('liked') === 'true')
-                    <!-- Bouton pour afficher tous les tatouages quand l'utilisateur est sur la page "Mes likes" -->
-                    <a href="{{ route('tattoos.index') }}" class="btn-likes">Tous les tatouages</a>
+                    <!-- Button to show all tattoos when the user is on the "My Likes" page -->
+                    <a href="{{ route('tattoos.index') }}" class="btn-likes">All Tattoos</a>
                 @else
-                    <!-- Bouton pour afficher les likes quand l'utilisateur est sur la page des tatouages -->
-                    <a href="{{ route('tattoos.index', ['liked' => 'true']) }}" class="btn-likes">Mes likes</a>
+                    <!-- Button to show liked tattoos when the user is on the tattoos page -->
+                    <a href="{{ route('tattoos.index', ['liked' => 'true']) }}" class="btn-likes">My Likes</a>
                 @endif
             @endif
         </form>
@@ -32,9 +32,9 @@
                     <p><strong>{{ $tattoo->title }}</strong></p>
                     <p><a href="{{ route('profile.showProfile', $tattoo->user->login) }}">&#64;{{ $tattoo->user->login }}</a></p>
 
-                    <!-- Afficher les fonctionnalités seulement si l'utilisateur est connecté -->
+                    <!-- Show features only if the user is logged in -->
                     @if(auth()->check())
-                        <!-- Bouton de like/unlike -->
+                        <!-- Like/Unlike button -->
                         <label class="like">
                             <input type="checkbox" class="like-checkbox" data-tattoo-id="{{ $tattoo->id }}" {{ $tattoo->isLikedBy(auth()->user()) ? 'checked' : '' }}>
                             <div class="checkmark">
@@ -45,8 +45,8 @@
                             </div>
                         </label>
 
-                        <!-- Bouton de signalement -->
-                        <a href="{{ route('tattoo.report', $tattoo->id) }}" class="report-icon">Signaler</a>
+                        <!-- Report button -->
+                        <a href="{{ route('tattoo.report', $tattoo->id) }}" class="report-icon">Report</a>
                     @endif
                 </div>
             </div>
@@ -61,7 +61,7 @@
 </div>
 
 <script>
-    // Gestion du clic sur les images pour agrandir
+    // Handle click on images to enlarge
     document.querySelectorAll('.tattoo-image').forEach(image => {
         image.addEventListener('click', function() {
             const modal = document.getElementById("imageModal");
@@ -74,7 +74,7 @@
         });
     });
 
-    // Fermeture du modal en cliquant en dehors de l'image
+    // Close modal when clicking outside the image
     const modal = document.getElementById("imageModal");
 
     modal.onclick = function(event) {
@@ -83,7 +83,7 @@
         }
     }
 
-    // Gestion des likes avec vérification de l'authentification
+    // Handle likes with authentication check
     document.querySelectorAll('.like-checkbox').forEach(checkbox => {
         checkbox.addEventListener('change', function() {
             const tattooId = this.dataset.tattooId;
@@ -99,7 +99,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                // Vous pouvez ajouter une logique pour mettre à jour l'interface utilisateur ici si besoin
+                // You can add logic to update the UI here if needed
             })
             .catch(error => {
                 console.error('Error:', error);

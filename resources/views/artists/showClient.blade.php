@@ -3,42 +3,42 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 
-<!-- Conteneur principal pour le cadre -->
+<!-- Main container for the profile -->
 <div class="profile-wrapper">
     <div class="profile-container">
-        <!-- Colonne Gauche : Photo de Profil et Navigation -->
+        <!-- Left Column: Profile Photo and Navigation -->
         <div class="profile-left">
-            <!-- Photo de Profil -->
+            <!-- Profile Photo -->
             <div class="profile-pic">
-                <!-- Affichage de la photo de profil sans possibilité de la changer -->
+                <!-- Display profile image without the ability to change it -->
                 <img src="{{ $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : asset('images/defaultProfile.jpg') }}" id="output" width="165" />
             </div>
 
-            <!-- Navigation de Profil -->
+            <!-- Profile Navigation -->
             <div class="profile-navigation">
-                <!-- Lien pour envoyer un message au client via Chatify -->
+                <!-- Link to send a message to the client via Chatify -->
                 <a href="{{ url('/chatify', $user->id) }}">Send a message</a>
-                <!-- Lien pour signaler l'utilisateur -->
-                <a href="{{ route('report.user.form', $user->id) }}">Signaler</a>
+                <!-- Link to report the user -->
+                <a href="{{ route('report.user.form', $user->id) }}">Report</a>
             </div>
         </div>
 
-        <!-- Colonne Droite : Informations du Profil -->
+        <!-- Right Column: Profile Information -->
         <div class="profile-info">
             <div>
-                <h1>STATUS : {{ $user->role }}</h1>
+                <h1>STATUS: {{ $user->role }}</h1>
             </div>
             <div>
-                <h3>Login : @<span class="field-value">{{ $user->login }}</span></h3>
+                <h3>Login: @<span class="field-value">{{ $user->login }}</span></h3>
             </div>
             <div>
-                <h3>Name : <span class="field-value">{{ $user->name }}</span></h3>
+                <h3>Name: <span class="field-value">{{ $user->name }}</span></h3>
             </div>
 
-            <!-- Bloc de description (Bio) -->
+            <!-- Bio Section -->
             <div class="profile-description">
                 <h3>Bio</h3>
-                <p class="field-value">{{ $user->bio ?? 'Aucune description fournie.' }}</p>
+                <p class="field-value">{{ $user->bio ?? 'No bio provided.' }}</p>
             </div>
         </div>
     </div>
