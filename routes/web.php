@@ -15,17 +15,6 @@ use App\Http\Controllers\UserReportController;
 use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application.
-| These routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 // Authentification (routes par défaut de Laravel Breeze ou Jetstream)
 require __DIR__.'/auth.php';
 
@@ -58,7 +47,7 @@ Route::middleware('auth')->group(function () {
     // Processus de paiement
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout/create-session', [CheckoutController::class, 'createSession'])->name('checkout.createSession');
-    Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+    Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success')->middleware('auth');
     Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
     
     // Portfolio
@@ -76,18 +65,18 @@ Route::middleware('auth')->group(function () {
     // Profil utilisateur spécifique
     Route::get('/profile/{login}', [ProfileController::class, 'showProfile'])->name('profile.showProfile');
 
-    //report un tatouage
+    // Report un tatouage
     Route::get('/tattoos/{portfolio}/report', [TattooReportController::class, 'create'])->name('tattoo.report');
     Route::post('/tattoos/{portfolio}/report', [TattooReportController::class, 'store'])->name('tattoo.report.store');
 
-    //report un utilisateur
+    // Report un utilisateur
     Route::get('/user/{id}/report', [UserReportController::class, 'showReportForm'])->name('report.user.form');
     Route::post('/user/{id}/report', [UserReportController::class, 'submitReport'])->name('report.user.submit');
 
     Route::post('/tattoos/{portfolio}/like', [LikeController::class, 'like'])->name('tattoo.like');
     Route::delete('/tattoos/{portfolio}/unlike', [LikeController::class, 'unlike'])->name('tattoo.unlike');
 
-
+    Route::get('/my-orders', [CheckoutController::class, 'myOrders'])->name('orders');
 });
 
 // Routes administratives (avec vérification du rôle admin)

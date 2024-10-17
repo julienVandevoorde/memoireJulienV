@@ -18,4 +18,9 @@ class Product extends Model
         'category',
     ];
 
+    // Relation avec les commandes via la table pivot order_product
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class)->withPivot('quantity', 'price')->withTimestamps();
+    }
 }

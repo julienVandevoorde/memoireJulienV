@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\Session;
 use Stripe\Stripe;
 use Stripe\Checkout\Session as StripeSession;
 use App\Models\Product;
+use App\Models\Order;
 
 class CheckoutController extends Controller
 {
     public function index()
     {
-        // Récupère le panier de la session
+        // Récupérer le panier de la session
         $cart = Session::get('cart', []);
 
         // Si le panier est vide, on redirige vers la page du panier
@@ -53,35 +54,62 @@ class CheckoutController extends Controller
             ];
         }
 
-        // Créer la session de paiement Stripe avec collecte d'adresse de livraison
+        // Créer la session de paiement Stripe
         $session = StripeSession::create([
             'payment_method_types' => ['card'],
             'line_items' => $lineItems,
             'mode' => 'payment',
             'success_url' => route('checkout.success'),
             'cancel_url' => route('checkout.cancel'),
-
-            // Ajouter la collecte d'adresse de livraison
-            'shipping_address_collection' => [
-                'allowed_countries' => ['BE'], // Pays autorisés pour la livraison
-            ],
         ]);
 
         return redirect($session->url);
     }
 
-    public function success()
+    public function success(Request $request)
     {
+        // Récupérer les données du panier
+        $cart = Session::get('cart', []);
+        $products = Product::whereIn('id', array_keys($cart))->get();
+
+        // Calculer le montant total
+        $total = 0;
+        foreach ($products as $product) {
+            $total += $product->price * $cart[$product->id];
+        }
+
+        // Créer une nouvelle commande dans la base de données
+        $order = Order::create([
+            'user_id' => auth()->id(), // Associer à l'utilisateur connecté
+            'total_price' => $total,  // Prix total de la commande
+        ]);
+
+        // Associer les produits à la commande dans la table pivot avec leur prix
+        foreach ($products as $product) {
+            $order->products()->attach($product->id, [
+                'quantity' => $cart[$product->id],
+                'price' => $product->price // Associer le prix du produit à la commande
+            ]);
+        }
+
         // Réinitialiser le panier après le paiement réussi
         Session::forget('cart');
-        
-        // Ajouter un message flash de confirmation de commande
-        return redirect()->route('shop.index')->with('success', 'Votre commande a été passée avec succès ! 
-        Consultez la section "Mes commandes" pour plus de détails.');
+
+        // Rediriger avec un message flash
+        return redirect()->route('shop.index')->with('success', 'Votre commande a été passée avec succès ! Consultez la section "Mes commandes" pour plus de détails.');
     }
 
     public function cancel()
     {
         return redirect()->route('cart.index')->with('error', 'Paiement annulé.');
     }
+
+    public function myOrders()
+    {
+        $orders = Order::where('user_id', auth()->id())->with('products')->get();
+    
+        return view('orders.index', compact('orders'));
+    }    
+    
+    
 }
