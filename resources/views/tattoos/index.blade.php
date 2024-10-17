@@ -9,9 +9,13 @@
     <div class="search-bar">
         <!-- If the user is logged in, show "My Likes" on the left -->
         @if(auth()->check())
-            <a href="{{ route('tattoos.index', ['liked' => 'true']) }}" class="btn-likes">
-                {{ request('liked') === 'true' ? 'All Tattoos' : 'My Likes' }}
-            </a>
+            @if(request('liked') === 'true')
+                <!-- Button to show all tattoos when the user is on the "My Likes" page -->
+                <a href="{{ route('tattoos.index') }}" class="btn-likes">All Tattoos</a>
+            @else
+                <!-- Button to show liked tattoos when the user is on the tattoos page -->
+                <a href="{{ route('tattoos.index', ['liked' => 'true']) }}" class="btn-likes">My Likes</a>
+            @endif
         @endif
 
         <form action="{{ route('tattoos.index') }}" method="GET">
