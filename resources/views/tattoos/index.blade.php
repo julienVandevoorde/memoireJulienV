@@ -7,20 +7,16 @@
     <h1>Discover Tattoos</h1>
 
     <div class="search-bar">
+        <!-- If the user is logged in, show "My Likes" on the left -->
+        @if(auth()->check())
+            <a href="{{ route('tattoos.index', ['liked' => 'true']) }}" class="btn-likes">
+                {{ request('liked') === 'true' ? 'All Tattoos' : 'My Likes' }}
+            </a>
+        @endif
+
         <form action="{{ route('tattoos.index') }}" method="GET">
             <input type="text" name="search" placeholder="Search by keywords..." value="{{ request('search') }}">
             <button type="submit">Search</button>
-
-            <!-- If the user is logged in, show "My Likes" -->
-            @if(auth()->check())
-                @if(request('liked') === 'true')
-                    <!-- Button to show all tattoos when the user is on the "My Likes" page -->
-                    <a href="{{ route('tattoos.index') }}" class="btn-likes">All Tattoos</a>
-                @else
-                    <!-- Button to show liked tattoos when the user is on the tattoos page -->
-                    <a href="{{ route('tattoos.index', ['liked' => 'true']) }}" class="btn-likes">My Likes</a>
-                @endif
-            @endif
         </form>
     </div>
 
@@ -30,7 +26,7 @@
                 <img src="{{ asset('storage/' . $tattoo->image_path) }}" alt="Tattoo by {{ $tattoo->user->name }}" class="tattoo-image">
                 <div class="tattoo-info">
                     <p><strong>{{ $tattoo->title }}</strong></p>
-                    <p><a href="{{ route('profile.showProfile', $tattoo->user->login) }}">&#64;{{ $tattoo->user->login }}</a></p>
+                    <p><a href="{{ route('profile.showProfile', $tattoo->user->login) }}" class="tattoo-artist-link">&#64;{{ $tattoo->user->login }}</a></p>
 
                     <!-- Show features only if the user is logged in -->
                     @if(auth()->check())
@@ -45,8 +41,11 @@
                             </div>
                         </label>
 
-                        <!-- Report button -->
-                        <a href="{{ route('tattoo.report', $tattoo->id) }}" class="report-icon">Report</a>
+                        <!-- Report button as a PNG image -->
+                        <a href="{{ route('tattoo.report', $tattoo->id) }}" class="report-icon">
+                            <img src="{{ asset('images/signe-dalerte.png') }}" alt="Report Icon" width="20" height="20"> <!-- Custom PNG icon -->
+                            <span class="tooltip-text">Report</span>
+                        </a>
                     @endif
                 </div>
             </div>

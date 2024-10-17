@@ -1,166 +1,183 @@
 .tattoos-container {
-    padding: 20px;
-    display: flex;
-    flex-direction: column; /* Disposer les éléments en colonne */
-    align-items: center; /* Centrer les éléments horizontalement */
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Disposer les éléments en colonne */
+  align-items: center; /* Centrer les éléments horizontalement */
 }
 
 .tattoos-container h1 {
-    margin-bottom: 20px; /* Ajouter un espacement en bas du titre */
-    text-align: center; /* Centrer le titre */
-    width: 100%; /* S'assurer que le titre prend toute la largeur disponible */
+  margin-bottom: 20px; /* Ajouter un espacement en bas du titre */
+  text-align: center; /* Centrer le titre */
+  width: 100%; /* S'assurer que le titre prend toute la largeur disponible */
 }
 
 .search-bar {
-    margin-bottom: 20px;
-    text-align: center;
+  margin-bottom: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Espace entre les éléments */
 }
 
 .search-bar form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center; /* Aligner verticalement */
+  gap: 10px; /* Espace entre le champ de recherche et le bouton "Search" */
 }
 
 .search-bar input[type="text"] {
-    padding: 8px;
-    width: 300px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+  padding: 8px;
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  border-radius: 30px; /* Même arrondi que le bouton */
 }
 
 .search-bar button {
-    padding: 8px 15px;
-    background-color: #222;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  display: inline-block;
+  padding: 6px 12px; /* Taille similaire à "My Likes" */
+  background-color: transparent;
+  color: #000000;
+  border: 2px solid #000000; /* Bordure similaire */
+  border-radius: 30px; /* Même arrondi */
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .search-bar button:hover {
-    background-color: #5e5e5e;
+  background-color: #000000;
+  color: white;
+  border-color: #000000;
+  transform: translateY(-3px);
+}
+
+.search-bar button:active {
+  background-color: #000000;
+  color: white;
+  border-color: #000000;
+  transform: translateY(0);
 }
 
 .tattoo-feed {
-    display: grid;
-    grid-template-columns: repeat(4, 250px); /* 4 colonnes de largeur fixe */
-    gap: 20px;
-    justify-content: center; /* Centre la grille */
+  display: grid;
+  grid-template-columns: repeat(4, 250px); /* 4 colonnes de largeur fixe */
+  gap: 20px;
+  justify-content: center; /* Centre la grille */
 }
 
 .tattoo-item {
-    border: 1px solid #ddd;
-    padding: 10px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative; /* Pour permettre un positionnement absolu des icônes */
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .tattoo-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
 }
 
 .tattoo-info {
-    margin-top: 10px;
-    text-align: center;
-    font-size: 14px;
-    color: #333;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  padding-bottom: 30px; /* Laisser de l'espace en bas pour les icônes */
 }
 
 .like input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-  }
-  
-
-  .like {
-    display: inline-flex; /* Change le display pour ne prendre que l'espace de l'icône */
-    cursor: pointer;
-    transition: 100ms;
-    font-size: 20px;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
 }
-  
-  .checkmark {
-    top: 0;
-    left: 0;
-    height: 1.5em;
-    width: 1.5em;
-    transition: 100ms;
-    animation: dislike_effect 400ms ease;
-    fill: black;
-  }
 
-  /* Icône de like par défaut avec contour noir et remplissage transparent */
+.like {
+  position: absolute;
+  bottom: 10px; /* Position en bas à gauche */
+  left: 10px;
+  display: inline-flex; /* Change le display pour ne prendre que l'espace de l'icône */
+  cursor: pointer;
+  transition: 100ms;
+  font-size: 20px;
+}
+
+.checkmark {
+  top: 0;
+  left: 0;
+  height: 1.5em;
+  width: 1.5em;
+  transition: 100ms;
+  animation: dislike_effect 400ms ease;
+  fill: black;
+}
+
 .checkmark path {
-    fill: none; /* Pas de remplissage */
-    stroke: rgb(137, 137, 137); /* Contour noir */
-    stroke-width: 15; /* Épaisseur du contour */
+  fill: none; /* Pas de remplissage */
+  stroke: rgb(137, 137, 137); /* Contour noir */
+  stroke-width: 15; /* Épaisseur du contour */
 }
-  
-  .like input:checked ~ .checkmark path {
-    fill: #FF5353;
-    stroke-width: 0;
-  }
-  
-  .like input:checked ~ .checkmark {
-    animation: like_effect 400ms ease;
-  }
-  
-  .container:hover {
-    transform: scale(1.1);
-  }
-  
-  @keyframes like_effect {
-    0% {
-      transform: scale(0);
-    }
-  
-    50% {
-      transform: scale(1.2);
-    }
-  
-    100% {
-      transform: scale(1);
-    }
-  }
-  
-  @keyframes dislike_effect {
-    0% {
-      transform: scale(0);
-    }
-  
-    50% {
-      transform: scale(1.2);
-    }
-  
-    100% {
-      transform: scale(1);
-    }
-  }
 
-  /* The Modal (background) */
+.like input:checked ~ .checkmark path {
+  fill: #FF5353;
+  stroke-width: 0;
+}
+
+.like input:checked ~ .checkmark {
+  animation: like_effect 400ms ease;
+}
+
+.container:hover {
+  transform: scale(1.1);
+}
+
+@keyframes like_effect {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes dislike_effect {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Modal */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
 }
 
-/* Modal Content (the image) */
 .modal-content {
   margin: auto;
   display: block;
@@ -168,7 +185,6 @@
   max-width: 600px;
 }
 
-/* Caption of Modal Image */
 #caption {
   margin: auto;
   display: block;
@@ -179,18 +195,16 @@
   padding: 10px 0;
 }
 
-/* Add Animation */
-.modal-content, #caption {  
+.modal-content, #caption {
   animation-name: zoom;
   animation-duration: 0.6s;
 }
 
 @keyframes zoom {
-  from {transform:scale(0)} 
+  from {transform:scale(0)}
   to {transform:scale(1)}
 }
 
-/* The Close Button */
 .close {
   position: absolute;
   top: 15px;
@@ -206,4 +220,86 @@
   color: #bbb;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* Report Icon */
+.report-icon {
+  position: absolute;
+  bottom: 10px; /* Position en bas à droite */
+  right: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.report-icon img {
+  width: 2.1em; /* Même taille que l'icône like */
+  height: 2.1em;
+  display: block;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgba(112, 112, 112, 0.7); /* Fond noir avec 70% d'opacité */
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Positionner le tooltip au-dessus de l'icône */
+  left: 50%;
+  transform: translateX(-50%); /* Centrer le tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.report-icon:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tattoo-artist-link {
+    color: #999999; /* Couleur subtile bleue */
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid transparent; /* Ajoute une bordure invisible */
+    padding: 2px 5px; /* Espace autour du texte */
+    border-radius: 5px; /* Bords arrondis */
+    transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tattoo-artist-link:hover {
+    color: #777777; /* Change la couleur au survol */
+    border-color: #7a7a7a; /* Affiche la bordure au survol */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Légère ombre pour l'effet */
+}
+
+.btn-likes {
+  display: inline-block;
+  padding: 6px 12px; /* Taille réduite */
+  background-color: transparent;
+  color: #555; /* Couleur subtile */
+  border: 2px solid #FF5353; /* Bordure colorée */
+  border-radius: 30px; /* Bouton arrondi */
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px; /* Taille de police réduite */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-likes:hover {
+  background-color: #FF5353; /* Couleur de fond au survol */
+  color: white; /* Texte blanc au survol */
+  border-color: #FF5353; /* Harmonisation des couleurs */
+  transform: translateY(-3px); /* Légère élévation au survol */
+}
+
+.btn-likes:active {
+  background-color: #e04b4b; /* Couleur plus foncée lors du clic */
+  color: white;
+  border-color: #e04b4b;
+  transform: translateY(0); /* Réinitialisation de l'effet de hover */
 }
