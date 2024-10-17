@@ -3,6 +3,7 @@
 @section('content')
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 <div class="dashboard-container">
+<h1 class="text-center mb-5">Gestion des utilisateurs</h1>
 
     <!-- Conteneur pour le formulaire d'ajout d'utilisateur et de recherche -->
     <div class="form-row">

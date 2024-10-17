@@ -4,6 +4,7 @@
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
 <div class="dashboard-container">
+<h1 class="text-center mb-5">Gestion des produits</h1>
 
     <!-- Conteneur pour les formulaires d'ajout et de recherche de produits -->
     <div class="form-row">

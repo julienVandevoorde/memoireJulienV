@@ -13,6 +13,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TattooReportController;
 use App\Http\Controllers\UserReportController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 // Authentification (routes par défaut de Laravel Breeze ou Jetstream)
@@ -102,4 +104,16 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
         Route::put('/{product}', [ProductController::class, 'update'])->name('admin.products.update');
         Route::delete('/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
     });
+
+    Route::get('/admin/orders', [OrderController::class, 'index'])->name('admin.orders.index');
+    Route::get('/admin/orders/{order}', [OrderController::class, 'show'])->name('admin.orders.show');
+
+    Route::get('/admin/reports', [ReportController::class, 'index'])->name('admin.reports.index');
+    Route::get('/admin/reports/tattoo/{tattooReport}', [ReportController::class, 'showTattooReport'])->name('admin.reports.show_tattoo');
+    Route::get('/admin/reports/user/{userReport}', [ReportController::class, 'showUserReport'])->name('admin.reports.show_user');
+    
+
+    Route::get('admin/portfolios/', [PortfolioController::class, 'index'])->name('admin.portfolios.index');
+    Route::delete('admin/portfolios/{portfolio}', [PortfolioController::class, 'destroy'])->name('admin.portfolios.destroy');
+    
 });

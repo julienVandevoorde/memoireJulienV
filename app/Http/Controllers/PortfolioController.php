@@ -28,13 +28,33 @@ class PortfolioController extends Controller
 
     public function destroy(Portfolio $portfolio)
     {
-        if ($portfolio->user_id !== Auth::id()) {
+        // Vérifier si c'est l'utilisateur propriétaire ou un admin
+        if ($portfolio->user_id !== Auth::id() && !Auth::user()->isAdmin()) {
             return redirect()->route('profile.index')->with('error', 'Vous ne pouvez pas supprimer cette image.');
         }
 
         Storage::disk('public')->delete($portfolio->image_path);
         $portfolio->delete();
 
+        if (Auth::user()->isAdmin()) {
+            return redirect()->route('admin.portfolios.index')->with('success', 'Tatouage supprimé avec succès.');
+        }
+
         return redirect()->route('profile.index')->with('success', 'Image supprimée du portfolio.');
+    }
+
+    // Nouvelle méthode pour afficher les tatouages dans l'admin avec recherche
+    public function index(Request $request)
+    {
+        // Filtre par nom de tatouage
+        $query = Portfolio::query();
+
+        if ($request->filled('title')) {
+            $query->where('title', 'like', '%' . $request->title . '%');
+        }
+
+        $portfolios = $query->with('user')->paginate(10);
+
+        return view('admin.portfolios.index', compact('portfolios'));
     }
 }
