@@ -4,39 +4,68 @@
 <link rel="stylesheet" href="{{ asset('css/about.css') }}">
 
 <div class="about-container">
-    <!-- Section About Us -->
-    <div class="about-content">
-        <h1>About Us</h1>
-        <p>Welcome to our platform where tattoo artists and clients connect. Our mission is to provide a seamless experience for everyone, whether you are looking to showcase your art or find the perfect tattoo. We believe in creativity, artistry, and the power of self-expression through tattoos.</p>
+<!-- Hero Section Simple -->
+<section class="hero-section">
+    <h1>About Us</h1>
+</section>
+<br>
+<br>
 
-        <p>Founded by tattoo enthusiasts, our platform is designed to create a community where everyone can feel comfortable and inspired. Whether you're a tattoo artist or someone looking to get inked, we provide the tools and features to make this process as smooth as possible.</p>
 
-        <p>Thank you for being a part of our journey!</p>
-    </div>
 
-    <!-- Section Contact Us -->
-    <div class="contact-section">
+    <!-- Our Story Section with two columns -->
+    <section class="story-section">
+        <div class="story-content">
+            <div class="story-text">
+                <h2>Our Story</h2>
+                <p>Founded with passion and dedication, we have been providing quality services in the tattoo industry for years. Our vision is to connect talented tattoo artists with clients seeking unique and meaningful tattoos. Each tattoo tells a story, and we are here to bring those stories to life through exceptional craftsmanship.</p>
+            </div>
+            <div class="story-image">
+                <img src="{{ asset('images/tattoo-zeph.jpg') }}" alt="Tattoo Story Image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Mission Section -->
+    <section class="mission-section">
+        <div class="mission-content">
+            <div class="mission-image">
+                <img src="{{ asset('images/tattooShark.jpg') }}" alt="Tattoo Ink">
+            </div>
+            <div class="mission-text">
+                <h2>Our Mission</h2>
+                <p>Our mission is simple: to provide the best platform for both artists and clients. Whether you're looking for your next tattoo or seeking a space to showcase your art, we offer a seamless experience from start to finish. We believe in creativity, authenticity, and the power of self-expression through tattoos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-section">
         <h2>Contact Us</h2>
-        <form action="{{ route('contact.submit') }}" method="POST" class="contact-form">
+        <p>Have questions? Want to learn more about what we offer? Feel free to get in touch with us.</p>
+
+        <form action="{{ route('contact.submit') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="name">Your Name</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" name="name" id="name" required>
             </div>
 
             <div class="form-group">
                 <label for="email">Your Email</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" name="email" id="email" required>
             </div>
 
             <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
+                <label for="message">Your Message</label>
+                <textarea name="message" id="message" rows="5" required></textarea>
             </div>
 
-            <button type="submit" class="btn-submit">Send Message</button>
+            <div class="form-group">
+                <button type="submit" class="btn-submit">Send Message</button>
+            </div>
         </form>
-    </div>
+    </section>
 </div>
 
 @endsection

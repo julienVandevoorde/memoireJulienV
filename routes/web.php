@@ -39,6 +39,9 @@ Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 // Liste des artistes
 Route::get('/artists', [ArtistController::class, 'index'])->name('artists.index');
 
+// Profil utilisateur spécifique
+Route::get('/profile/{login}', [ProfileController::class, 'showProfile'])->name('profile.showProfile');
+
 // Panier
 Route::middleware('auth')->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
@@ -65,8 +68,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/upload-photo', [ProfileController::class, 'uploadPhoto'])->name('profile.uploadPhoto');
     Route::post('/profile/update', [ProfileController::class, 'updateField'])->name('profile.updateField');
     
-    // Profil utilisateur spécifique
-    Route::get('/profile/{login}', [ProfileController::class, 'showProfile'])->name('profile.showProfile');
+
 
     // Report un tatouage
     Route::get('/tattoos/{portfolio}/report', [TattooReportController::class, 'create'])->name('tattoo.report');
