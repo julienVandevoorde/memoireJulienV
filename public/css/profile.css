@@ -84,17 +84,17 @@
 }
 
 .profile-navigation a {
-    background-color: #b5b5b5;
+    background-color: #555555;
     color: white;
     padding: 10px 15px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 30px;
     transition: background-color 0.3s ease;
     text-align: center;
 }
 
 .profile-navigation a:hover {
-    background-color: #353535;
+    background-color: #000000;
 }
 
 /* Bloc d'informations du profil */
@@ -133,33 +133,53 @@
 }
 
 
-
 .portfolio-section {
     margin-top: 40px;
     background-color: #c4c4c4;
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid #000; /* Bord noir de 1 pixel */
+    border: 1px solid #000;
     color: white;
 }
 
+.portfolio-section h3 {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
 .portfolio-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Grille flexible */
+    gap: 20px; /* Espace entre les images */
     margin-top: 20px;
 }
 
 .portfolio-item {
-    width: 200px;
     position: relative;
+    border-radius: 8px;
+    overflow: hidden; /* S'assure que les images restent dans les bordures */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Légère ombre */
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px); /* Élève légèrement l'image au hover */
 }
 
 .portfolio-item img {
     width: 100%;
-    height: auto;
+    height: 150px;
+    object-fit: cover; /* Coupe l'image pour s'adapter à la boîte */
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-item p {
+    text-align: center;
+    margin-top: 10px;
+    color: #333;
+    font-size: 14px;
 }
 
 .btn-upload, .btn-delete {
@@ -170,6 +190,9 @@
     border-radius: 4px;
     cursor: pointer;
     margin-top: 10px;
+    display: block;
+    width: 100%; /* Largeur complète */
+    text-align: center;
 }
 
 .btn-upload:hover, .btn-delete:hover {

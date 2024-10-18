@@ -13,13 +13,15 @@ class PortfolioController extends Controller
     {
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'title' => 'required|string|max:70', // Le titre est obligatoire et limité à 70 caractères
+            'description' => 'nullable|string', // La description est optionnelle
         ]);
 
         $imagePath = $request->file('image')->store('portfolio', 'public');
 
         Portfolio::create([
             'user_id' => Auth::id(),
-            'title' => $request->input('title', 'Portfolio Image'),
+            'title' => $request->input('title', 'Portfolio Image'), // Si le titre est vide, un titre par défaut sera utilisé
             'image_path' => $imagePath,
         ]);
 

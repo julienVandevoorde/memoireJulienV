@@ -5,6 +5,7 @@
 
 <div class="artists-container">
     <h1>Find your tattoo artist</h1>
+    <br>
 
     <!-- Filter Section -->
     <div class="filter-section">
@@ -27,18 +28,8 @@
                 </div>
             </div>
 
-            <!-- Filter by style -->
-            <div class="filter-group">
-                <label for="styles">Tattoo Styles</label>
-                <select name="styles[]" id="styles" multiple>
-                    @foreach ($styles as $style)
-                        <option value="{{ $style->id }}" {{ in_array($style->id, request('styles', [])) ? 'selected' : '' }}>{{ $style->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <!-- Row with Years of Experience and Gender -->
-            <div class="filter-row">
+            <!-- Row with Years of Experience and Gender (side by side) -->
+            <div class="filter-row years-gender">
                 <div class="filter-group">
                     <label for="experience_years">Years of Experience</label>
                     <select name="experience_years" id="experience_years">
@@ -61,8 +52,19 @@
                 </div>
             </div>
 
-            <!-- Submit button -->
+            <!-- Tattoo Styles with buttons -->
             <div class="filter-group">
+                <label for="styles">Tattoo Styles</label>
+                <div class="styles-buttons">
+                    @foreach ($styles as $style)
+                        <input type="checkbox" id="style_{{ $style->id }}" name="styles[]" value="{{ $style->id }}" {{ in_array($style->id, request('styles', [])) ? 'checked' : '' }}>
+                        <label for="style_{{ $style->id }}" class="style-button">{{ $style->name }}</label>
+                    @endforeach
+                </div>
+            </div>
+
+            <!-- Submit button -->
+            <div class="btn-filter-wrapper">
                 <button type="submit" class="btn-filter">Search</button>
             </div>
         </form>

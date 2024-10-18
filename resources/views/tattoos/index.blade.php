@@ -5,6 +5,7 @@
 
 <div class="tattoos-container">
     <h1>Discover Tattoos</h1>
+    <br>
 
     <div class="search-bar">
         <!-- If the user is logged in, show "My Likes" on the left -->

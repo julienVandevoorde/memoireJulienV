@@ -69,6 +69,7 @@
     border-radius: 5px;
     font-size: 0.95em;
     margin-bottom: 10px; /* Ajouter un espace entre les champs */
+    border-radius: 30px;
 }
 
 /* Bouton de recherche */
@@ -87,6 +88,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     text-align: center;
+    border-radius: 30px;
 }
 
 .search-form .small-button:hover {
@@ -106,7 +108,7 @@
     border: 1px solid #ddd;
     padding: 10px;
     background-color: white;
-    border-radius: 5px;
+    border-radius: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }

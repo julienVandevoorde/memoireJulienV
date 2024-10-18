@@ -102,7 +102,16 @@
         <!-- Form to add a new image -->
         <form action="{{ route('portfolio.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="file" name="image" required>
+            <div class="form-group">
+                <label for="title">Tattoo Title</label>
+                <input type="text" name="title" id="title" required class="form-control" placeholder="Enter title" />
+            </div>
+
+            <div class="form-group">
+                <label for="image">Tattoo Image</label>
+                <input type="file" name="image" required class="form-control" />
+            </div>
+
             <button type="submit" class="btn-upload">Add to Portfolio</button>
         </form>
 
@@ -111,7 +120,8 @@
             @foreach($user->portfolios as $portfolio)
                 <div class="portfolio-item">
                     <img src="{{ asset('storage/' . $portfolio->image_path) }}" alt="{{ $portfolio->title }}">
-                    <p>{{ $portfolio->title }}</p>
+                    <h4>{{ $portfolio->title }}</h4> <!-- Afficher le titre -->
+                    <p>{{ $portfolio->description }}</p> <!-- Afficher la description -->
                     <form action="{{ route('portfolio.delete', $portfolio->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
