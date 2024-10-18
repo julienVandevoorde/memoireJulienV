@@ -1,0 +1,124 @@
+/* Container principal */
+.edit-profile-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Titre principal */
+.profile-heading {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Conteneur pour les formulaires */
+.forms-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Card pour chaque section de formulaire */
+.form-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Titre de chaque section */
+.form-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Style pour chaque groupe de champs */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Style des labels */
+.form-group label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: block;
+    color: #555;
+}
+
+/* Style des champs d'entrée */
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Boutons de soumission */
+.btn-save {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.btn-save:hover {
+    background-color: #0056b3;
+}
+
+/* Card spécifique pour la suppression */
+.delete-card {
+    background-color: #fff0f0;
+    border: 1px solid #ffcccc;
+}
+
+.delete-warning {
+    color: #ff5c5c;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Bouton de suppression */
+.btn-delete {
+    background-color: #ff4b4b;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #e63939;
+}
+
+/* Style des messages d'erreur */
+.error-message {
+    color: #ff4b4b;
+    font-size: 12px;
+    margin-top: 5px;
+}

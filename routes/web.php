@@ -15,6 +15,7 @@ use App\Http\Controllers\UserReportController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 // Authentification (routes par défaut de Laravel Breeze ou Jetstream)
@@ -79,6 +80,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/tattoos/{portfolio}/unlike', [LikeController::class, 'unlike'])->name('tattoo.unlike');
 
     Route::get('/my-orders', [CheckoutController::class, 'myOrders'])->name('orders');
+
+    // routes/web.php
+    Route::post('/contact-submit', [ContactController::class, 'submit'])->name('contact.submit');
+
 });
 
 // Routes administratives (avec vérification du rôle admin)

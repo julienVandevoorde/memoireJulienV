@@ -25,7 +25,7 @@
             <div class="profile-navigation">
                 <a href="{{ url('/chatify') }}">My messages</a>
                 <a href="{{ route('orders') }}">My orders</a>
-                <a href="{{ route('profile.edit') }}">Reset password</a>
+                <a href="{{ route('profile.edit') }}">Settings</a>
             </div>
         </div>
 

@@ -1,16 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<link rel="stylesheet" href="{{ asset('css/report.css') }}">
+<br><br>
+<div class="report-container">
     <h1>Report the Tattoo: {{ $portfolio->title }}</h1>
 
-    <form action="{{ route('tattoo.report.store', $portfolio->id) }}" method="POST">
+    <!-- Report Form -->
+    <form action="{{ route('tattoo.report.store', $portfolio->id) }}" method="POST" class="report-form">
         @csrf
+
         <div class="form-group">
             <label for="reason">Reason for reporting</label>
-            <textarea id="reason" name="reason" class="form-control" required></textarea>
+            <textarea id="reason" name="reason" rows="4" class="form-control" required></textarea>
+            @if($errors->has('reason'))
+                <span class="text-danger">{{ $errors->first('reason') }}</span>
+            @endif
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+
+        <div class="form-group">
+            <button type="submit" class="btn-submit">Submit Report</button>
+        </div>
     </form>
 </div>
 @endsection

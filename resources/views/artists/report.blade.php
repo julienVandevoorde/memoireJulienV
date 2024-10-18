@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<link rel="stylesheet" href="{{ asset('css/report.css') }}">
+<br><br>
+<div class="report-container">
     <h1>Report {{ $user->name }}</h1>
 
     <!-- Report Form -->
-    <form action="{{ route('report.user.submit', $user->id) }}" method="POST">
+    <form action="{{ route('report.user.submit', $user->id) }}" method="POST" class="report-form">
         @csrf
 
         <!-- Hidden field for reported user ID -->
@@ -20,7 +22,7 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">Submit Report</button>
+            <button type="submit" class="btn-submit">Submit Report</button>
         </div>
     </form>
 </div>
