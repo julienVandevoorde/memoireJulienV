@@ -16,6 +16,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\UserResourcesController;
 use Illuminate\Support\Facades\Route;
 
 // Authentification (routes par défaut de Laravel Breeze ou Jetstream)
@@ -41,6 +42,8 @@ Route::get('/artists', [ArtistController::class, 'index'])->name('artists.index'
 
 // Profil utilisateur spécifique
 Route::get('/profile/{login}', [ProfileController::class, 'showProfile'])->name('profile.showProfile');
+
+
 
 // Panier
 Route::middleware('auth')->group(function () {
@@ -122,5 +125,9 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 
     Route::get('admin/portfolios/', [PortfolioController::class, 'index'])->name('admin.portfolios.index');
     Route::delete('admin/portfolios/{portfolio}', [PortfolioController::class, 'destroy'])->name('admin.portfolios.destroy');
-    
+
+        // Route pour lister tous les utilisateurs
+    Route::get('/api/users', [UserResourcesController::class, 'index']);
+    // Route pour afficher un utilisateur spécifique par ID
+    Route::get('/api/users/{user}', [UserResourcesController::class, 'show']);
 });

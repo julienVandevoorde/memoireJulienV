@@ -79,7 +79,6 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
-                    <th>Stock Quantity</th>
                     <th>Category</th>
                     <th>Image</th>
                     <th>Actions</th>
@@ -91,7 +90,6 @@
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->description }}</td>
                         <td>{{ $product->price }}</td>
-                        <td>{{ $product->stock_quantity }}</td>
                         <td>{{ $product->category }}</td>
                         <td>
                             @if($product->image_path)

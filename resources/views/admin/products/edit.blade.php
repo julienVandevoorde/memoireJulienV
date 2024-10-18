@@ -23,10 +23,6 @@
                 <input type="number" step="0.01" id="productPrice" name="price" value="{{ $product->price }}" required>
             </div>
             <div class="form-group">
-                <label for="productStock">Stock Quantity</label>
-                <input type="number" id="productStock" name="stock_quantity" value="{{ $product->stock_quantity }}" required>
-            </div>
-            <div class="form-group">
                 <label for="productCategory">Category</label>
                 <input type="text" id="productCategory" name="category" value="{{ $product->category }}">
             </div>

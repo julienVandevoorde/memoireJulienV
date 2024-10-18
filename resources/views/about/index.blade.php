@@ -42,7 +42,7 @@
     <!-- Contact Form Section -->
     <section class="contact-section">
         <h2>Contact Us</h2>
-        <p>Have questions? Want to learn more about what we offer? Feel free to get in touch with us.</p>
+        <p>Have questions? Want to learn more about what we offer? <br>Feel free to get in touch with us.</p>
 
         <form action="{{ route('contact.submit') }}" method="POST">
             @csrf

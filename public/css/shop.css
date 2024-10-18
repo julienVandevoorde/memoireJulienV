@@ -130,17 +130,36 @@
     margin-bottom: 10px;
 }
 
-/* Bouton d'ajout au panier */
+/* Nouvelle animation pulsante plus douce */
+@keyframes smooth-pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1); /* Légère expansion */
+        background-color: #5cb85c; /* Couleur plus claire */
+    }
+    100% {
+        transform: scale(1); /* Retour à la taille normale */
+        background-color: #4CAF50; /* Retour à la couleur d'origine */
+    }
+}
+
 .btn-add-to-cart {
     padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn-add-to-cart:hover {
     background-color: #45a049;
+}
+
+/* Animation douce lors du clic */
+.btn-add-to-cart:active {
+    animation: smooth-pulse 0.4s ease; /* Déclenche l'animation */
 }
